@@ -1,0 +1,372 @@
+	% Perfuração e coleta{{{
+\section{Subsistema: Perfuração e Coleta}
+
+  \subsection{Sistema de Perfuração}
+  
+  Para o sistema de perfuração algumas pesquisas e discussões foram
+  feitas para escolher um sistema que pudesse ser realizado. Foram
+  definidas duas opções possíveis para serem comparadas e analisadas
+  e depois decidir a que se encaixa melhor nos requisitos do projeto.
+
+  \textbf{Opção A}: Usar uma broca para perfurar o plástico e a terra, ao completar este
+  processo, um dispositivo é acionado para realizar a troca da peça broca para
+  a peça sensor, o sensor de umidade é então estendido até o solo do buraco e
+  coleta os dados solicitados. Após a coleta dos dados o sensor é recolhido e o
+  carrinho segue em frente para mais uma perfuração.
+
+  \textbf{Opção B}: Usar um tubo puntiforme contendo o sensor, havendo na ponta do
+  tubo aberturas levemente maiores que as dimensões dos terminais do sensor. O tubo terá
+  um motor para movê-lo ao longo do curso, através de cabos de aço atrelados à roldanas. 
+
+  O grupo optou pela opção B pelos seguintes fatores:
+
+ \begin{itemize}
+	\item Dificuldade em elaborar um mecanismo para alternar a broca e o sensor
+	conforme descrito na opção A;
+	\item Relativa facilidade em perfurar o solo devido a sua baixa compactabilidade;
+	\item Diminuição da quantidade de atuadores necessários.
+ \end{itemize}
+
+	Dessa forma, foi utilizado um conjunto adquirido já com o motor. Esse conjunto
+	foi modificado para que seu curso fosse comportado dentro dos limites do veículo.
+	O produto final atende os requisitos para este sistema.
+	
+		\begin{figure}[!htbp]
+			\begin{center}
+				\includegraphics[width=.4\textwidth]{figuras/perfuracao.eps}
+				\caption{Sistema de perfuração}
+			\end{center}
+		\end{figure}
+		
+	Como é possível ver, o tubo de perfuração move-se devido ao tracionamento de cabos de aço que passam pelas polias localizadas nas extremidades da canaleta. Uma peça de plástico, parafusada ao tubo de perfuração, percorre uma das arestas da canaleta. O curso é definido pela distância que pode ser percorrida livremente por essa peça. 
+	Para fixar esse subsistema no veículo, foram utilizados parafusos e porcas, que passam por furos nas barras verticais mais frontais do veículo. Desse modo, o conjunto pode ser retirado caso necessário, podendo até mesmo ser trocado seu local no veículo. 
+	Foi constatado que a forma que foi montado o sistema de perfuração ocupa menos de um terço do espaço disponível para componentes internos.
+	
+	\begin{itemize}
+		\item Experimentos e Estimativas
+	\end{itemize}
+	
+	Para resolver o problema de mecânica dos solos que foi destacado no último ponto de controle, foram utilizados alguns conceitos de acordo com \cite{bastos}.
+	
+	\begin{enumerate}
+		\item O solo em questão trata-se de solo para plantio, logo podemos afirmar que o mesmo não está saturado e não existe pré-adensamento, logo que o tipo de deformação será deformação rápida;
+		\item O solo se encontra originalmente em estado não confinado;
+		\item O método de perfuração usado provoca o adensamento das regiões próximas aos limites das paredes do Módulo II de perfuração
+	\end{enumerate}
+	
+	Dessa forma, foi elaborado um experimento para estimar a resistência à penetração do solo. O experimento consiste em empilhar pesos conhecidos sobre a lança de perfuração (Módulo II) até que ocorra a penetração. Repetindo esse passo em grupo de cinco medidas em espaçamentos aleatórios obtivemos o resultado de 8 kgf. 
+	
+	\begin{itemize}
+		\item Testes
+	\end{itemize}
+	
+	Teste de conformidade da mola:  Este teste tem o objetivo de validar a capacidade da mola de suportar a força empregada pelo solo ao ser perfurado. Foi realizado empregando-se a carga anteriormente mencionada sobre a ponta da lança. A peça foi bem sucedida nesse teste.
+	
+	Teste de ejeção do sensor: Este teste consiste na retração completa do Módulo II de perfuração realizado pelo Módulo I. O sucesso nesse teste constitui validação do funcionamento completo do sistema de perfuração. Este teste não foi realizado ainda por motivo de cronograma.
+	
+	\begin{itemize}
+		\item Resultado e Considerações
+	\end{itemize}
+	
+	O conjunto de perfuração foi produzido de forma bem sucedida, conforme ilustrado na Figura \ref{fig:perfuracao} Os requisitos apresentados para o sistema foram atendidos pela peça produzida. 
+	Pode-se notar uma mudança em relação ao projeto inicial: o reposicionamento da mola. Essa mudança foi feita para facilitar a montagem e a troca das partes.
+	
+	\begin{figure}[!htbp]
+		\centering
+		\includegraphics[keepaspectratio=true, width=0.4\textwidth]{figuras/perfuracao23.eps}
+		\caption{Conjunto de perfuração}
+		\label{fig:perfuracao}
+	\end{figure}
+	% }}}
+	
+% Daqui para a frente quem escreve é o PG e o Fagner {{{
+\subsection{Sensoriamento: Coleta}
+
+
+  % Sensor de Umidade e Temperatura (AM2302) {{{
+	\subsubsection{Sensor de Umidade e Temperatura do Ar (AM2302)}
+
+		O sensor escolhido para as medições de temperatura e umidade relativa do ar
+		é o AM2302 (idêntico ao DHT22) da AOSONG que é apresentado na figura~\ref{fig:AM2302}. 
+
+		\begin{figure}[!htbp]
+		\begin{center}
+		\includegraphics[width=.4\textwidth]{figuras/am2302.eps}
+		\caption{\label{fig:AM2302}Sensor de umidade relativa e temperatura do ar (fonte:~\citeonline{aosong}).}
+		\end{center}
+		\end{figure}
+
+		O AM2302 contém um sensor capacitivo de umidade para a medição da umidade relativa
+		do ar com uma resolução de $0.1~\%\textrm{RH}$ e precisão de $\pm 2~\%\textrm{RH}$.
+		Além do sensor de umidade, este módulo também contém um sensor de temperatura com
+		alta precisão e alcance de $-40~\celsius$ à $80~\celsius$, resolução de $0.1~\celsius$,
+		e precisão de $\pm 0.5~\celsius$~\cite{aosong}.
+
+		O AM2302 possui um microcontrolador de 8 bits embutido com parâmetros de calibração já gravados
+		que forncem medições precisas e estáveis durante um longo tempo de utilização.
+		Os dados fornecidos pelos sensores são de 16 bits para temperatura e
+		16 bits para umidade relativa do ar~\cite{aosong}.
+
+		A comunicação com o dispositivo se dá por meio de um único pino (SDA, pino 2) que é
+		bidirecional e são retornados 40 bits ao microcontrolador que realizou a requisição, onde
+		o primeiro e o segundo bytes contém a última leitura de umidade,
+		o terceiro e o quarto bytes contém a última leitura de temperatura,
+		e o quinto byte contém um \textit{checksum} que é a soma dos 4 primeiros bytes
+		indicando se os dados são válidos.
+		O pino de alimentação é o pino 1 e ele pode ser alimentado com $3.3\textrm{V}$--$5\textrm{V}$,
+		sendo $5\textrm{V}$ o recomendado. O pino 3 não é utilizado e o pino 4 é o terra.
+		O tempo mínimo entre leituras consecutivas é de 2 segundos~\cite{aosong}.
+
+	\paragraph{Implementação}
+
+		A complexidade de implementação deste módulo é bastante reduzida
+		se for utilizada uma das bibliotecas já desenvolvidas para o envio
+		e leitura de dados do AM2302. Felizmente a Adafruit, uma empresa americana
+		que trabalha com \textit{hardware open-source}, fornece uma biblioteca para
+		a plataforma Arduino para tornar o desenvolvimento mais simples\footnote{\url{https://github.com/adafruit/DHT-sensor-library}.}.
+		Portanto, foi utilizada a biblioteca \texttt{DHT.h} para os propósitos
+		deste projeto.
+
+	\paragraph{Testes}
+
+		Os testes feitos com o módulo AM2302 foram realizados utilizando
+		o \textit{hardware} apresentado na figura~\ref{fig:am2302test} (esquemático
+		produzido com o auxílio da ferramenta Fritzing).
+
+		\begin{figure}[!htbp]
+		\begin{center}
+		\includegraphics[width=.8\textwidth]{figuras/am2302_test.eps}
+		\caption{\label{fig:am2302test}\textit{Hardware} utilizado para teste.}
+		\end{center}
+		\end{figure}
+
+		Para os testes iniciais foi utilizado um Arduino Uno, onde era enviado uma requisição
+		no formato de um número e então era feita a leitura e enviada pela porta serial.
+		O resultado do teste é mostrado na figura~\ref{fig:am2302ardu}.
+
+		\begin{figure}[!htbp]
+		\begin{center}
+		\includegraphics[width=.7\textwidth]{figuras/am2302_arduino.eps}
+		\caption{\label{fig:am2302ardu}Resultado do teste da leitura dos sensores.}
+		\end{center}
+		\end{figure}
+
+		Como o resultado do teste foi satisfatório é necessário realizar
+		o teste de comunicação com a Raspberry Pi. Como a Raspberry possui
+		um Linux embarcado e a comunicação é serial, é necessário utilizar
+		as bibliotecas fornecidades pelo Linux para que a comunicação
+		possa ser estabelecida, e a biblioteca mais importante neste caso
+		é a \texttt{termio.h}.
+		
+		Os valores lidos pelo sensor se encontram no formato de ponto flutuante
+		de 4 bytes (IEEE 754) e, portanto, tanto para a temperatura quanto
+		para a umidade relativa do ar é necessário que o Arduino Uno envie
+		4 bytes para cada. Os resultados do teste estão mostrados na figura~\ref{fig:am2302rasp}.
+
+		\begin{figure}[!htbp]
+		\begin{center}
+		\includegraphics[width=\textwidth]{figuras/am2302_raspberry.eps}
+		\caption{\label{fig:am2302rasp}Resultado do teste de comunicação com a Raspberry Pi.}
+		\end{center}
+		\end{figure}
+  % }}}
+
+  % Sensor de umidade do solo (FC-28) {{{
+	\subsubsection{Sensor de Umidade do Solo (FC-28)}
+
+		O sensor escolhido para a medição da umidade do solo foi o FC-28 (apresentado
+		na figura~\ref{fig:fc28}),
+		tanto pelo baixo custo quanto pelo simples processo de medição.
+		Ele tem como princípio de medição a queda de tensão resultante da
+		passagem de corrente por uma malha resistiva, que no caso seria o solo
+		umedecido.
+
+		\begin{figure}[!htbp]
+		\begin{center}
+		\includegraphics[width=.5\textwidth]{figuras/higrometer.eps}
+		\caption{\label{fig:fc28}Sensor de umidade do solo.}
+		\end{center}
+		\end{figure}
+
+		O sensor é constituído por duas linhas de eletrodos que estão
+		sobrepostas a duas placas com terminações pontiagudas para facilitar a
+		penetração do sensor no solo. Uma corrente é injetada em uma das linhas
+		de eletrodos e é medida a queda tensão entre as linhas, que é função da
+		resistência entre os eletrodos que por sua vez é função da quantidade de
+		água e minerais presentes entre os eletrodos. Quando o volume de água no
+		solo entre os eletrodos é baixo, ou seja, quando o solo está seco,
+		a queda de tensão será maior, e quando o solo está umedecido,
+		a queda de tensão é menor.
+
+		Devido ao seu princípio de operação, este sensor mede a quantidade de
+		água no solo de forma indireta, e a calibração do sensor vai de acordo
+		com o que é definido como um solo seco ou úmido em um local, e portanto
+		se faz necessária a calibração do equipamento em campo junto ao
+		responsável pela irrigação.
+
+		% Rotina de calibração (Fagner, 2016) {{{
+		Antes do processo de calibração faz-se necessário saber sobre o processo de obtenção
+		da umidade real do solo em que é preciso seguir os seguintes passos:
+
+		\begin{itemize}
+			\item Pegar uma amostra de solo do terreno colocando em um cilindro com um volume conhecido.
+			\item Secar a amostra de solo com auxílio de um microondas na faixa entre 60\% a 80\% de potência.
+			\item Esperar o tempo de 240 segundos ou 4 minutos exatos para estabilização da massa do solo.
+			\item Pesar a amostra de solo seco guardando o valor do peso.
+			\item Umedecer a amostra de solo seco.
+			\item Pesar a amostra umedecida guardando o valor do peso.
+			\item Calcular a umidade volumétrica com os dados do peso do solo seco, peso do solo úmido e volume do cilindro.
+		\end{itemize}
+
+		Para a secagem da amostra o procedimento padrão adotado é o uso de uma estufa de
+		secagem entre $105~\celsius$ e $115~\celsius$ durante 24 horas para completa secagem da
+		amostra do solo. No entanto, o método utilizando estufa é demorado para apenas
+		obtenção dos dados e existe outro método que se utiliza de um microondas para
+		secagem da amostra. Esse método já foi testado em experiências e comprovadamente
+		funciona tão bem quanto o método de estufa de acordo com \citeonline{tavares2008uso}.
+
+		Também é possível a partir desse procedimento, obter o valor da umidade gravimétrica
+		que também pode ser usado para calibração do sensor.
+
+		Para a necessária calibração do sensor de umidade deve-se seguir os seguintes procedimentos:
+
+		\begin{itemize}
+			\item Pegar uma amostra do solo com peso aproximado de 100 gramas.
+			\item Fazer a secagem desta amostra com auxílio do microondas com potência entre 60\% a 80\%.
+			\item Esperar o tempo de 240 segundos ou 4 minutos exatos para estabilização da massa do solo.
+			\item Pesar a amostra de solo seco e verificar se o mesmo está com 100 gramas.
+			\item Caso dê um valor acima, retirar o excesso até atingir o valor de 100 gramas,
+				caso não atinja esse valor, será necessário completar a amostra e repetir o processo de secagem.
+			\item Pegar uma amostra de água destilada com peso de 5 gramas e umedecer a amostra.
+			\item Misturar bem a amostra até obter uma amostra homogênea.
+			\item Realizar a medição dessa amostra com o sensor de umidade e obter o valor.
+			\item Os valores dos pesos do solo e da água passados são intencionais, pois com
+				estes valores, dará um valor de umidade gravimétrica de 5\%.
+			\item O valor obtido da medida do sensor com o valor da umidade gravimétrica a
+				5\% indicará que para esta umidade gravimétrica o valor da medida do sensor é equivalente.
+			\item Repetir esse procedimento para amostra de solo com 10\%, 15\%, 20\%, 25\%,
+				30\%, 40\%, 50\% e 60\%, sendo estas porcentagens equivalentes ao valor do peso
+				da água, e comparar os valores da umidade gravimétrica com os valores de medição do sensor.
+		\end{itemize}
+
+		Dessa forma saberemos os valores equivalentes a essas porcentagens e o sensor
+		estará calibrado, endoçando que para um dado valor de medida de umidade irá
+		equivaler ao valor da porcentagem de umidade gravimétrica do solo.
+		% }}}
+
+		\paragraph{Implementação}
+
+			Este sensor necessita somente de uma entrada analógica para informar
+			a queda de tensão devido a resistividade do solo. Os valores possíveis
+			são de 0 a 1023 pois o ADC do Arduino Mega2560 é de 10 bits.
+
+			Com os dados da calibração nos pontos citados acima é possível
+			interpolar uma função na forma exponencial na forma
+			\[
+				U = a H^b,
+			\]
+			onde $U$ é a umidade gravimétrica em $\%$ do conteúdo de água
+			no solo e $H$ é a leitura do sensor. As constantes $a$ e $b$
+			são encontradas utizando o método dos mínimos quadrados
+			no logaritmo de ambos lados da equação, resultando em
+			\[
+				\ln U = \ln a + b \ln H.
+			\]
+
+			As medidas de umidade $U_i$ e das leituras do sensor $H_i$
+			formam os vetores $\mathbf{U} = [U_1~U_2~\cdots~U_N]^T$ e
+			$\mathbf{H} = [H_1~H_2~\cdots~H_N]^T$. Formando a matriz
+			\[
+				A =
+				\begin{pmatrix}
+					1 & \ln H_1 \\
+					1 & \ln H_2 \\
+					\vdots & \vdots \\
+					1 & \ln H_N
+				\end{pmatrix} = [ \mathbf{1}~\ln \mathbf{H} ]
+			\]
+			é possível encontrar os parâmetros $\mathbf{\theta} = [\theta_1~\theta_2]^T$
+			resolvendo o problema de otimização
+			\[
+				\underset{\mathbf{\theta}}{\textrm{minimizar}}~|| A\mathbf{\theta} - \mathbf{U} ||_2
+			\]
+			que tem como solução $\theta = (A^TA)^{-1}A^T\mathbf{U}$.
+			Por fim, $a = e^{\theta_1}$ e $b = \theta_2$.
+
+			Com estes parâmetros é possível correlacionar os valores do
+			sensor com a umidade do solo, e este processo deve ser realizado
+			com cada tipo de solo.
+			O caráter exponencial desta correlação se justifica em estudos
+			como em \citeonline{munoz2011influence}.
+
+		\newpage
+		\paragraph{Testes}
+
+			Utilizando a configuração apresentada na figura~\ref{fig:fc28test} é
+			possível medir alguns valores do sensor em função do nível de
+			umidade do solo. Um exemplo de interpolação dos dados é mostrado
+			na figura~\ref{fig:calibration}.
+
+			\begin{figure}[!htbp]
+			\begin{center}
+			\includegraphics[width=.7\textwidth]{figuras/fc28_test.eps}
+			\caption{\label{fig:fc28test}Configuração utilizada para os testes do higrômetro.}
+			\end{center}
+			\end{figure}
+
+			\begin{figure}[!htbp]
+			\begin{center}
+			\includegraphics[width=.7\textwidth]{figuras/calibration.eps}
+			\caption{\label{fig:calibration}Exemplo de interpolação dos dados para a calibração do sensor.}
+			\end{center}
+			\end{figure}
+
+			Os valores lidos diretamente pelo microcontrolador são mostrados na figura~\ref{fig:fc28ardu}.
+			Estas leituras são passadas diretamente para a Raspberry Pi para então serem
+			calculadas com base nos parâmetros de calibração.
+
+			\begin{figure}[!htbp]
+			\begin{center}
+			\includegraphics[width=.8\textwidth]{figuras/fc28_arduino.eps}
+			\caption{\label{fig:fc28ardu}Dados do higrômetro obtidos pelo microncontrolador.}
+			\end{center}
+			\end{figure}
+
+			Os resultados dos testes da passagem de dados do microcontrolador para a Raspberry Pi utilizando a UART
+			estão mostrados na figura~\ref{fig:fc28rasp}.
+
+			\begin{figure}[!htbp]
+			\begin{center}
+			\includegraphics[width=\textwidth]{figuras/fc28_raspberry.eps}
+			\caption{\label{fig:fc28rasp}Dados do higrômetro passados para a Raspberry Pi.}
+			\end{center}
+			\end{figure}
+% }}}
+
+  % Módulo de controle (Arduino Mega2560) {{{
+  \subsubsection{Módulo de Controle (Arduino Mega2560)}
+
+  Para o controle do sistema escolheu-se a placa Arduino Mega2560.
+  O Mega2560 é uma placa de microcontrolador baseado no ATmega2560 .
+  Ele tem 54 pinos digitais de Entrada e saída, 16 entradas analógicas,
+  4 UARTs, uma conexão USB , dentre outros. Ele contém tudo o necessário
+  para dar suporte ao microcontrolador. A figura~\ref{fig:arduino} apresenta a placa
+  Arduino Mega2560.
+
+  \begin{figure}[!htbp]
+  \begin{center}
+  \includegraphics[width=.6\textwidth]{figuras/arduino.eps}
+  \caption{\label{fig:arduino}Arduino Mega2560.}
+  \end{center}
+  \end{figure}
+  % }}}
+
+  A escolha da placa foi motivada por diversos fatores.
+  Primeiramente, ela é capaz de realizar as demandas de controle do
+  veículo, bem como possui um número de portas adequado. Além disso,
+  é relativamente barata se comparada a outras plataformas de
+  microcontroladores. Seu software é multiplataforma, proporcionando
+  a interface com o Linux e possui um ambiente de programação simples,
+  claro e bastante familiar.
+
+% Fim da parte do PG }}}
