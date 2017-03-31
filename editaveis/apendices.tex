@@ -293,11 +293,126 @@ Atraso/falta dos integrantes nas reuniões  & \begin{tabular}[c]{@{}l@{}}Comunic
 	Cada risco não encontrado pelo grupo na fase de elaboração do projeto deverá ser documentado neste documento no futuro segundo os padrões adotados pela equipe e da ferramenta usada por ela para gerenciamento de riscos.
 	
 	
-	\subsection{Plano de Custos}
-	
-	\subsection{Plano de Aquisições}
-	
-	\subsection{Cronograma Detalhado}
+	\chapter{Plano de Custos}
 
+	
+	\chapter{Cronograma Detalhado}
+		\subsection{Ponto de Controle 1}
+		As atividades do Ponto de Controle 1 estão representadas na figura \ref{img:PC1}. As atividades foram divididas em cinco subgrupos que são:
 
+		\begin{itemize}
+			\item Gerência;
+			\item Software;
+			\item Alimentação;
+			\item Eletroeletrônica;
+			\item Estrutura;
+		\end{itemize}	
+		
+		\graphicspath{{figuras/}}
+			\begin{figure}[h!]
+			\centering
+			\includegraphics[scale=0.60]{PC1}
+			\caption{Atividades do Ponto de Controle 1}
+			\label{img:PC1}
+			\end{figure}	
+		
+		As atividades do subgrupo de Gerência são:
+		
+		\begin{itemize}
+			\item \textbf{Cronograma}: criação de um cronograma, contendo as datas de início e fim das atividades e os seus respectivos responsáveis.
+			\item \textbf{Riscos}: definição dos riscos do projeto.
+			\item \textbf{Custo}: levantamento dos custo do projeto, definindo a prioridade de aquisição.
+		\end{itemize}	
+		
+		As atividades do subgrupo de Software são:
+		
+		\begin{itemize}
+			\item \textbf{Definição API}: definir qual API será utilizada para implementação da solução de software.
+			\item \textbf{Comunicação API e Microcontrolador}: definir a forma mais viável de transferir as informações coletadas pela API para o microcontrolador.
+		\end{itemize}				
+
+	As atividades do subgrupo de Alimentação são:
+	
+	\begin{itemize}
+		\item \textbf{Sistema de Reaproveitamento de Energia}: definir um mecanismo que possa ser reaproveitar a energia e utiliza-lá para alimentação dos componentes eletrônicos.
+		\item \textbf{Seleção e Projeto de Alimentação}: definir a melhor solução para alimentar o sistema. 
+	\end{itemize}		
+	
+	As atividades do subgrupo de Eletroeletrônica são:
+	\begin{itemize}
+		\item \textbf{Painel de Controle}: definir o funcionamento do painél de controle acoplado à bicicleta para que se tenha informações do sistema.
+		\item \textbf{Acionamento do Motor}: definir como será feito o acionamento do motor utilizando componentes eletrônicos.
+		\item \textbf{Dispositivos de Direção}: definir os dispositivos de navegação que serão utilizados juntamente com a API de direção.
+	\end{itemize}
+
+	As atividades do subgrupo de Estrutura são:
+	\begin{itemize}
+		\item \textbf{Dimensionamento do Equipamento}: definir como serão acoplados os componentes eletrônicos ao sistema.
+		\item \textbf{Dimensionamento do Veículo}: definir o desenho do veículo.
+	\end{itemize}
+
+	\subsection{Ponto de Controle 2}
+		As atividades do Ponto de Controle 2 estão representadas na figura \ref{img:PC2}. As atividades foram divididas em quatro subgrupos que são:
+
+		\begin{itemize}
+			\item Software;
+			\item Alimentação;
+			\item Eletroeletrônica;
+			\item Estrutura;
+		\end{itemize}	
+		
+		\graphicspath{{figuras/}}
+			\begin{figure}[h!]
+			\centering
+			\includegraphics[scale=0.60]{PC2}
+			\caption{Atividades do Ponto de Controle 2}
+			\label{img:PC2}
+			\end{figure}	
+			
+			As atividades do subgrupo de Software são:
+			
+			\begin{itemize}
+				\item \textbf{Criação do APP}: implementar o app que fará a comunicação com o microcontrolador
+			\end{itemize}
+			
+			As atividades do subgrupo de Alimentação são:
+			\begin{itemize}
+				\item \textbf{Sistema de Alimentação}: implementar o sistema que alimentará o veículo.
+			\end{itemize}
+			
+			As atividades do subgrupo de Eletroeletrônica são:
+			\begin{itemize}
+				\item \textbf{Componentes de Navegação}: implementar o sistema de navegação que será acoplado ao veículo
+			\end{itemize}
+			
+			As atividades do subgrupo de Estrutura são:
+			\begin{itemize}
+				\item \textbf{Estrutura Implementada}: implementar a estrutura do veículo.
+			\end{itemize}
+			
+			\subsection{Ponto de Controle 3}
+			As atividades do Ponto de Controle 2 estão representadas na figura \ref{img:PC3}.
+		
+		\graphicspath{{figuras/}}
+			\begin{figure}[h!]
+			\centering
+			\includegraphics[scale=0.60]{PC3}
+			\caption{Atividades do Ponto de Controle 3}
+			\label{img:PC3}
+			\end{figure}
+			
+			As atividades são:
+			
+			\begin{itemize}
+				\item \textbf{Integração Aplicativo e Microcontrolador}: fazer a integração das duas interfaces e garantir o funcionamento do sistema.
+				\item \textbf{Integração Bateria e Estrutura}: fazer o acoplamento da bateria à estrutura e garantir o funcionamento do sistema.
+				\item \textbf{Integração Componentes e Estrutura}: fazer o acoplamento final entre os componentes e a estrutura (que já se encontra com a bateria), e garantir o funcionamento do sistema.
+				\item \textbf{Teste de Integração}: teste que é feito ao fim de cada integração para garantir o funcionamento do sistema.
+				\item \textbf{Teste Final}: teste feito ao fim de todas as integrações, onde o produto já foi finalizado. 
+			\end{itemize}
+			
+			
+			
+			
+	
 \end{apendicesenv}
