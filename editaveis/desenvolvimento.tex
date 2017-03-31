@@ -103,7 +103,13 @@ No caso do atual projeto, será utilizada a API versão 3 que possui algumas fun
 
 Para incluir o script da versão 3 basta utilizar o código JavaScript abaixo
 
-CODIGO
+\graphicspath{{figuras/}}
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.80]{codigo1}
+\caption{Código 1}
+\label{img:codigo1}
+\end{figure}
 
 Que é completamente compatível com as tecnologias utilizadas no projeto. Observa-se a especificação da versão no primeiro parâmetro da URL, onde v=3. Caso esse parâmetro fosse emitido, o script carregado seria o da versão 1.0 que possui algumas limitações em relação à funcionalidades.
 
@@ -111,18 +117,43 @@ Para a aplicação das funcionalidades, foi produzido um protótipo da utilizaç
 
 O primeiro passo após a inclusão do Script, foi definir o ponto inicial para cálculo da rota. No protótipo desenvolvido, foi utilizado o meio do ICC no campus Darcy Ribeiro como ponto inicial.
 
-CODIGO
+\graphicspath{{figuras/}}
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.80]{codigo2}
+\caption{Código 2}
+\label{img:codigo2}
+\end{figure}
+
 Em seguida, o objeto mapa foi criado e instanciado na camada de visualização da aplicação.	
 	
-CODIGO
+\graphicspath{{figuras/}}
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.80]{codigo3}
+\caption{Código 3}
+\label{img:codigo3}
+\end{figure}
 
 Ainda foi aplicada uma camada de visualização em cima do mapa, mostrando um mapa detalhado sobre o campus Darcy Ribeiro.
 
-CODIGO
+\graphicspath{{figuras/}}
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.80]{codigo4}
+\caption{Código 4}
+\label{img:codigo4}
+\end{figure}
 
 A seguir foi desenhado um pino, apenas para representar a posição inicial.
 
-CODIGO
+\graphicspath{{figuras/}}
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.80]{codigo5}
+\caption{Código 5}
+\label{img:codigo5}
+\end{figure}
 
 O resultado obtido encontra-se na figura \ref{img:mapa_unb}
 
@@ -134,19 +165,11 @@ O resultado obtido encontra-se na figura \ref{img:mapa_unb}
 \label{img:mapa_unb}
 \end{figure}
 
-Para desenhar a rota no mapa, o seguinte código foi utilizado
-
-CODIGO
-
 Os pontos de início e fim são tratados e o serviço de rotas é acionado, retornando um objeto JSON com todos os passos de direções necessários a se chegar no destino desejado.
 
 Cada passo é retornado seguindo um modelo específico, deve-se atentar para a sub-propriedade instructions do array steps. Por exemplo a primeira instrução para ir do ICC ao HUB é ‘Siga na direção Sudoeste em direção a UNB Área 1’. Essas instruções serão passadas por um parser e comunicadas ao micro controlador que se encarregará de comunica-las ao usuário de forma agradável.
 
-No protótipo feito, foi traçada a rota a partir do serviço renderizador, disponibilizado também pela API do Google Maps.
-
-CODIGO
-
-O resultado conseguido encontra-se na figura \ref{img:mapa_unb2}, mostrando o traçar de uma rota do ICC ao HUB
+No protótipo feito, foi traçada a rota a partir do serviço renderizador, disponibilizado também pela API do Google Maps. O resultado conseguido encontra-se na figura \ref{img:mapa_unb2}, mostrando o traçar de uma rota do ICC ao HUB
 
 \graphicspath{{figuras/}}
 \begin{figure}[h!]
@@ -156,6 +179,32 @@ O resultado conseguido encontra-se na figura \ref{img:mapa_unb2}, mostrando o tr
 \label{img:mapa_unb2}
 \end{figure}
 
+	\subsection{Protótipo}
+	Alguns protótipo das telas foram feitos, para que se possa ter uma noção do produto final que se espera alcançar ao fim do projeto. Os protótipos são apresentados nas figuras \ref{img:logo}, \ref{img:mapa} e \ref{img:dados}.
+	
+	\graphicspath{{figuras/}}
+	\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.40]{logo.jpeg}
+	\caption{Tela de abertura do Aplicativo}
+	\label{img:logo}
+	\end{figure}
+	
+	\graphicspath{{figuras/}}
+	\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.40]{mapa.jpeg}
+	\caption{Tela exemplificando o funcionamento do mapa}
+	\label{img:mapa}
+	\end{figure}
+	
+	\graphicspath{{figuras/}}
+	\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.40]{dashboard.jpeg}
+	\caption{Tela com os dados do Usuário}
+	\label{img:dados}
+	\end{figure}
 	
 	\subsection{Comunicação APP e Microcontrolador}
 	  A comunicação entre o celular e o microcontrolador será feita através de receptor \textit{bluetooth} acoplado ao microcontrolador. Para que seja feita essa comunicação, será utilizada a API do próprio sistema android para troca de informações via \textit{bluetooth}. Dentre os principais recursos que a API fornece, os que mais serão utilizados serão:
@@ -580,4 +629,25 @@ Desafio: impossibilidade de fabricação do quadro  por escassez de recursos, te
 Alternativa de solução: adquirir um quadro comum no comércio e realizar as adaptações necessárias.
 
   \section{Normas}
+  Para garantir a integridade e segurança do projeto e dos futuros usuários do produto, deve-se atentar a determinadas normas técnicas, que garantem a funcionalidade do projeto. Essas normas ajudam a definir diversas características de um produto, visando uma padronização que auxilia na solução de futuros problemas, assegurando a qualidade e eficiência desejada. No Brasil, a Agência Brasileira de Normas Técnicas (ABNT) é o órgão responsável pela elaboração das Normas Técnicas Brasileiras (NBR), que servem como instrumento na avaliação de conformidades e certificação de diversas áreas e produtos, garantindo a devida credibilidade. Para o caso da Smart Bike, alguns itens importantes podem ser destacados diante da NBR NM 213, que é uma norma específica voltada para Princípios de Projeto e Segurança de Equipamentos Eletromecânicos.
+  
+\begin{table}[h]
+\centering
+\caption{Tabela de Normas}
+\label{tabela_normas}
+\begin{tabular}{|lll|}
+\hline
+\multicolumn{1}{|l|}{\textbf{ITEM AVALIADO}}                                                   & \multicolumn{1}{l|}{\textbf{MEDIDA NORMATIVA}}                                                                                                             & \textbf{O QUE SERÁ FEITO?}                                                                                                                                                                                                                                                                        \\ \hline
+\begin{tabular}[c]{@{}l@{}}Arestas vivas, ângulos vivos, \\ peças salientes, etc.\end{tabular} & \begin{tabular}[c]{@{}l@{}}Prevenir, durante o uso \\ da bicicleta, o acesso do \\ usuário aos pontos de risco\end{tabular}                                & \begin{tabular}[c]{@{}l@{}}Será feita uma análise do projeto estrutural \\ para proteger, cercar e alinhar qualquer design \\ estrutural que fornecer perigo físico ao usuário\end{tabular}                                                                                                       \\ \hline
+\begin{tabular}[c]{@{}l@{}}Formas e posição de \\ componentes\end{tabular}                     & \begin{tabular}[c]{@{}l@{}}Garantir que os componentes \\ sejam posicionados da forma \\ mais adequada ao projeto e a \\ segurança do usuário\end{tabular} & \begin{tabular}[c]{@{}l@{}}Os componentes serão posicionados de \\ maneira otimizada com sua função, \\ evitando gambiarras e grandes conexões. \\ Os motores e baterias nao serão acessíveis \\ ao usuário enquanto o mesmo estiver pedalando.\end{tabular}                                      \\ \hline
+Ergonomia                                                                                      & \begin{tabular}[c]{@{}l@{}}Reduzir as tensões nervosas e \\ o esforço físico do usuário.\end{tabular}                                                      & \begin{tabular}[c]{@{}l@{}}A bicicleta terá, no seu banco e guidon, regulagem \\ de altura para garantir ao usuário o maior conforto possível\end{tabular}                                                                                                                                        \\ \hline
+Sistema de comando                                                                             & \begin{tabular}[c]{@{}l@{}}Garantir o acesso do usuário à \\ informações gerais do sistema,\\ assim como, sua intervenção.\end{tabular}                    & \begin{tabular}[c]{@{}l@{}}Através de um display o usuário será capaz de saber \\ as principais informações de operação da bicicleta, \\ como nível de carga da bateria e velocidade. O usuário \\ poderá cessar o funcionamento do motor através de \\ um simples botão de partida.\end{tabular} \\ \hline
+Perigo Elétrico                                                                                & \begin{tabular}[c]{@{}l@{}}Proteções contra choques elétricos, \\ curtos circuitos e sobrecargas\end{tabular}                                              & \begin{tabular}[c]{@{}l@{}}Haverá uma blindagem no circuito elétrico para \\ proteger o usuário do acesso as conexões elétricas \\ que alimentam a bateria e o motor\end{tabular}                                                                                                                 \\ \hline
+Estrutura                                                                                      & Robustez                                                                                                                                                   & \begin{tabular}[c]{@{}l@{}}A estrutura será projetada para suportar determinadas \\ cargas de peso e fadiga que serão submetidas à bicicleta.\end{tabular}                                                                                                                                        \\ \hline
+\begin{tabular}[c]{@{}l@{}}Exigências gerais, \\ avisos, instruções\end{tabular}               & \begin{tabular}[c]{@{}l@{}}Deve existir clareza nas \\ informações de operação\end{tabular}                                                                & \begin{tabular}[c]{@{}l@{}}O acionamento do motor será feito por uma chave de \\ partida simples que, automaticamente, irá ligar todo o \\ sistema de controle, tornando acessível a utilização \\ do usuário ao sistema\end{tabular}                                                             \\ \hline
+Documento de acompanhamento                                                                    & Manual de instrução                                                                                                                                        & \begin{tabular}[c]{@{}l@{}}Será elaborado um documento abordando os itens \\ de segurança, utilização, armazenamento, situações de \\ emergência, etc.\end{tabular}                                                                                                                               \\ \hline
+Medidas adicionais                                                                             & \begin{tabular}[c]{@{}l@{}}Medidas previstas para situações \\ de emergência\end{tabular}                                                                  & \begin{tabular}[c]{@{}l@{}}Será elaborado um dispositivo de parada de emergência\\  técnica, trazendo a operação da bicicleta para o \\ modo manual.\end{tabular}                                                                                                                                 \\ \hline
+Manutenção                                                                                     & \begin{tabular}[c]{@{}l@{}}Considerar fatores que facilitem a \\ manutenabilidade do sistema\end{tabular}                                                  & \begin{tabular}[c]{@{}l@{}}A estrutura será montada de maneira que torne fácil \\ o acesso as partes e sistemas internos.\end{tabular}                                                                                                                                                            \\ \hline
+\end{tabular}
+\end{table}
   
