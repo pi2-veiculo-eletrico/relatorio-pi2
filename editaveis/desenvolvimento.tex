@@ -103,7 +103,46 @@ Por último, o método \textit{"cancel"} que encerra a conexão com o dispositiv
 	O sistema de navegação será alimentado por um sistema separado do motor elétrico como forma de garantia de suprimento de energia para esse sistema. Caso a bateria descarregue no meio do percurso, o dínamo será capaz de carregá-la enquanto o ciclista pedala a bicicleta, garantindo que o mesmo continuará com o sistema de iluminação que lhe indicará a rota desejada.
 	
 	\subsection{Motor Elétrico}
-	
+De modo geral, pode-se dizer que um motor elétrico é qualquer aparelho ou equipamento que permita transformar energia elétrica em mecânica. Em termos práticos, é amplamente utilizado para diversos fins devido a características que lhe conferem vantagens em relação a outros motores, sendo interessante destacar: o custo baixo da energia que utiliza o fácil transporte devido à massa relativamente baixa que possui, além da versatilidade de adaptar-se a diversos tipos de cargas com características distintas.
+
+Os motores elétricos podem ser divididos em dois grandes grupos, baseados no tipo de corrente que utilizarão em seu processo de transformação de energia: os de corrente contínua (CC) e os de corrente alternada (CA). Na figura \ref{img:tipos_motores}, os diversos tipos de motores elétricos são apresentados para fins de curiosidade e entendimento geral da quantidade de motores possíveis que existem no mercado.	
+
+\graphicspath{{figuras/}}
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.80]{tipos_motores.png}
+\caption{Tipos de Motores Elétricos}
+\label{img:tipos_motores}
+\end{figure}
+
+Apesar da grande variedade de motores, eles possuem características específicas que se adequam melhor a cenários distintos de uso, mesmo que em certos casos possam ser intercambiáveis nos processos, de acordo com as necessidades que a utilização exigirá. Baseando-se nisso, os motores de corrente contínua, os de indução, excitação por imas permanentes e relutância, são os mais utilizados para o uso em bicicletas elétricas.
+
+Os motores elétricos possuem funcionamento baseado na troca de polaridade periódica entre os elementos magnéticos internos, permitindo assim que um rotor possa girar entre dois ímãs e gerar o movimento. Entretanto, a corrente contínua usada em motores CC é interessante para polos permanentes, fazendo com que seja necessária uma inversão do sentido da corrente a cada vez que os polos do rotor se encontrem com os dos ímãs. Para produzir esse efeito, geralmente usam-se comutadores, que são basicamente placas que envolvem o rotor, associada a outro elemento, chamado de escova, assim quando a corrente “entra” no sistema, ela tem seu caminho passando pela escova, parede do comutador, rotor, parede do outro comutador e a outra escova, onde ela inverte a polaridade, voltando para a fonte. 
+ 
+ Considerando quanto ao uso ou não das escovas para o processo explicitado, os motores de corrente contínua podem ser divididos em dois subgrupos: com escovas e sem escovas. Aqueles que possuem as escovas tem seu funcionamento como já citado, já aqueles que não possuem ainda mantem o mesmo modo de obtenção do movimento do motor a partir da posição, entretanto, realizam a comutação eletronicamente, por meio de sensores que indicam o posicionamento instantâneo do motor. 
+
+No caso apresentado neste relatório, o motor, já cedido anteriormente e que será aproveitado nesse projeto, é um motor de corrente contínua sem escovas. No quadro \ref{esp_motor} são apresentados alguns poucos dados apresentados pelo vendedor do motor em relação a características do mesmo. Os demais dados não foram oferecidos pelo site mesmo após tentativa de contato, tornando escassos os dados. Além da tabela, na figura \ref{img:motor} têm-se uma imagem do motor.
+
+\begin{table}[h!]
+\centering
+\caption{Especificações do Motor}
+\label{esp_motor}
+\begin{tabular}{|l|}
+\hline
+Especificações Motor Wind Bikes \\ \hline
+Tração: Traseira                \\ \hline
+Massa: 5,710 kg                 \\ \hline
+Sistema de 120 graus            \\ \hline
+\end{tabular}
+\end{table}
+
+\graphicspath{{figuras/}}
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.80]{motor.png}
+\caption{Motor \textit{Wind Bikes}}
+\label{img:motor}
+\end{figure}
 	
 	\subsection{Dínamo}
 	Gerador elétrico é uma máquina capaz de converter energia mecânica em energia elétrica, baseado no princípio físico de indução magnética \cite{maximo}. O dínamo é um tipo de gerador elétrico e foi primeiramente utilizado em bicicletas em 1896, patenteado por Alfred Rodriguez. Um dínamo típico utilizado em bicicletas pode ser visto na Figura \ref{img:dinamo_bicicleta}.
