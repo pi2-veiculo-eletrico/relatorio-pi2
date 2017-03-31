@@ -1,12 +1,149 @@
 \chapter{Desenvolvimento}
   \section{Requisitos}
-  Para Sommerville requisitos de um sistema podem ser entendidos como sendo as descrições do que um sistema deve fazer, os sistemas que ele deve prover [SOMMERVILLE]. Estes requisitos refletem a necessidade do cliente para um sistema que serve a um propósito específico. Este conceito abrange não somente à requisitos de software mas a requisitos de produto também. Neste caso por não existir um cliente real, os requisitos foram levantados juntamente com os idealizadores do produto que são os próprios alunos. 
-  Na tabela [REF TABELA] são elicitados os principais requisitos do produto "Bicicleta Elétrica com Dispositivo de Auxílio à Rota"
-  
-  
-  
+ 
   \section{Software}
+  O escopo do projeto de software busca determinar as fronteiras do projeto em quesitos de processamento e interface, e sua interação direta e indireta com o usuário e com a parte eletroeletrônica do projeto.
+
+Esta seção abordará desde nível mais alto do projeto, contemplando as especificações do aplicativo, ao nível mais baixo, contemplando a comunicação entre o aplicativo e o micro controlador.
+
 	\subsection{Aplicativo}
+O projeto de processamento e interface consistirá num aplicativo cujo objetivo central é traçar rotas entre os pontos escolhidos pelo usuário e passar essas informações ao micro controlador responsável por acender os painéis luminosos. 
+Em segundo plano estará o painel do usuário, onde ele poderá se cadastrar e acompanhar suas rotas, assim como algumas estatísticas sobre seus percursos.
+
+A partir desses objetivos principais, foi criado o Product Backlog contemplando uma lista de funcionalidades. Artefato importantíssimo que proporciona uma visão macro do projeto. Para melhor visualização, os itens foram divididos em três listas distintas:
+
+A primeira lista, que pode ser vista na figura \ref{img:figura1} contempla os itens críticos ou de alta prioridade.
+
+\graphicspath{{figuras/}}
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.80]{figura1}
+\caption{\textit{Backlog} 1}
+\label{img:figura1}
+\end{figure}
+
+A segunda lista pode ser vista na figura \ref{img:figura2} e evidencia os itens de prioridade normal.
+
+\graphicspath{{figuras/}}
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.80]{figura2}
+\caption{\textit{Backlog} 2}
+\label{img:figura2}
+\end{figure}
+
+Por fim, a terceira lista mostrada na figura \ref{img:figura3} trata os itens de menor relevância ou de prioridade baixa.
+
+\graphicspath{{figuras/}}
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.80]{figura3}
+\caption{\textit{Backlog} 3}
+\label{img:figura3}
+\end{figure}
+
+	\subsubsection{Arquitetura}
+	Aplicativos híbridos são aplicativos feitos utilizando tecnologias web, que depois são convertidos em um aplicativo instalável para celulares e smartphones. Esse tipo de aplicativo funciona como qualquer outro aplicativo e é publicado na loja normalmente.
+
+O React-Native é um projeto desenvolvido pelos engenheiros do Facebook  que consiste em uma série de ferramentas que tornam possível a criação de aplicações Android e iOS. Alguns fatores foram levados em conta para a decisão de se desenvolver um aplicativo híbrido utilizando React-Native neste projeto:
+
+\begin{itemize}
+\item Possibilidade de desenvolver aplicativos Android e iOS com apenas uma base de código;
+\item Possibilidade de utilizar componentes nativos de cada sistema operacional, desta forma podendo manter a aparência e experiência do aplicativo, consistentes;
+\item Compatibilidade com diversas bibliotecas de terceiros,  por exemplo a react-native-ble  com a qual é possível implementar conexões bluetooth;
+\item Baixo uso de memória;
+\item Conhecimento prévio da equipe de desenvolvimento;
+\item Forte comunidade já formada.
+
+\end{itemize}
+
+	Para a comunicação externa, ou seja, para o processamento, será utilizada arquitetura em serviços RESTful.
+O design de uma arquitetura REST, segue o padrão evidenciado na figura \ref{img:arquitetura}
+
+\graphicspath{{figuras/}}
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.80]{arquitetura}
+\caption{Arquitetura REST}
+\label{img:arquitetura}
+\end{figure}
+
+
+Ou seja, o sistema se baseia em requisições cliente-servidor. São criados vários módulos seguindo o modelo requisição-resposta, onde no caso do atual projeto cada requisição feita a partir do aplicativo gera uma resposta enviada pelo servidor, a resposta é formatada e mostrada ao usuário de forma visual agradável. Como protocolo de comunicação são utilizados métodos HTTP, principalmente os 4 principais métodos.
+
+\begin{itemize}
+\item GET – Utilizado para requisições onde um dado é buscado
+\item POST – Utilizado para requisições onde um dado é inserido
+\item PUT – Contempla requisições onde um dado é editado
+\item DELETE – Aborda requisições onde dados são excluídos
+
+\end{itemize}
+	
+	Para a utilização do DELETE, optou-se por utilizar a forma de deleção lógica, onde um dado jamais é apagado da base, o que acontece é a utilização de uma flag para indicar que o dado não existe mais. Esse esquema possibilita a criação de um log de alterações e deleções sem a perda de dado algum.
+
+\subsection{Google Maps API}
+Para obter a direção das rotas, será utilizada a API pública do Google Maps, com o benefício de trazer ao aplicativo desenvolvido, toda a precisão de cálculo e processamento encontrado no Google Maps.
+O Google disponibiliza uma API pública para a comunicação entre seu servidor e  softwares em geral.
+
+Para a utilização desta API, primeiramente é necessário gerar uma chave de utilização com uma conta de desenvolvedor do Google já existente. Feito isto, basta incluir o script disponibilizado pelo Google, onde for necessária a utilização deste script. 
+
+No caso do atual projeto, será utilizada a API versão 3 que possui algumas funcionalidades como por exemplo a consulta de rotas, em que as versões 1 e 2 da API não possuem.
+
+Para incluir o script da versão 3 basta utilizar o código JavaScript abaixo
+
+CODIGO
+
+Que é completamente compatível com as tecnologias utilizadas no projeto. Observa-se a especificação da versão no primeiro parâmetro da URL, onde v=3. Caso esse parâmetro fosse emitido, o script carregado seria o da versão 1.0 que possui algumas limitações em relação à funcionalidades.
+
+Para a aplicação das funcionalidades, foi produzido um protótipo da utilização da API, para constatar que esta supriria todas as necessidades principais do projeto.
+
+O primeiro passo após a inclusão do Script, foi definir o ponto inicial para cálculo da rota. No protótipo desenvolvido, foi utilizado o meio do ICC no campus Darcy Ribeiro como ponto inicial.
+
+CODIGO
+Em seguida, o objeto mapa foi criado e instanciado na camada de visualização da aplicação.	
+	
+CODIGO
+
+Ainda foi aplicada uma camada de visualização em cima do mapa, mostrando um mapa detalhado sobre o campus Darcy Ribeiro.
+
+CODIGO
+
+A seguir foi desenhado um pino, apenas para representar a posição inicial.
+
+CODIGO
+
+O resultado obtido encontra-se na figura \ref{img:mapa_unb}
+
+\graphicspath{{figuras/}}
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.80]{mapa_unb_1}
+\caption{Mapa Universidade de Brasília}
+\label{img:mapa_unb}
+\end{figure}
+
+Para desenhar a rota no mapa, o seguinte código foi utilizado
+
+CODIGO
+
+Os pontos de início e fim são tratados e o serviço de rotas é acionado, retornando um objeto JSON com todos os passos de direções necessários a se chegar no destino desejado.
+
+Cada passo é retornado seguindo um modelo específico, deve-se atentar para a sub-propriedade instructions do array steps. Por exemplo a primeira instrução para ir do ICC ao HUB é ‘Siga na direção Sudoeste em direção a UNB Área 1’. Essas instruções serão passadas por um parser e comunicadas ao micro controlador que se encarregará de comunica-las ao usuário de forma agradável.
+
+No protótipo feito, foi traçada a rota a partir do serviço renderizador, disponibilizado também pela API do Google Maps.
+
+CODIGO
+
+O resultado conseguido encontra-se na figura \ref{img:mapa_unb2}, mostrando o traçar de uma rota do ICC ao HUB
+
+\graphicspath{{figuras/}}
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.80]{mapa_unb_2}
+\caption{Mapa Universidade de Brasília}
+\label{img:mapa_unb2}
+\end{figure}
+
 	
 	\subsection{Comunicação APP e Microcontrolador}
 	  A comunicação entre o celular e o microcontrolador será feita através de receptor \textit{bluetooth} acoplado ao microcontrolador. Para que seja feita essa comunicação, será utilizada a API do próprio sistema android para troca de informações via \textit{bluetooth}. Dentre os principais recursos que a API fornece, os que mais serão utilizados serão:
@@ -89,10 +226,79 @@ Por último, o método \textit{"cancel"} que encerra a conexão com o dispositiv
   \end{figure}  
   
   \section{Eletroeletrônica}
-  	\subsection{Acionamento do Motor}
+	
+	  	\subsection{Acionamento do Motor}
+		\subsubsection{Requisito}
+	O sistema de acionamento deve fazer com que o motor gire em velocidade de acordo com a posição do acelerador. Todo o processamento dos dados obtidos pelos sensores hall, localizados no motor, passarão por algoritmos de controle e serão enviados aos transístores de potência. O controle da velocidade será feito utilizando pwm em cada um dos seis transistores. Haverá isolamento elétrico, através de optoacopladores, para proteção do sistema de acionamento.
+	\subsubsection{Implementação}
+	Será utilizado para prototipagem o microcontrolador arduino.
   
- 	 \subsection{Sistema de Controle}
+	\subsubsection{Sensores}
+	  Os dados sobre a posição do motor são obtidos através de três sensores do tipo hall, localizados dentro do motor.
+	
+	\subsubsection{Acionamento}
+	De acordo com a posição atual, do motor e do acelerador, o sistema ativa o conjunto de optoacopladores, que por sua vez ativarão os transistores de potência gerando torque para movimentar o rotor de acordo com o pwm gerado com base na posição do acelerador.
   
+ 	 \subsection{Sistema de Controle e Disponibilização dos Dados}
+ 	\subsubsection{Requisito}
+ 		Para garantir o bom funcionamento e a estabilidade do conjunto que compõe a bicicleta, é necessário criar um sistema que seja capaz de fornecer ao usuário informações gerais do estado do produto e que oriente o uso do mesmo. Na prática, isso implica em um painel que indica parâmetros como a velocidade exercida pelo veículo, o nível de carga das baterias, a orientação e a distância do percurso.
+O sistema inteiro deve ser controlado por um microcontrolador, que receberá os dados dos sensores espalhados pela bicicleta e as ordens provindas do aplicativo e do GPS do celular, transformando tudo em um único sistema integrado e representado por um display acoplado na própria bicicleta. É necessário garantir que esses dados serão filtrados, calibrados e bem estruturados para garantir que os resultados apresentados aos usuários sejam o mais próximo possível da realidade.
+	
+	\subsubsection{Implementação}
+	Para melhor entendimento e análise do microcontrolador, pode-se dividir a função do sistema de controle em duas partes, onde a primeira trata exclusivamente dos sensores e a segunda se refere ao aplicativo.
+
+	\subsubsection{Sensoriamento}
+	Existem dois dados a serem coletados através de sensores no sistema, que é a velocidade da bicicleta e o nível de carga das baterias.
+
+Para o controle de velocidade haverá um sensor acoplado na coroa ou nas rodas da bicicleta e este será capaz de enviar sinais com frequências que variam de acordo com a pedalada do usuário. Uma vez que se tenha o dado da frequência é possível processar a velocidade linear instantânea do veículo, que é geralmente dada por v = 2.pi.f.R, onde R é o raio da roda da bicicleta.
+Dois tipos de sensores foram levados em consideração para executar essa função. O primeiro deles é o Tacogerador, que funciona como um gerador de corrente contínua onde a sua tensão de saída é proporcional à velocidade do seu eixo. Sua formulação matemática é dada por:
+	
+	
+	Onde: 
+	\begin{itemize}
+	\item E = F.e.m. gerada na armadura (Volts)
+	\item p = Número de pólos
+	\item  = Fluxo magnético por pólo (Maxwell)
+	\item Z = Número de condutores na armadura
+	\item m = Número de percursos na armadura entre os terminais
+	\item N = Velocidade (RPM))
+	\end{itemize}
+
+	Um Tacogerador comercial têm, em seu datasheet, paramêtros fixos de p, Ø, Z e m. Dessa forma, obtém-se uma relação linear entre a tensão e a velocidade, que é o suficiente para obter a frequência das pedaladas. Essa linearidade tem um "limite de saturação" que varia de acordo com o modelo fabricado. Deve-se levar em consideração os parâmetros aguardados da bicicleta para a escolha do modelo mais adequado.
+
+Outra opção para a captação da frequência é o Encoder, que é um dispositivo eletromecânico que reproduz pulsos elétricos a partir do movimento rotacional do eixo. Trata-se de um sensor de posição, capaz de indicar todas as vezes que um determinado objeto passa por um ponto. Essa característica, somada a uma tomada de tempo, é capaz de definir a frequência da pedalada pela fórmula simples da frequência: f = 1/T. Onde T é o período do movimento da roda.
+
+O uso do Encoder torna a aplicação do sistema viável em qualquer tipo de bicicleta, mesmo não sendo a proposta nesse artigo, uma vez que não é necessário saber dos paramêtros físicos da roda, como o seu raio. Porém, trata-se de um aparato muito maior e mais robusto que o Tacogerador, que demanda mais espaço e mais interferência no sistema geral.
+
+O nível de carga das baterias é um dos pontos mais importantes do produto, por isso o seu controle é fundamental para garantir o funcionamento correto dos motores e do painel. Para aferir esse dado, deve-se entender que a variação de carga em uma bateria interfere em uma variação de tensão e, através de um circuito retificador de tensão, podemos saber em que nível o controle de carga se encontra. Existem diversos modelos que podem ser utilizados nesse projeto, o que vai mudar é a precisão das medidas de acordo com os componentes que serão encontrados e utilizados no circuito.
+Pode-se utilizar um conjunto de transistors e diodos para acionar alguns LED's quando uma determinada tensão for alcançada, ou até mesmo um conversor AD para definir algumas faixas de carga a serem apresentadas ao usuário. O espaço físico que poderá ser utilizado e a necessidade da precisão do sistema irão definir qual topologia será utilizada.  
+
+\subsubsection{Processamento dos Dados do Aplicativo}
+O aplicativo que integrará o usuário ao sistema será capaz de coletar o caminho que o usuário quer percorrer e, através do GPS do celular, traçar uma rota a ser seguida. Essa rota será constantemente informada ao microprocessador que, através de algum dispositivo, deve orientar o usuário sobre o caminho que ele deve percorrer. Dois parâmetros serão levados em consideração: direção e distância.
+O indicador de direção será baseado no modelo clássico de um GPS que contém oito sinais ilustrativos:
+
+FIGURA 1
+
+Cada desenho desse será nomeado com uma palavra de 3 bits, e desenhado com uma estrutura binária de matriz dentro do código. Uma vez que o GPS determinar alguma dessas 8 direções o aplicativo irá dar um comando ao microprocessador, através da palavra de 3 bits, para que o desenho correto de direção seja acionado e apresentado no display. 
+Para o melhor entendimento, atribui-se por exemplo a palavra 010 à direção "SIGA EM FRENTE". Quando o GPS indicar essa direção, o aplicativo enviará ao microprocessador os níveis de tensão "0", "1" e "0" para o micro, que irá processar a devida imagem no display.
+
+FIGURA 2
+
+O envio desses comandos poderá ser feito da forma mais simples, utilizando 3 pinos lógicos de entrada do microprocessador, ou através de uma mensagem serial, que deixa o código mais robusto mas compensa com a economia dos pinos de entrada do sistema.
+
+Para cada direção do GPS nota-se que existe um indicador de distância até que se alcance tal direção. No caso da bicicleta, tais avisos começam a aparecer a partir de uma distância de 50m do ponto em questão. Baseado nisso, o aplicativo também será capaz de enviar essas informações de distância ao microprocessador, que por sua vez irá indicar esses dados ao usuário através do display e de um sinal luminoso.
+Uma lâmpada será colocada no painel da bicicleta e, a partir do momento que o GPS indicar informações de distância, ela começará a piscar, aumentando a sua frequência conforme se aproxima do destino. A idéia é que, embora o usuário tenha todas essas informações no display do painel, a sua atenção esteja voltada ao percurso na maior parte do tempo.
+
+\subsubsection{Integração com Sistema de Controle}
+Uma vez que o sistema coletou os dados provindos da bicicleta e do aplicativo, será possível processar essas informações e alimentar o painel do usuário, conforme ilustrado a seguir:
+
+FIGURA 3
+
+\subsection{Integração do Circuito}
+De acordo com o que é proposto pela parte de acionamento do motor e pela parte do sistema de controle, chega-se a um esboço do diagrama do circuito eletrônico completo do sitema:
+
+Esse projeto, somado com uma fonte de tensão e retificação, definirá o circuito eletrônico final do projeto a ser desenvolvido pelo software EAGLE de circuitos impressos.
+
   \section{Alimentação}
   A bicicleta elétrica utilizará dois sistemas de alimentação, que serão:
   \begin{itemize}
