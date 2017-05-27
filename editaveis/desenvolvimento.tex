@@ -22,12 +22,22 @@ Esta seção abordará desde nível mais alto do projeto, contemplando as especi
 O projeto de processamento e interface consistirá num aplicativo cujo objetivo central é traçar rotas entre os pontos escolhidos pelo usuário e passar essas informações ao micro controlador responsável por acender os painéis luminosos. 
 Em segundo plano estará o painel do usuário, onde ele poderá se cadastrar e acompanhar suas rotas, assim como algumas estatísticas sobre seus percursos.
 
-A partir desses objetivos principais, foi criado o Product Backlog contemplando uma lista de funcionalidades. Artefato importantíssimo que proporciona uma visão macro do projeto. Para melhor visualização, os itens foram divididos em três listas distintas:
+A partir desses objetivos principais, foi criado as features para o projeto. O diagrama a seguir contempla o diagrama de features do sistema:
+
+%\graphicspath{{figuras/}}
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[scale=0.80]{features.jpg}
+	\caption{Diagrama de Features}
+	\label{img:features}
+\end{figure}
+
+Assim foi criado o Product Backlog contemplando uma lista de funcionalidades que são as histórias de usuário que estão vinculadas às features. Artefato importantíssimo que proporciona uma visão macro do projeto. Para melhor visualização, os itens foram divididos em três listas distintas:
 
 A primeira lista, que pode ser vista na figura \ref{img:figura1} contempla os itens críticos ou de alta prioridade.
 
 \graphicspath{{figuras/}}
-\begin{figure}[h!]
+\begin{figure}[!htb]
 \centering
 \includegraphics[scale=0.80]{figura1}
 \caption{\textit{Backlog} 1}
@@ -36,8 +46,10 @@ A primeira lista, que pode ser vista na figura \ref{img:figura1} contempla os it
 
 A segunda lista pode ser vista na figura \ref{img:figura2} e evidencia os itens de prioridade normal.
 
+\newpage
+
 \graphicspath{{figuras/}}
-\begin{figure}[h!]
+\begin{figure}[!htb]
 \centering
 \includegraphics[scale=0.80]{figura2}
 \caption{\textit{Backlog} 2}
@@ -47,14 +59,83 @@ A segunda lista pode ser vista na figura \ref{img:figura2} e evidencia os itens 
 Por fim, a terceira lista mostrada na figura \ref{img:figura3} trata os itens de menor relevância ou de prioridade baixa.
 
 \graphicspath{{figuras/}}
-\begin{figure}[h!]
+\begin{figure}[!htb]
 \centering
 \includegraphics[scale=0.80]{figura3}
 \caption{\textit{Backlog} 3}
 \label{img:figura3}
 \end{figure}
 
-	\subsubsection{Arquitetura}
+\subsubsection{Solução Técnica}
+Nesta seção serão apresentadas as evoluções da subárea de software no decorrer do projeto até a presente data.
+
+O sistema em desenvolvimento compõe:
+\begin{itemize}
+	\item Aplicação mobile desenvolvida utilizando o framework de desenvolvimento 
+	nativo do facebook, React Native;
+	\item Servidor de aplicação utilizando Node.JS, servidor que executa o V8 JavaScript,
+	interpretador de JavaScript desenvolvido e utilizado pelo google. 
+\end{itemize}
+
+O ambiente de desenvolvimento compõe:
+\begin{itemize}
+	\item Sistema operacional OSX Sierra 10.12.4
+	\item Node Versão 5.8.0
+	\item React Versão 15.4.0
+\end{itemize}
+
+As features implementadas até o ponto de controle 2 foram o mapa e orientação de rotas, o perfil de usuário e autenticação e design e layout.
+
+Pode-se observar que a feature de integração do módulo bluetooth será implementada para o ponto de controle 3, assim como a realização de melhorias no layout e design.
+
+As figuras a seguir mostram algumas telas da execução do aplicativo atualmente:
+
+%\graphicspath{{figuras/}}
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[scale=0.50]{tela_inicial.jpg}
+	\caption{Tela Inicial}
+	\label{img:telainicial}
+\end{figure}
+
+\newpage
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[scale=0.50]{tela_introducao.jpg}
+	\caption{Tela de Introdução}
+	\label{img:telaintroducao}
+\end{figure}
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[scale=0.50]{tela_cadastro.jpg}
+	\caption{Tela de Cadastro}
+	\label{img:telacadastro}
+\end{figure}
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[scale=0.50]{tela_mapa.jpg}
+	\caption{Tela de Mapa}
+	\label{img:telamapa}
+\end{figure}
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[scale=0.50]{tela_orientacao.jpg}
+	\caption{Tela de Orientação}
+	\label{img:telaorientacao}
+\end{figure}
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[scale=0.50]{tela_pareamento.jpg}
+	\caption{Tela de Pareamento}
+	\label{img:telapareamento}
+\end{figure}
+
+	\subsection{Arquitetura}
 	Aplicativos híbridos são aplicativos feitos utilizando tecnologias web, que depois são convertidos em um aplicativo instalável para celulares e smartphones. Esse tipo de aplicativo funciona como qualquer outro aplicativo e é publicado na loja normalmente.
 
 O React-Native é um projeto desenvolvido pelos engenheiros do Facebook  que consiste em uma série de ferramentas que tornam possível a criação de aplicações Android e iOS. Alguns fatores foram levados em conta para a decisão de se desenvolver um aplicativo híbrido utilizando React-Native neste projeto:
@@ -73,7 +154,7 @@ O React-Native é um projeto desenvolvido pelos engenheiros do Facebook  que con
 O design de uma arquitetura REST, segue o padrão evidenciado na figura \ref{img:arquitetura}
 
 \graphicspath{{figuras/}}
-\begin{figure}[h!]
+\begin{figure}[!htb]
 \centering
 \includegraphics[scale=0.80]{arquitetura}
 \caption{Arquitetura REST}
@@ -92,6 +173,17 @@ Ou seja, o sistema se baseia em requisições cliente-servidor. São criados vá
 \end{itemize}
 	
 	Para a utilização do DELETE, optou-se por utilizar a forma de deleção lógica, onde um dado jamais é apagado da base, o que acontece é a utilização de uma flag para indicar que o dado não existe mais. Esse esquema possibilita a criação de um log de alterações e deleções sem a perda de dado algum.
+	
+\subsubsection{Diagrama de Classes}
+O diagrama de classes é a representação da estrutura e relações das classes que servem de modelo para objetos.
+
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[scale=0.50]{arquitetura_bike.jpg}
+	\caption{Diagrama de Classes}
+	\label{img:diagramaclasse}
+\end{figure}
 
 \subsection{Google Maps API}
 Para obter a direção das rotas, será utilizada a API pública do Google Maps, com o benefício de trazer ao aplicativo desenvolvido, toda a precisão de cálculo e processamento encontrado no Google Maps.
@@ -104,7 +196,7 @@ No caso do atual projeto, será utilizada a API versão 3 que possui algumas fun
 Para incluir o script da versão 3 basta utilizar o código JavaScript abaixo
 
 \graphicspath{{figuras/}}
-\begin{figure}[h!]
+\begin{figure}[!htb]
 \centering
 \includegraphics[scale=0.80]{codigo1}
 \caption{Código 1}
@@ -118,7 +210,7 @@ Para a aplicação das funcionalidades, foi produzido um protótipo da utilizaç
 O primeiro passo após a inclusão do Script, foi definir o ponto inicial para cálculo da rota. No protótipo desenvolvido, foi utilizado o meio do ICC no campus Darcy Ribeiro como ponto inicial.
 
 \graphicspath{{figuras/}}
-\begin{figure}[h!]
+\begin{figure}[!htb]
 \centering
 \includegraphics[scale=0.80]{codigo2}
 \caption{Código 2}
@@ -128,7 +220,7 @@ O primeiro passo após a inclusão do Script, foi definir o ponto inicial para c
 Em seguida, o objeto mapa foi criado e instanciado na camada de visualização da aplicação.	
 	
 \graphicspath{{figuras/}}
-\begin{figure}[h!]
+\begin{figure}[!htb]
 \centering
 \includegraphics[scale=0.80]{codigo3}
 \caption{Código 3}
@@ -138,7 +230,7 @@ Em seguida, o objeto mapa foi criado e instanciado na camada de visualização d
 Ainda foi aplicada uma camada de visualização em cima do mapa, mostrando um mapa detalhado sobre o campus Darcy Ribeiro.
 
 \graphicspath{{figuras/}}
-\begin{figure}[h!]
+\begin{figure}[!htb]
 \centering
 \includegraphics[scale=0.80]{codigo4}
 \caption{Código 4}
@@ -148,17 +240,19 @@ Ainda foi aplicada uma camada de visualização em cima do mapa, mostrando um ma
 A seguir foi desenhado um pino, apenas para representar a posição inicial.
 
 \graphicspath{{figuras/}}
-\begin{figure}[h!]
+\begin{figure}[!htb]
 \centering
 \includegraphics[scale=0.80]{codigo5}
 \caption{Código 5}
 \label{img:codigo5}
 \end{figure}
 
+\newpage
+
 O resultado obtido encontra-se na figura \ref{img:mapa_unb}
 
 \graphicspath{{figuras/}}
-\begin{figure}[h!]
+\begin{figure}[!htb]
 \centering
 \includegraphics[scale=0.80]{mapa_unb_1}
 \caption{Mapa Universidade de Brasília}
@@ -172,41 +266,56 @@ Cada passo é retornado seguindo um modelo específico, deve-se atentar para a s
 No protótipo feito, foi traçada a rota a partir do serviço renderizador, disponibilizado também pela API do Google Maps. O resultado conseguido encontra-se na figura \ref{img:mapa_unb2}, mostrando o traçar de uma rota do ICC ao HUB
 
 \graphicspath{{figuras/}}
-\begin{figure}[h!]
+\begin{figure}[!htb]
 \centering
 \includegraphics[scale=0.80]{mapa_unb_2}
 \caption{Mapa Universidade de Brasília}
 \label{img:mapa_unb2}
 \end{figure}
 
+\newpage
+
 	\subsection{Protótipo}
 	Alguns protótipo das telas foram feitos, para que se possa ter uma noção do produto final que se espera alcançar ao fim do projeto. Os protótipos são apresentados nas figuras \ref{img:logo}, \ref{img:mapa} e \ref{img:dados}.
 	
 	\graphicspath{{figuras/}}
-	\begin{figure}[h!]
+	\begin{figure}[!htb]
 	\centering
 	\includegraphics[scale=0.40]{logo.jpeg}
 	\caption{Tela de abertura do Aplicativo}
 	\label{img:logo}
 	\end{figure}
-	
+
+\newpage	
+
 	\graphicspath{{figuras/}}
-	\begin{figure}[h!]
+	\begin{figure}[!htb]
 	\centering
 	\includegraphics[scale=0.40]{mapa.jpeg}
 	\caption{Tela exemplificando o funcionamento do mapa}
 	\label{img:mapa}
 	\end{figure}
 	
+\newpage
+	
 	\graphicspath{{figuras/}}
-	\begin{figure}[h!]
+	\begin{figure}[!htb]
 	\centering
 	\includegraphics[scale=0.40]{dashboard.jpeg}
 	\caption{Tela com os dados do Usuário}
 	\label{img:dados}
 	\end{figure}
 	
-	\subsection{Comunicação APP e Microcontrolador}
+	\subsection{Qualidade de Código}
+	Para analisar a qualidade do código produzido, foi feito uma análise utilizando a ferramenta Code Climate.
+	O Code Climate é uma ferramenta que analisa todos os arquivos do projeto em cada
+	alteração, analisando fatores como itens de complexidade, branches, complexidade
+	por método, duplicação de código, quantidade de vezes que o arquivo foi modificado e
+	quantidade de linhas.
+	Foi obtida nota 3.81 de um total de 4.0, pode ser considerada uma nota alta mas
+	possível de ser melhorada, também foi adotado o padrão de código de JavaScript mundialmente conhecido do airbnb.
+	
+	\subsection{Plano de Integração}
 	  A comunicação entre o celular e o microcontrolador será feita através de receptor \textit{bluetooth} acoplado ao microcontrolador. Para que seja feita essa comunicação, será utilizada a API do próprio sistema android para troca de informações via \textit{bluetooth}. Dentre os principais recursos que a API fornece, os que mais serão utilizados serão:
 	  \begin{itemize}
 	  	\item Busca por outros aparelhos \textit{bluetooth};
@@ -219,7 +328,7 @@ No protótipo feito, foi traçada a rota a partir do serviço renderizador, disp
   	Para realizar a busca do adaptador \textit{bluetooth} que estará instalado na placa microcontroladora será utilizado o seguinte trecho de código apresentado na figura \ref{img:bluetooth_enabled}
   	
   	\graphicspath{{figuras/}}
-  	\begin{figure}[h!]
+  	\begin{figure}[!htb]
   	\centering
   	\includegraphics[scale=0.60]{bluetooth_enabled}
   	\caption{Trecho de código exemplificando a comunicação \textit{bluetooth}}
@@ -229,7 +338,7 @@ No protótipo feito, foi traçada a rota a partir do serviço renderizador, disp
   	Para garantir que o dispositivo \textit{bluetooth} será adicionado apenas uma vez, será utilzado um trecho de código parecido com o da figura \ref{img:bluetooth_devices}, que garante que para um dispositivo ser adicionado ele, não deve estar presente na lista de dispositivos previamente adicionados.
   	
   	\graphicspath{{figuras/}}
-  	\begin{figure}[h!]
+  	\begin{figure}[!htb]
   	\centering
   	\includegraphics[scale=0.60]{bluetooth_paired_devices}
   	\caption{Trecho de Código que garante que um dispositivo será adicionado apenas uma vez}
@@ -239,7 +348,7 @@ No protótipo feito, foi traçada a rota a partir do serviço renderizador, disp
   	Para que seja feita a transferência de dados entre os dispositivos, o Google (empresa responsável pela documentação da plataforma android), dispõe um trecho de código que serve como guia para implementação desta funcionalidade. Na figura \ref{img:trecho1} é criada uma classe que define as constantes que serão utilizadas ao longo do código.
   	
   	\graphicspath{{figuras/}}
-  	\begin{figure}[h!]
+  	\begin{figure}[!htb]
   	\centering
   	\includegraphics[scale=0.60]{classe_MyBluetoothService}
   	\caption{Neste trecho de código são definidas as constantes que serão utilizadas ao longo do código}
@@ -249,7 +358,7 @@ No protótipo feito, foi traçada a rota a partir do serviço renderizador, disp
 Na figura \ref{img:trecho2} é criada uma outra classe que é a classe que implementa a funcionalidade de troca de dados. Esta classe extende da classe Thread, seus atributos são do tipo \textit{BluetoothSocket}, \textit{InputStream}, \textit{OutputStream} e um \textit{array} de \textit{byte}.
 
 \graphicspath{{figuras/}}
-\begin{figure}[h!]
+\begin{figure}[!htb]
 \centering
 \includegraphics[scale=0.80]{classe_ConnectedThread}
 \caption{Nesta classe são implementados os métodos responsáveis pelo funcionamento da troca de dados}
@@ -259,7 +368,7 @@ Na figura \ref{img:trecho2} é criada uma outra classe que é a classe que imple
 A figura \ref{img:trecho3} apresenta o método \textit{"run"} que funciona em segundo plano constantemente. Este método é responsável por ficar aguardando uma requisição do dispositivo.
 
 \graphicspath{{figuras/}}
-\begin{figure}[h!]
+\begin{figure}[!htb]
 \centering
 \includegraphics[scale=0.80]{run_method}
 \caption{Implementação do método \textit{run} que é responsável por receber as informações do dispositivo \textit{bluetooth}}
@@ -269,7 +378,7 @@ A figura \ref{img:trecho3} apresenta o método \textit{"run"} que funciona em se
 O método \textit{"write"} é que faz a escrita dos dados que serão enviados para o dispositivo, como pode ser visto na figura \ref{img:trecho4}.
 
 \graphicspath{{figuras/}}
-\begin{figure}[h!]
+\begin{figure}[!htb]
 \centering
 \includegraphics[scale=0.80]{write_method}
 \caption{Implementação do método \textit{write} que é responsável por escrever os dados que serão enviados}
@@ -279,7 +388,7 @@ O método \textit{"write"} é que faz a escrita dos dados que serão enviados pa
 Por último, o método \textit{"cancel"} que encerra a conexão com o dispositivo pareado, como mostrado na figura \ref{img:trecho5}
 
 \graphicspath{{figuras/}}
-  \begin{figure}[h!]
+  \begin{figure}[!htb]
   \centering
   \includegraphics[scale=0.80]{cancel_method}
   \caption{Método \textit{"cancel"} que encerra a conexão com o dispositivo}
@@ -461,6 +570,8 @@ Sendo que o torque é dado pela equação da figura \ref{img:torque}, onde r é 
 
 
 As velocidades serão medidas experimentalmente com o uso de um tacômetro e a tensão e corrente de saída do dínamo com um multímetro.
+
+Apesar de nesse projeto definirmos o conceito de dínamo, a aplicação do mesmo nao existirá, haja vista a exigência dos professores da disciplina que o projeto conseguisse fazer com que o motor elétrico em si conseguisse atuar como gerador e basicamente fizesse a função que o dínamo teria, de maneira mais eficiente e exigindo um grau maior de conhecimento para a realização. Assim, esse tópico está no relatório apenas para fins de demonstração do aperfeiçoamento do projeto e registro das ideias iniciais. 
   
 \subsection{Bateria}
 	Baterias são dispositivos capazes de converter energia química em energia elétrica através de reações de oxirredução. Ao ligar dois componentes químicos de polos opostos, anodo e catodo, uma diferença de potencial é gerada e elétrons migram do polo negativo, anodo, para o polo positivo, catodo, gerando, assim, uma corrente elétrica. Algumas também são capazes de fazer o processo inverso, convertendo energia elétrica em energia química. Dessa forma, as baterias são usadas como uma fonte de energia elétrica e como armazenamento dessa energia \cite{varela}.
@@ -483,7 +594,7 @@ As velocidades serão medidas experimentalmente com o uso de um tacômetro e a t
 	\end{figure}
 	
 
-	\citeonline{daanalise} coletou informações sobre rotas cíclicas mais escolhidas por ciclistas quando usando GPS. Em seus resultados, os percursos mais longos feitos duravam, em média, 20 minutos e os participantes da pesquisa faziam, em média, 2,5 viagens por dia. Os percursos totais, por dia, para cada ciclista, duram, em média, 50 minutos. Para dimensionar a bateria, portanto, considera-se o motor trabalhando em máxima potência e o tempo de autonomia de 1h.
+	%\citeonline{daanalise} coletou informações sobre rotas cíclicas mais escolhidas por ciclistas quando usando GPS. Em seus resultados, os percursos mais longos feitos duravam, em média, 20 minutos e os participantes da pesquisa faziam, em média, 2,5 viagens por dia. Os percursos totais, por dia, para cada ciclista, duram, em média, 50 minutos. Para dimensionar a bateria, portanto, considera-se o motor trabalhando em máxima potência e o tempo de autonomia de 1h.
 	
 	\graphicspath{{figuras/}}
 	\begin{figure}[h!]
@@ -506,6 +617,52 @@ As velocidades serão medidas experimentalmente com o uso de um tacômetro e a t
 
 Os componentes demandam uma corrente de 800 a 900mA. Será utilizada uma bateria de 12V e 1,3Ah que o grupo já possui.
 
+Inicialmente, o cálculo da capacidade da bateria forneceu uma estimativa de qual seria a autonomia dimensionada para todo o sistema. Entretanto, posteriormente, a questão de manter uma autonomia maior foi posta de lado em prol dos custos e do fato de que nesse projeto integrador o objetivo principal é o de funcionamento e integração dos sistemas, não necessariamente de toda a usabilidade completa e já comercial para o usuário, permitindo assim que uma autonomia menor pudesse ser adotada para conter parte dos custos, visto que um conjunto de baterias de 12V de tensão e 10ah de capacidade nominal em um ensaio C1 ou C5 teriam um custo quatro vezes maior quando comparada a baterias comerciais mais simples, ainda de 12V de tensão, porém com apenas 7ah de capacidade nominal em teste C20. Os ensaios e as nomenclaturas CX referem-se aos testes feitos com as baterias pelas próprias empresas para verificar o quanto de corrente a bateria consegue descarregar ao longo do tempo, onde C1 é uma hora, C5 seriam cinco horas e C20, vinte horas. Assim, uma bateria de 10Ah C1, consegue descarregar 10A em uma hora. Já a bateria escolhida, de 7Ah C20, consegue apenas 7A em vinte horas.
+
+As baterias escolhidas pelo grupo foram três do modelo 12MVA-7 Nobreak da Moura, uma bateria usada para aplicações como cercas elétricas, portões elétricos e também em algum grau para bicicletas elétricas e outras aplicações mais simples. A imagem x apresenta uma foto da bateria, enquanto a imagem x+1 traz especificações desta retiradas do catálogo da Moura.
+
+	\begin{figure}[!htb]
+		\centering
+		\includegraphics[scale=0.5]{bateria_bike.jpeg}
+		\caption{Foto da Bateria Moura 12MVA-7 Nobreak}
+		\label{img:bateriabike}
+	\end{figure}
+	
+	\begin{figure}[!htb]
+		\centering
+		\includegraphics[scale=0.5]{especificacao_bateria.jpeg}
+		\caption{Especificações Bateria 12MVA-7}
+		\label{img:especificacaobateria}
+	\end{figure}
+	
+Como as especificações apresentam, as baterias serão capazes de suprir a demanda de corrente do sistema e dos componentes eletrônicos, visto que agora não haverá mais outra bateria para suprir somente os componentes menores, exigindo que apenas o banco de três de baterias alimente todo o conjunto, motor e equipamentos eletrônicos. Como dito anteriormente, a autonomia não foi considerada um requisito, mas é seguro afirmar que ela será inferior a uma hora, o tempo proposto inicialmente.
+
+\subsubsection{Circuito de Carregamento da Bateria}
+Um carregador, como o nome já dá uma ideia, é basicamente um dispositivo capaz de recarregar outro componente específico, nesse caso, as baterias. Como as baterias de chumbo-ácido possuem alguns critérios básicos para que não afetem a qualidade da bateria, tornando sua vida útil menor. Um deles é a necessidade de o carregamento ser feito com as baterias ligadas em paralelo entre elas, além de ser interessante para a preservação dela que a corrente de carregamento não ultrapasse 10\% da capacidade nominal que a bateria possui. No caso específico da nossa bateria, de capacidade 7Ah, essa corrente seria 0,7 A. 
+A partir disso, com uma fórmula bem simples, é possível estimar o tempo de carregamento total da bateria:
+
+\textbf{\centering TR = C/i}
+
+Onde TR seria o tempo de recarga, C a capacidade nominal e i a corrente. 
+Em um cálculo rápido é possível observar que o tempo de recarga das baterias seria de aproximadamente 10 horas. 
+Procurando em diversos repositórios de circuitos, foi possível encontrar um circuito específico que aparenta atender as necessidades que o projeto exige e que serviria de base para conseguirmos fazer um próprio, adaptado ao fato de ser necessário carregar três baterias em conjunto e não apenas um como no exemplificado. O circuito também se apresenta como uma alternativa interessante, pois utiliza o que, segundo Destro, seria a maneira ideal de recarregar uma bateria de chumbo-ácido de 12 V. 
+Essa forma ideal de carregamento consiste em três “fases” de carregamento: uma fase de recarga, onde se eleva a tensão da bateria até 13,8 V, seguida de uma fase de equalização, onde as células das baterias atingem a tensão limite e por fim uma fase de flutuação, onde a tensão é reduzida para a faixa de flutuação da bateria, geralmente 13,2 a 13,8 V, em baixa corrente. Na figura x+2 é apresentado as três etapas de carregamento tidas como ideais.
+
+	\begin{figure}[!htb]
+		\centering
+		\includegraphics[scale=0.5]{estagio_carregamento.jpeg}
+		\caption{Estágios de Carregamento Bateria Chumbo-Ácido}
+		\label{img:estagiocarregamento}
+	\end{figure}
+
+O circuito retirado proposto pelo site Destro é apresentado na figura x + 3.
+
+	\begin{figure}[!htb]
+		\centering
+		\includegraphics[scale=0.5]{circuito_carregamento.jpeg}
+		\caption{Circuito de Carregamento de Referência}
+		\label{img:circuitocarregamento}
+	\end{figure}
   
   \section{Estrutura}
   Este projeto visa a construção de uma bicicleta elétrica capaz de seguir uma rota pré-determinada via gps. Porém, há a necessidade de se projetar com a devida atenção toda a estrutura da bicicleta de modo que os demais componentes sejam devidamente adaptados de forma ergonômica, em outras palavras, maximizar a segurança e eficiência da interação máquina e ser humano.
