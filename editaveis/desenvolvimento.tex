@@ -597,7 +597,7 @@ Apesar de nesse projeto definirmos o conceito de dínamo, a aplicação do mesmo
 	%\citeonline{daanalise} coletou informações sobre rotas cíclicas mais escolhidas por ciclistas quando usando GPS. Em seus resultados, os percursos mais longos feitos duravam, em média, 20 minutos e os participantes da pesquisa faziam, em média, 2,5 viagens por dia. Os percursos totais, por dia, para cada ciclista, duram, em média, 50 minutos. Para dimensionar a bateria, portanto, considera-se o motor trabalhando em máxima potência e o tempo de autonomia de 1h.
 	
 	\graphicspath{{figuras/}}
-	\begin{figure}[h!]
+	\begin{figure}[!htb]
 	\centering
 	\includegraphics[scale=1.0]{calculo_capacidade}
 	\caption{Cálculo da bateria a ser utilizada}
@@ -621,9 +621,11 @@ Inicialmente, o cálculo da capacidade da bateria forneceu uma estimativa de qua
 
 As baterias escolhidas pelo grupo foram três do modelo 12MVA-7 Nobreak da Moura, uma bateria usada para aplicações como cercas elétricas, portões elétricos e também em algum grau para bicicletas elétricas e outras aplicações mais simples. A imagem x apresenta uma foto da bateria, enquanto a imagem x+1 traz especificações desta retiradas do catálogo da Moura.
 
+\newpage
+
 	\begin{figure}[!htb]
 		\centering
-		\includegraphics[scale=0.5]{bateria_bike.jpeg}
+		\includegraphics[scale=0.3, angle=90]{bateria_bike.jpeg}
 		\caption{Foto da Bateria Moura 12MVA-7 Nobreak}
 		\label{img:bateriabike}
 	\end{figure}
@@ -648,9 +650,11 @@ Em um cálculo rápido é possível observar que o tempo de recarga das baterias
 Procurando em diversos repositórios de circuitos, foi possível encontrar um circuito específico que aparenta atender as necessidades que o projeto exige e que serviria de base para conseguirmos fazer um próprio, adaptado ao fato de ser necessário carregar três baterias em conjunto e não apenas um como no exemplificado. O circuito também se apresenta como uma alternativa interessante, pois utiliza o que, segundo Destro, seria a maneira ideal de recarregar uma bateria de chumbo-ácido de 12 V. 
 Essa forma ideal de carregamento consiste em três “fases” de carregamento: uma fase de recarga, onde se eleva a tensão da bateria até 13,8 V, seguida de uma fase de equalização, onde as células das baterias atingem a tensão limite e por fim uma fase de flutuação, onde a tensão é reduzida para a faixa de flutuação da bateria, geralmente 13,2 a 13,8 V, em baixa corrente. Na figura x+2 é apresentado as três etapas de carregamento tidas como ideais.
 
+\newpage
+
 	\begin{figure}[!htb]
 		\centering
-		\includegraphics[scale=0.5]{estagio_carregamento.jpeg}
+		\includegraphics[scale=0.4]{estagio_carregamento.jpeg}
 		\caption{Estágios de Carregamento Bateria Chumbo-Ácido}
 		\label{img:estagiocarregamento}
 	\end{figure}
@@ -835,15 +839,17 @@ Alternativa de solução: adquirir um quadro comum no comércio e realizar as ad
 	Logo após a aquisição a bicicleta foi desmontada deixando o quadro como na Figura \ref{img:quadro_original_lateral} e \ref{img:quadro_original_fundo} para facilitar a obtenção das medidas e assim tornar possível a confecção do modelo CAD no Catia V5 com a adaptação eleita.
 		
 	\graphicspath{{figuras/}}
-	\begin{figure}[h!]
+	\begin{figure}[!htb]
 		\centering
 		\includegraphics[width=0.5\textwidth]{quadro_original_lateral.jpg}
 		\caption{Quadro original (vista lateral)}
 		\label{img:quadro_original_lateral}
 	\end{figure}
+	
+	\newpage
 
 	\graphicspath{{figuras/}}
-	\begin{figure}[h!]
+	\begin{figure}[!htb]
 		\centering
 		\includegraphics[width=0.3\textwidth]{quadro_original_fundo.jpg}
 		\caption{Detalhe do fundo do quadro original}
@@ -853,7 +859,7 @@ Alternativa de solução: adquirir um quadro comum no comércio e realizar as ad
 	Nas Figuras \ref{img:inter_render} e \ref{img:inter_cotas} é possível visualizar  o resultado da modelagem e algumas cotas importantes para o desenvolvimento do projeto.
 	
 	\graphicspath{{figuras/}}
-	\begin{figure}[h!]
+	\begin{figure}[!htb]
 		\centering
 		\includegraphics[scale=0.035]{inter_render_2.jpg}
 		\includegraphics[scale=0.035]{inter_render_1.jpg}
@@ -861,6 +867,7 @@ Alternativa de solução: adquirir um quadro comum no comércio e realizar as ad
 		\label{img:inter_render}
 	\end{figure}
 	
+	\newpage
 	%\graphicspath{{figuras/}}
 	%\begin{figure}[h!]
 	%	\centering
@@ -878,7 +885,7 @@ Alternativa de solução: adquirir um quadro comum no comércio e realizar as ad
 	%\end{figure}
 	
 	\graphicspath{{figuras/}}
-	\begin{figure}[h!]
+	\begin{figure}[!htb]
 		\centering
 		\includegraphics[width=0.6\textwidth]{inter_cotas.jpg}
 		\caption{Detalhe do fundo do quadro original}
@@ -890,50 +897,52 @@ Alternativa de solução: adquirir um quadro comum no comércio e realizar as ad
 	Com base no público alvo e no dimensionamento levantado pelos demais subsistemas, arbitrou-se a força peso do ciclista e do conjunto dispositivos que serão postos sobre a adaptação como 900 e 120, respectivamente. A aplicação delas estão representadas nas Figuras \ref{img:inter_F120} e \ref{img:inter_F900}. 
 	
 	
-	\graphicspath{{figuras/}}
-	\begin{figure}[h!]
+	%\graphicspath{{figuras/}}
+	\begin{figure}[!htb]
 		\centering
-		\includegraphics[width=0.7\textwidth]{inter_F120.png}
+		\includegraphics[width=0.5\textwidth]{inter_F120.png}
 		\caption{Força aplicada na adaptação}
 		\label{img:inter_F120}
 	\end{figure}
 	
-	\graphicspath{{figuras/}}
-	\begin{figure}[h!]
+	\newpage
+	%\graphicspath{{figuras/}}
+	\begin{figure}[!htb]
 		\centering
-		\includegraphics[width=0.7\textwidth]{inter_F900.png}
+		\includegraphics[width=0.5\textwidth]{inter_F900.png}
 		\caption{Força peso do ciclista}
 		\label{img:inter_F900}
 	\end{figure}
 	
 	Como esses dados foi feito a análise estática no Ansys, nas Figuras \ref{img:inter_deformacao_total}, \ref{img:inter_von-Mises}, \ref{img:inter_fator_de_seguranca} e \ref{img:inter_fadiga} representam, respectivamente, os gradientes de: deformação, equivalente de von-Mises, fator de segurança e fadiga.
 	
-	\graphicspath{{figuras/}}
-	\begin{figure}[h!]
+	%\graphicspath{{figuras/}}
+	\begin{figure}[!htb]
 		\centering
 		\includegraphics[width=0.7\textwidth]{inter_deformacao_total.png}
 		\caption{Deformação total}
 		\label{img:inter_deformacao_total}
 	\end{figure}
 	
-	\graphicspath{{figuras/}}
-	\begin{figure}[h!]
+	\newpage
+	%\graphicspath{{figuras/}}
+	\begin{figure}[!htb]
 		\centering
 		\includegraphics[width=0.7\textwidth]{inter_von-Mises.png}
 		\caption{Equivalente de von-Mises}
 		\label{img:inter_von-Mises}
 	\end{figure}
 	
-	\graphicspath{{figuras/}}
-	\begin{figure}[h!]
+	%\graphicspath{{figuras/}}
+	\begin{figure}[!htb]
 		\centering
 		\includegraphics[width=0.7\textwidth]{inter_fator_de_seguranca.png}
 		\caption{Fator de segurança}
 		\label{img:inter_fator_de_seguranca}
 	\end{figure}
 
-	\graphicspath{{figuras/}}
-	\begin{figure}[h!]
+	%\graphicspath{{figuras/}}
+	\begin{figure}[!htb]
 		\centering
 		\includegraphics[width=0.7\textwidth]{inter_fadiga.png}
 		\caption{Fadiga}
@@ -946,24 +955,26 @@ Alternativa de solução: adquirir um quadro comum no comércio e realizar as ad
 	Com a validação numérica do modelo, prosseguiu-se para a etapa de confecção do mesmo onde primeiramente foram feitos cortes no quadro original para retirar o tubo inferior como pode ser visto nas Figuras \ref{img:quadro_cerrado_lateral}, \ref{img:quadro_cerrado_1} e \ref{img:quadro_cerrado_2}.
 	
 		
-	\graphicspath{{figuras/}}
-	\begin{figure}[h!]
+	%\graphicspath{{figuras/}}
+	\begin{figure}[!htb]
 		\centering
 		\includegraphics[width=0.7\textwidth]{quadro_cerrado_lateral.jpg}
 		\caption{Quadro cerrado e lixado (vista lateral)}
 		\label{img:quadro_cerrado_lateral}
 	\end{figure}
 	
-	\graphicspath{{figuras/}}
-	\begin{figure}[h!]
+	\newpage
+	
+	%\graphicspath{{figuras/}}
+	\begin{figure}[!htb]
 		\centering
 		\includegraphics[width=0.3\textwidth]{quadro_cerrado_1.jpg}
 		\caption{Quadro cerrado e lixado (detalhe 1)}
 		\label{img:quadro_cerrado_1}
 	\end{figure}
 	
-	\graphicspath{{figuras/}}
-	\begin{figure}[h!]
+	%\graphicspath{{figuras/}}
+	\begin{figure}[!htb]
 		\centering
 		\includegraphics[width=0.3\textwidth]{quadro_cerrado_2.jpg}
 		\caption{Quadro cerrado e lixado (detalhe 2)}
@@ -972,9 +983,10 @@ Alternativa de solução: adquirir um quadro comum no comércio e realizar as ad
 	
 	Para a construção da parte inferior do quadro foram utilizados tubos de alumínio 6060 com 1” de diâmetro e 1/8” de espessura. Primeiramente foram feitas as dobras dos tubos e verificados os ângulos através da impressão em papel A1 do drafting da peça, o desenho técnico utilizado no gabarito pode ser visto no Apêndice \ref*{gabarito}. Depois de feitas as dobras seguiu-se para o corte das quatro peças centrais. Com as quatro peças centrais prontas e as outras duas dobradas, prosseguiu-se para o processo de solda da peça completa e finalmente para a implementação da peça ao quadro.
 	
+	\newpage
 	
-	\graphicspath{{figuras/}}	
-	\begin{figure}[h!]
+	%\graphicspath{{figuras/}}	
+	\begin{figure}[!htb]
 		\centering
 		\includegraphics[height=\textwidth,angle=-90]{gabarito.jpg}
 		\includegraphics[width=\textwidth]{gabarito_adap.jpg}
@@ -987,6 +999,8 @@ Alternativa de solução: adquirir um quadro comum no comércio e realizar as ad
 	Todo o processo de construção foi auxiliado pelo prestador de serviços especializado em solda em alumínio, Mateus Silva de Almeida, desde o corte do quadro à solda, sendo que esta última etapa foi inteiramente realizada por ele. A adaptação fez-se necessária para suportar todos os componentes eletroeletrônicos que a bicicleta elétrica transportará.
 	
 	A Figura \ref{img:quadro_adap_1} mostra o produto final oriundo da adaptação do quadro.
+
+\newpage
 
 	\graphicspath{{figuras/}}	
 	\begin{figure}[h!]
