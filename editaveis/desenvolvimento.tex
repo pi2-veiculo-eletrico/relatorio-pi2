@@ -367,6 +367,8 @@ Na figura \ref{img:trecho2} é criada uma outra classe que é a classe que imple
 
 A figura \ref{img:trecho3} apresenta o método \textit{"run"} que funciona em segundo plano constantemente. Este método é responsável por ficar aguardando uma requisição do dispositivo.
 
+\newpage
+
 \graphicspath{{figuras/}}
 \begin{figure}[!htb]
 \centering
@@ -540,25 +542,23 @@ Por último, o método \textit{"cancel"} que encerra a conexão com o dispositiv
 			\item N = Velocidade (RPM))
 		\end{itemize}
 
-		Abaixo está disposto o código Arduino de uso do REED SWITCH de maneira simplificada, nele é possível testar quando o ímã da roda se move após o a chave, o arduino deve imprimir ~ 1023, caso contrário ele imprimirá ~ 0.
+		Abaixo está disposto o código Arduino de uso do REED SWITCH de maneira simplificada, nele é possível testar quando o ímã da roda se move após o a chave, o arduino deve imprimir 1023, caso contrário ele imprimirá 0.
 		
-		\begin{comment}
-		#define reed A0//pin connected to read switch
+		\#define reed A0//pin connected to read switch
 		
-		//storage variable
-		int reedVal;
+		//storage variable\\
+		\indent int reedVal;
 		
-		void setup(){
-			Serial.begin(9600);
-		}
+		void setup()\{\\
+			\indent \indent Serial.begin(9600);\\
+		\indent\}
 		
 		
-		void loop(){
-			reedVal = analogRead(reed);//get val of A0
-			Serial.println(reedVal);
-			delay(10);
-		}
-		\end{comment}
+		void loop()\{\\
+			\indent \indent reedVal = analogRead(reed);//get val of A0\\
+			\indent \indent Serial.println(reedVal);\\
+			\indent \indent delay(10);\\
+		\}
 	
 		%	\graphicspath{{figuras/}}
 		%	\begin{figure}[h!]
