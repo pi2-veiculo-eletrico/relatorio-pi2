@@ -419,7 +419,7 @@ Por último, o método \textit{"cancel"} que encerra a conexão com o dispositiv
 
 	O motor deve funcionar de modo que o ripple de torque não seja sentido pelo usuário, para isso as comutações das fases devem ser precisas e exatas. Ripple de torque são os picos de torque no motor, fazendo com que a bicicleta produza pequenos trancos ou vibrações.
 	
-	\subsection{Sensore de Efeito Hall}
+	\subsection{Sensor de Efeito Hall}
 	Os dados sobre a posição do motor são obtidos através de três sensores do tipo hall, localizados dentro do motor. Os sensores hall utilizados possuem o código 43AF. Para o correto funcionamento, é necessário o uso de resistores pull-up.
 	
 	\graphicspath{{figuras/}}
@@ -459,6 +459,7 @@ Por último, o método \textit{"cancel"} que encerra a conexão com o dispositiv
 		
 	\subsection{Etapa de Controle}
 	Será utilizado para prototipagem o microcontrolador arduino. Onde ocorre todo o processamento dos dados vindos dos sensores, passando pelos algoritmos de controle e enviando as informações ao agrupamento de potência, que são os MOSFETs e ao display, para interface com o usuário. A placa de prototipagem Arduino UNO será utilizada apenas nas fases de testes. Depois de definidos os parâmetros corretos, será usado apenas o chip microcontrolador ATMEGA 328p e os componentes para o correto funcionamento.
+	\newpage
 		
 			\graphicspath{{figuras/}}
 			\begin{figure}[h!]
@@ -511,6 +512,8 @@ Por último, o método \textit{"cancel"} que encerra a conexão com o dispositiv
 		Para cumprir com os requisitos de  comunicação / Localização, foi escolhida a comunicação Bluetooth, ideal por ser de baixa potência e alcance reduzido. Assim, não afetará outros veículos próximos, da mesma forma que representará uma economia de bateria. 
 		Os requisitos de Interface Humano - Computador foram supridos por dois monitores de OLED Modelo GM009605. Por seu tamanho reduzido, não representam grandes distrações para o ciclista, ao passo que possuem um grande contraste e são excelentes para a visualização contra a luz solar <Referenciar a imagem do visor>. Também nesse tópico, foi escolhido o microcontrontrolador Arduino, por sua facilidade de codificação e também por sua versatilidade, apresentando dentre outros elementos , entradas analógicas, saídas PWM e comunicação I2C e serial.. <Referenciar Arduino>. O modelo utilizado será o Arduino UNO.
 		Para melhor entendimento e análise do sistema de Controle e disponibilização de dados o esquemático deste projeto é demonstrado abaixo:
+		\newpage
+		
 			\graphicspath{{figuras/}}
 			\begin{figure}[h!]
 				\centering
@@ -518,6 +521,7 @@ Por último, o método \textit{"cancel"} que encerra a conexão com o dispositiv
 				\caption{Esquemático Sistema de controle e disponibilização dos dados}
 				\label{img:sistema_de_controle_e_disponibiização_de_dados}
 			\end{figure}
+			
 		Observa-se que é possível dividir a função do sistema de controle em duas partes, onde a primeira trata exclusivamente dos sensores e a segunda se refere ao aplicativo.
 	
 		\subsubsection{Sensoriamento}
@@ -558,7 +562,7 @@ Por último, o método \textit{"cancel"} que encerra a conexão com o dispositiv
 			\indent \indent reedVal = analogRead(reed);//get val of A0\\
 			\indent \indent Serial.println(reedVal);\\
 			\indent \indent delay(10);\\
-		\}
+		\indent \}
 	
 			\graphicspath{{figuras/}}
 			\begin{figure}[h!]
@@ -567,6 +571,7 @@ Por último, o método \textit{"cancel"} que encerra a conexão com o dispositiv
 				\caption{Teste do Sensor de Velocidade}
 				\label{img:teste_do_sensor_velocidade}
 			\end{figure}
+			
 		O nível de carga das baterias é um dos pontos mais importantes do produto, por isso o seu controle é fundamental para garantir o funcionamento correto dos motores e do painel. Para aferir esse dado, deve-se entender que a variação de carga em uma bateria interfere em uma variação de tensão e, através de um circuito retificador de tensão, podemos saber em que nível o controle de carga se encontra. Existem diversos modelos que podem ser utilizados nesse projeto, o que vai mudar é a precisão das medidas de acordo com os componentes que serão encontrados e utilizados no circuito.
 		Neste Projeto faremos uso de um conjunto de transistors e diodos para acionar alguns LED's quando uma determinada tensão for alcançada, além de um conversor AD para definir algumas faixas de carga a serem apresentadas ao usuário. O espaço físico que poderá ser utilizado e a necessidade da precisão do sistema irão definir qual topologia será utilizada.
 			
@@ -583,8 +588,11 @@ Por último, o método \textit{"cancel"} que encerra a conexão com o dispositiv
 		\caption{Integração com o Aplicativo}
 		\label{img:Integracao_com_o_aplicativo}
 	\end{figure}
+	
 	Cada desenho desse será nomeado com uma palavra de 3 bits, e desenhado com uma estrutura binária de matriz dentro do código. Uma vez que o GPS determinar alguma dessas 8 direções o aplicativo irá dar um comando ao microprocessador, através da palavra de 3 bits, para que o desenho correto de direção seja acionado e apresentado no display. 
 	Para o melhor entendimento, atribui-se por exemplo a palavra 010 à direção "SIGA EM FRENTE". Quando o GPS indicar essa direção, o aplicativo enviará ao microprocessador os níveis de tensão "0", "1" e "0" para o micro, que irá processar a devida imagem no display.
+	\newpage
+	
 		\graphicspath{{figuras/}}
 		\begin{figure}[h!]
 			\centering
@@ -607,6 +615,8 @@ Por último, o método \textit{"cancel"} que encerra a conexão com o dispositiv
 
 	\subsection{Diagrama e Montagem dos Circuitos}
 	Os circuitos e esquemáticos serão feitos nos simuladores Proteus e LTspice, divididos de acordo com seus subsistemas. Os circuitos serão mostrados sem os resistores para facilitar a visualização.
+	\newpage
+	
 		\graphicspath{{figuras/}}
 		\begin{figure}[h!]
 			\centering
@@ -616,6 +626,7 @@ Por último, o método \textit{"cancel"} que encerra a conexão com o dispositiv
 		\end{figure}
 		
 		\subsubsection{Circuito Optoacoplador e Driver}
+		
 			\graphicspath{{figuras/}}
 			\begin{figure}[h!]
 				\centering
@@ -632,7 +643,10 @@ Por último, o método \textit{"cancel"} que encerra a conexão com o dispositiv
 				\label{img:Ordem_de_chaveamento_para_cada_fase_do_motor_de_acordo_com_a_posição_obtida_pelos_sensores_Hall}
 			\end{figure}
 		
+		\newpage
+		
 		\subsubsection{Circuito de Controle e Sensores}
+		
 			\graphicspath{{figuras/}}
 			\begin{figure}[h!]
 				\centering
