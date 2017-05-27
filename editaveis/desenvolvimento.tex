@@ -288,92 +288,251 @@ Por último, o método \textit{"cancel"} que encerra a conexão com o dispositiv
   
   \section{Eletroeletrônica}
 	
-	  	\subsection{Acionamento do Motor}
+	\subsection{Requisitos}
+	Em linhas gerais, o projeto busca facilitar a vida de ciclistas. Eles vão poder ter mais informações sobre os seus trajetos e dessa forma trafegar de forma mais segura. Além disso, a possibilidade de se integrar um sistema como esse numa bicicleta automaticamente torna o próprio ato algo mais próximo do dia a dia, incentivando mais e mais pessoas a trocarem seus meios principais de transporte e assim desafogando as grandes cidades. 
+	Neste escopo, foram selecionados alguns requisitos básicos para o dispositivo. Esses não foram os únicos, porém foram os mais relevantes no desenho geral do sistema embarcado do projeto.
+	
+	\subsection{Comunicação e sensoriamento}
+	O projeto foi pensado para não ser algo muito invasivo no corpo da bicicleta. Ao mesmo tempo,  optou-se por utilizar comunicação com o celular do usuário de maneira sem fio, aproveitando-se de seu alto nível de integração, disponibilidade de bateria e localização tanto por GPS quanto por sinal de torres de celular disponíveis.
+	
+	\subsection{Motor}
+	O motor utilizado no projeto será responsável por converter a energia elétrica em mecânica e enviar, por meio dos sensores hall, as informações da posição atual do motor para o microcontrolador.
+	
+%	\graphicspath{{figuras/}}
+%	\begin{figure}[h!]
+%		\centering
+%		\includegraphics[width=0.5\textwidth]{}
+%		\caption{Motor com sensores hall acoplados internamente.}
+%		\label{img:}
+%	\end{figure}
+	
+	O motor deve funcionar de modo que o ripple de torque não seja sentido pelo usuário, para isso as comutações das fases devem ser precisas e exatas. Ripple de torque são os picos de torque no motor, fazendo com que a bicicleta produza pequenos trancos ou vibrações.
+	
+	\subsection{Sensore de Efeito Hall}
+	Os dados sobre a posição do motor são obtidos através de três sensores do tipo hall, localizados dentro do motor. Os sensores hall utilizados possuem o código 43AF. Para o correto funcionamento, é necessário o uso de resistores pull-up.
+	
+%	\graphicspath{{figuras/}}
+%	\begin{figure}[h!]
+%		\centering
+%		\includegraphics[width=0.5\textwidth]{}
+%		\caption{Esquemático para o resistor pull-up}
+%		\label{img:}
+%	\end{figure}
+
+	\subsection{Acionamento do Motor}
 		\subsubsection{Requisito}
-	O sistema de acionamento deve fazer com que o motor gire em velocidade de acordo com a posição do acelerador. Todo o processamento dos dados obtidos pelos sensores hall, localizados no motor, passarão por algoritmos de controle e serão enviados aos transístores de potência. O controle da velocidade será feito utilizando pwm em cada um dos seis transistores. Haverá isolamento elétrico, através de optoacopladores, para proteção do sistema de acionamento.
-	\subsubsection{Implementação}
-	Será utilizado para prototipagem o microcontrolador arduino.
-  
-	\subsubsection{Sensores}
-	  Os dados sobre a posição do motor são obtidos através de três sensores do tipo hall, localizados dentro do motor.
-	
-	\subsubsection{Acionamento}
-	De acordo com a posição atual, do motor e do acelerador, o sistema ativa o conjunto de optoacopladores, que por sua vez ativarão os transistores de potência gerando torque para movimentar o rotor de acordo com o pwm gerado com base na posição do acelerador.
-  
- 	 \subsection{Sistema de Controle e Disponibilização dos Dados}
- 	\subsubsection{Requisito}
- 		Para garantir o bom funcionamento e a estabilidade do conjunto que compõe a bicicleta, é necessário criar um sistema que seja capaz de fornecer ao usuário informações gerais do estado do produto e que oriente o uso do mesmo. Na prática, isso implica em um painel que indica parâmetros como a velocidade exercida pelo veículo, o nível de carga das baterias, a orientação e a distância do percurso.
-O sistema inteiro deve ser controlado por um microcontrolador, que receberá os dados dos sensores espalhados pela bicicleta e as ordens provindas do aplicativo e do GPS do celular, transformando tudo em um único sistema integrado e representado por um display acoplado na própria bicicleta. É necessário garantir que esses dados serão filtrados, calibrados e bem estruturados para garantir que os resultados apresentados aos usuários sejam o mais próximo possível da realidade.
-	
-	\subsubsection{Implementação}
-	Para melhor entendimento e análise do microcontrolador, pode-se dividir a função do sistema de controle em duas partes, onde a primeira trata exclusivamente dos sensores e a segunda se refere ao aplicativo.
-
-	\subsubsection{Sensoriamento}
-	Existem dois dados a serem coletados através de sensores no sistema, que é a velocidade da bicicleta e o nível de carga das baterias.
-
-Para o controle de velocidade haverá um sensor acoplado na coroa ou nas rodas da bicicleta e este será capaz de enviar sinais com frequências que variam de acordo com a pedalada do usuário. Uma vez que se tenha o dado da frequência é possível processar a velocidade linear instantânea do veículo, que é geralmente dada por v = 2.pi.f.R, onde R é o raio da roda da bicicleta.
-Dois tipos de sensores foram levados em consideração para executar essa função. O primeiro deles é o Tacogerador, que funciona como um gerador de corrente contínua onde a sua tensão de saída é proporcional à velocidade do seu eixo. Sua formulação matemática é dada por:
+		O sistema de acionamento deve fazer com que o motor gire em velocidade de acordo com a posição do acelerador. Todo o processamento dos dados obtidos pelos sensores hall, localizados no motor, passaram por algoritmos de controle e serão enviados aos transístores de potência. O controle da velocidade será feito utilizando pwm em cada um dos seis transistores. Haverá isolamento elétrico, através de optoacopladores, para proteção do sistema de acionamento.
+		De acordo com a posição atual, do motor e do acelerador, o sistema ativa o conjunto de optoacopladores, que por sua vez ativarão os transistores de potência gerando torque para movimentar o rotor de acordo com o pwm gerado com base na posição do acelerador.
 	
 	
-	Onde: 
+		\subsubsection{Síntese e Componentes do Subsistema de Acionamento}
+		A demanda por potência é obtida através do acelerador e enviada ao driver do motor na forma modulada por largura de pulso, pulse width modulation (PWM), passando primeiramente por optoacopladores a fim de proteger o microcontrolador que ficará isolado eletricamente.
+		
+		%	\graphicspath{{figuras/}}
+		%	\begin{figure}[h!]
+		%		\centering
+		%		\includegraphics[width=0.5\textwidth]{}
+		%		\caption{MOSFET Canal-N (Datasheet IRF540).}
+		%		\label{img:}
+		%	\end{figure}
+		
+		O driver é formado por uma ponte trifásica, que são MOSFETs dispostos de maneira que realizem o correto acionamento das fases do motor a partir dos sinais de comando vindo dos optoacopladores.
+		
+		%	\graphicspath{{figuras/}}
+		%	\begin{figure}[h!]
+		%		\centering
+		%		\includegraphics[width=0.5\textwidth]{}
+		%		\caption{Ponte trifásica.}
+		%		\label{img:}
+		%	\end{figure}
+		
+	\subsection{Etapa de Controle}
+	Será utilizado para prototipagem o microcontrolador arduino. Onde ocorre todo o processamento dos dados vindos dos sensores, passando pelos algoritmos de controle e enviando as informações ao agrupamento de potência, que são os MOSFETs e ao display, para interface com o usuário. A placa de prototipagem Arduino UNO será utilizada apenas nas fases de testes. Depois de definidos os parâmetros corretos, será usado apenas o chip microcontrolador ATMEGA 328p e os componentes para o correto funcionamento.
+		
+		%	\graphicspath{{figuras/}}
+		%	\begin{figure}[h!]
+		%		\centering
+		%		\includegraphics[width=0.5\textwidth]{}
+		%		\caption{Arduino UNO, placa R3}
+		%		\label{img:}
+		%	\end{figure}
+		
+	O componente principal desse subsistema é o microcontrolador ATMEGA328P cujas principais características são:
+		
 	\begin{itemize}
-	\item E = F.e.m. gerada na armadura (Volts)
-	\item p = Número de pólos
-	\item T = Fluxo magnético por pólo (Maxwell)
-	\item Z = Número de condutores na armadura
-	\item m = Número de percursos na armadura entre os terminais
-	\item N = Velocidade (RPM))
-	\end{itemize}
+			\item  Alta velocidade de processamento: até 16 MHz de clock.
+			\item Memória interna de 32 KB.
+			\item 14 entradas/saídas digitais.
+			\item 06 entradas analógicas.
+			\item  06 saídas PWM (dentre as 14 digitais).
+			\item 2 entradas para interrupções.
+		\end{itemize}
+	
+  
+ 	\subsection{Sistema de Controle e Disponibilização dos Dados}
+ 		\subsubsection{Requisito}
+ 		Para garantir o bom funcionamento e a estabilidade do conjunto que compõe a bicicleta, é necessário criar um sistema que seja capaz de fornecer ao usuário informações gerais do estado do produto e que oriente o uso do mesmo. Na prática, isso implica em um painel que indica parâmetros como a velocidade exercida pelo veículo, o nível de carga das baterias, a orientação e a distância do percurso.
+ 		
+ 		\subsubsection{Interface Humano - Computador}
+ 		É necessária a visualização em tempo real dos dados processados pelo sistema. Porém, por se tratar de uma bicicleta, veículo de transporte que exige atenção do ciclista, deve-se optar por interfaces mais minimalistas e que possam ser facilmente compreendidas. Além disso, elas devem ser adaptáveis ao corpo da bicicleta, e terem tamanho reduzido, para melhor encaixe.
+ 		
+ 		No quesito velocidade de resposta, é necessário rapidez de processamento. No entanto, a quantidade e a latência da entrega de informação não podem ser tão dinâmicas a ponto de confundir ou exigir demais da atenção do ciclista. Em outras palavras,  o sistema deve estar constantemente funcional, porém seu contato com o usuário é apenas ocasional.
+ 		
+ 		\subsubsection{Síntese}
+ 		O sistema de controle e disponibilização dos dados projetado é controlado por um microcontrolador Atmel ATmega328 utilizado na placa Arduino Uno R3 (Figura 5) que dispõe portas digitais e portas Analogicas em número suficiente para todo nosso projeto, incluindo o sistema do acionamento do Motor. Para esse sistema o Microcontrolador citado receberá os dados dos sensores de velocidade e de carga de bateria ligados a roda da bicicleta e a bateria, respectivamente, e irá receber ainda através de um módulo Bluetooth Serial HC-06 (escravo) as ordens provindas do aplicativo e do GPS do celular, transformando tudo em um único sistema integrado e representado por dois displays OLED I2C acoplados na própria bicicleta, um mostrando os dados de velocidade e percentual de bateria e outro mostrando a rota. Os dados são filtrados, calibrados e estruturados através de Software programado na IDE (Integrated Development Environmente, ou Ambiente de Desenvolvimento Integrado, em português) do Arduino utilizando uma linguagem baseada em C/C++ visando garantir que os resultados apresentados aos usuários sejam o mais próximo possível da realidade.
+ 		Os requisitos de sensoriamento foram cumpridos utilizando-se de comunicação Bluetooth com o celular do ciclista, que já possui integrado GPS. Além disso, Dadas as portas analógicas do microcontrolador escolhido, a leitura de bateria e velocidade foram supridas. E para cumprir com os pré-requisitos de processamento, as várias tarefas do microcontrolador foram divididas em Managers ( do inglês, “gerentes”). Esses subgrupos de código são os responsáveis por administrar cada um dos fatores relevantes de seus domínios. A seguir uma descrição rápida de cada um deles. O diagrama a seguir é uma versão resumida do projeto.
+ 		\begin{itemize}
+ 			\item Battery Manager: Responsável pela leitura e estoque das informações de bateria.
+ 			\item Bluetooth Manager: Responsável pela comunicação bluetooth com outros dispositivos. Inclui um protocolo de comunicação.
+ 			\item Velocity Manager: Traduz os dados crus obtidos dos sensores para velocidade e os estoca.
+ 			\item TTGPS Manager: Responsável pelo Turn-By-Turn GPS. 
+ 		\end{itemize}
+ 		%	\graphicspath{{figuras/}}
+ 		%	\begin{figure}[h!]
+ 		%		\centering
+ 		%		\includegraphics[width=0.5\textwidth]{}
+ 		%		\caption{Diagramas de blocos da integração dos módulos do sistemas}
+ 		%		\label{img:}
+ 		%	\end{figure}
+ 		 		
+		\subsubsection{Implementação}
+		O projeto embarcado da UnBike foi pensado com o ideal de reunir todos os sub-blocos componentes em um único microcontrolador, capaz de informar ao usuário dados relevantes como direção do GPS, nível de bateria e velocidade. A seguir são explicados como cada um dos pré-requisitos foram cumpridos no decorrer do projeto.
+		Para cumprir com os requisitos de  comunicação / Localização, foi escolhida a comunicação Bluetooth, ideal por ser de baixa potência e alcance reduzido. Assim, não afetará outros veículos próximos, da mesma forma que representará uma economia de bateria. 
+		Os requisitos de Interface Humano - Computador foram supridos por dois monitores de OLED Modelo GM009605. Por seu tamanho reduzido, não representam grandes distrações para o ciclista, ao passo que possuem um grande contraste e são excelentes para a visualização contra a luz solar <Referenciar a imagem do visor>. Também nesse tópico, foi escolhido o microcontrontrolador Arduino, por sua facilidade de codificação e também por sua versatilidade, apresentando dentre outros elementos , entradas analógicas, saídas PWM e comunicação I2C e serial.. <Referenciar Arduino>. O modelo utilizado será o Arduino UNO.
+		Para melhor entendimento e análise do sistema de Controle e disponibilização de dados o esquemático deste projeto é demonstrado abaixo:
+		%	\graphicspath{{figuras/}}
+		%	\begin{figure}[h!]
+		%		\centering
+		%		\includegraphics[width=0.5\textwidth]{}
+		%		\caption{Esquemático Sistema de controle e disponibilização dos dados}
+		%		\label{img:}
+		%	\end{figure}
+		Observa-se que é possível dividir a função do sistema de controle em duas partes, onde a primeira trata exclusivamente dos sensores e a segunda se refere ao aplicativo.
+	
+		\subsubsection{Sensoriamento}
+		Existem dois dados a serem coletados através de sensores no sistema, que é a velocidade da bicicleta e o nível de carga das baterias.
+		Para o controle de velocidade será empregado um Reed Switch, que é um “sensor” simples composto por duas partes, um ímã e um SWITCh (chave)que é acionado pela aproximação do imã. O switch foi acoplado ao tirante traseiro da bicicleta e o ímã a roda traseira da bicicleta da seguinte forma:
+		%	\graphicspath{{figuras/}}
+		%	\begin{figure}[h!]
+		%		\centering
+		%		\includegraphics[width=0.5\textwidth]{}
+		%		\caption{Montagem do Sensor de Velocidade}
+		%		\label{img:}
+		%	\end{figure}
+		Desta forma toda vez que o ímã passar pelo Switch, o sistema será capaz de enviar sinais com frequências que variam de acordo com a pedalada do usuário. Uma vez que se tenha o dado da frequência é possível processar a velocidade linear instantânea do veículo, que é geralmente dada por v = 2.pi.f.R, onde R é o raio da roda da bicicleta.
+		
+		Onde: 
+		\begin{itemize}
+			\item E = F.e.m. gerada na armadura (Volts)
+			\item p = Número de pólos
+			\item T = Fluxo magnético por pólo (Maxwell)
+			\item Z = Número de condutores na armadura
+			\item m = Número de percursos na armadura entre os terminais
+			\item N = Velocidade (RPM))
+		\end{itemize}
 
-	Um Tacogerador comercial têm, em seu datasheet, paramêtros fixos de p, Ø, Z e m. Dessa forma, obtém-se uma relação linear entre a tensão e a velocidade, que é o suficiente para obter a frequência das pedaladas. Essa linearidade tem um "limite de saturação" que varia de acordo com o modelo fabricado. Deve-se levar em consideração os parâmetros aguardados da bicicleta para a escolha do modelo mais adequado.
+		Abaixo está disposto o código Arduino de uso do REED SWITCH de maneira simplificada, nele é possível testar quando o ímã da roda se move após o a chave, o arduino deve imprimir ~ 1023, caso contrário ele imprimirá ~ 0.
+		
+		\begin{comment}
+		#define reed A0//pin connected to read switch
+		
+		//storage variable
+		int reedVal;
+		
+		void setup(){
+			Serial.begin(9600);
+		}
+		
+		
+		void loop(){
+			reedVal = analogRead(reed);//get val of A0
+			Serial.println(reedVal);
+			delay(10);
+		}
+		\end{comment}
+	
+		%	\graphicspath{{figuras/}}
+		%	\begin{figure}[h!]
+		%		\centering
+		%		\includegraphics[width=0.5\textwidth]{}
+		%		\caption{Teste do Sensor de Velocidade}
+		%		\label{img:}
+		%	\end{figure}
+		O nível de carga das baterias é um dos pontos mais importantes do produto, por isso o seu controle é fundamental para garantir o funcionamento correto dos motores e do painel. Para aferir esse dado, deve-se entender que a variação de carga em uma bateria interfere em uma variação de tensão e, através de um circuito retificador de tensão, podemos saber em que nível o controle de carga se encontra. Existem diversos modelos que podem ser utilizados nesse projeto, o que vai mudar é a precisão das medidas de acordo com os componentes que serão encontrados e utilizados no circuito.
+		Neste Projeto faremos uso de um conjunto de transistors e diodos para acionar alguns LED's quando uma determinada tensão for alcançada, além de um conversor AD para definir algumas faixas de carga a serem apresentadas ao usuário. O espaço físico que poderá ser utilizado e a necessidade da precisão do sistema irão definir qual topologia será utilizada.
+			
 
-Outra opção para a captação da frequência é o Encoder, que é um dispositivo eletromecânico que reproduz pulsos elétricos a partir do movimento rotacional do eixo. Trata-se de um sensor de posição, capaz de indicar todas as vezes que um determinado objeto passa por um ponto. Essa característica, somada a uma tomada de tempo, é capaz de definir a frequência da pedalada pela fórmula simples da frequência: f = 1/T. Onde T é o período do movimento da roda.
+	\subsection{Processamento dos Dados do Aplicativo}
+	O aplicativo que integrará o usuário ao sistema será capaz de coletar o caminho que o usuário quer percorrer e, através do GPS do celular, traçar uma rota a ser seguida. Essa rota será constantemente informada ao microprocessador que, através de algum dispositivo, deve orientar o usuário sobre o caminho que ele deve percorrer. Dois parâmetros serão levados em consideração: direção e distância.
 
-O uso do Encoder torna a aplicação do sistema viável em qualquer tipo de bicicleta, mesmo não sendo a proposta nesse artigo, uma vez que não é necessário saber dos paramêtros físicos da roda, como o seu raio. Porém, trata-se de um aparato muito maior e mais robusto que o Tacogerador, que demanda mais espaço e mais interferência no sistema geral.
+	O indicador de direção será baseado no modelo clássico de um GPS que contém oito sinais ilustrativos:
 
-O nível de carga das baterias é um dos pontos mais importantes do produto, por isso o seu controle é fundamental para garantir o funcionamento correto dos motores e do painel. Para aferir esse dado, deve-se entender que a variação de carga em uma bateria interfere em uma variação de tensão e, através de um circuito retificador de tensão, podemos saber em que nível o controle de carga se encontra. Existem diversos modelos que podem ser utilizados nesse projeto, o que vai mudar é a precisão das medidas de acordo com os componentes que serão encontrados e utilizados no circuito.
-Pode-se utilizar um conjunto de transistors e diodos para acionar alguns LED's quando uma determinada tensão for alcançada, ou até mesmo um conversor AD para definir algumas faixas de carga a serem apresentadas ao usuário. O espaço físico que poderá ser utilizado e a necessidade da precisão do sistema irão definir qual topologia será utilizada.
-
-
-\subsubsection{Processamento dos Dados do Aplicativo}
-O O aplicativo que integrará o usuário ao sistema será capaz de coletar o caminho que o usuário quer percorrer e, através do GPS do celular, traçar uma rota a ser seguida. Essa rota será constantemente informada ao microprocessador que, através de algum dispositivo, deve orientar o usuário sobre o caminho que ele deve percorrer. Dois parâmetros serão levados em consideração: direção e distância.
-
-O indicador de direção será baseado no modelo clássico de um GPS que contém oito sinais ilustrativos como curvas e curvas suaves, tanto pra direita quanto esquerda, além das direções de rotatórias. Cada desenho  será nomeado com uma palavra de 3 bits, e desenhado com uma estrutura binária de matriz dentro do código. Uma vez que o GPS determinar alguma dessas 8 direções o aplicativo irá dar um comando ao microprocessador, através da palavra de 3 bits, para que o desenho correto de direção seja acionado e apresentado no display. 
-Para o melhor entendimento, atribui-se por exemplo a palavra 010 à direção "VIRE A DIREITA". Quando o GPS indicar essa direção, o aplicativo enviará ao microprocessador os níveis de tensão "0", "1" e "0" para o micro, que irá processar a devida imagem no display.
-
-\graphicspath{{figuras/}}
-\begin{figure}[h!]
-\centering
-\includegraphics[scale=0.80]{eletronica1.png}
-\caption{Eletronica 1}
-\label{img:us}
-\end{figure}
-
-O envio desses comandos poderá ser feito da forma mais simples, utilizando 3 pinos lógicos de entrada do microprocessador, ou através de uma mensagem serial, que deixa o código mais robusto mas compensa com a economia dos pinos de entrada do sistema.
-
-Para cada direção do GPS nota-se que existe um indicador de distância até que se alcance tal direção. No caso da bicicleta, tais avisos começam a aparecer a partir de uma distância de 50m do ponto em questão. Baseado nisso, o aplicativo também será capaz de enviar essas informações de distância ao microprocessador, que por sua vez irá indicar esses dados ao usuário através do display e de um sinal luminoso.
-Uma lâmpada será colocada no painel da bicicleta e, a partir do momento que o GPS indicar informações de distância, ela começará a piscar, aumentando a sua frequência conforme se aproxima do destino. A idéia é que, embora o usuário tenha todas essas informações no display do painel, a sua atenção esteja voltada ao percurso na maior parte do tempo.
+%	\graphicspath{{figuras/}}
+%	\begin{figure}[h!]
+%		\centering
+%		\includegraphics[scale=0.80]{}
+%		\caption{Integração com o Aplicativo}
+%		\label{img:}
+%	\end{figure}
+	Cada desenho desse será nomeado com uma palavra de 3 bits, e desenhado com uma estrutura binária de matriz dentro do código. Uma vez que o GPS determinar alguma dessas 8 direções o aplicativo irá dar um comando ao microprocessador, através da palavra de 3 bits, para que o desenho correto de direção seja acionado e apresentado no display. 
+	Para o melhor entendimento, atribui-se por exemplo a palavra 010 à direção "SIGA EM FRENTE". Quando o GPS indicar essa direção, o aplicativo enviará ao microprocessador os níveis de tensão "0", "1" e "0" para o micro, que irá processar a devida imagem no display.
+	%	\graphicspath{{figuras/}}
+	%	\begin{figure}[h!]
+	%		\centering
+	%		\includegraphics[scale=0.80]{}
+	%		\caption{Display indicando a rota}
+	%		\label{img:}
+	%	\end{figure}
 
 
-Cada desenho desse será nomeado com uma palavra de 3 bits, e desenhado com uma estrutura binária de matriz dentro do código. Uma vez que o GPS determinar alguma dessas 8 direções o aplicativo irá dar um comando ao microprocessador, através da palavra de 3 bits, para que o desenho correto de direção seja acionado e apresentado no display. 
-Para o melhor entendimento, atribui-se por exemplo a palavra 010 à direção "SIGA EM FRENTE". Quando o GPS indicar essa direção, o aplicativo enviará ao microprocessador os níveis de tensão "0", "1" e "0" para o micro, que irá processar a devida imagem no display.
 
-\subsubsection{Integração com Sistema de Controle}
-Uma vez que o sistema coletou os dados provindos da bicicleta e do aplicativo, será possível processar essas informações e alimentar o painel do usuário, conforme ilustrado a seguir:
+	O envio desses comandos poderá ser feito da forma mais simples, utilizando 3 pinos lógicos de entrada do microprocessador, ou através de uma mensagem serial, que deixa o código mais robusto mas compensa com a economia dos pinos de entrada do sistema.
+	
+	Para cada direção do GPS nota-se que existe um indicador de distância até que se alcance tal direção. No caso da bicicleta, tais avisos começam a aparecer a partir de uma distância de 50m do ponto em questão. Baseado nisso, o aplicativo também será capaz de enviar essas informações de distância ao microprocessador, que por sua vez irá indicar esses dados ao usuário através do display e de um sinal luminoso.
+	Uma lâmpada será colocada no painel da bicicleta e, a partir do momento que o GPS indicar informações de distância, ela começará a piscar, aumentando a sua frequência conforme se aproxima do destino. A idéia é que, embora o usuário tenha todas essas informações no display do painel, a sua atenção esteja voltada ao percurso na maior parte do tempo.
+	
+
+		\subsubsection{Integração com Sistema de Controle}
+		Uma vez que o sistema coletou os dados provindos da bicicleta e do aplicativo, será possível processar essas informações e alimentar o painel do usuário.
 
 
-\graphicspath{{figuras/}}
-\begin{figure}[h!]
-\centering
-\includegraphics[scale=0.80]{eletronica2.png}
-\caption{Eletronica 2}
-\label{img:us}
-\end{figure}
-
-\subsection{Integração do Circuito}
-De acordo com o que é proposto pela parte de acionamento do motor e pela parte do sistema de controle, chega-se a um esboço do diagrama do circuito eletrônico completo do sitema:
-
-Esse projeto, somado com uma fonte de tensão e retificação, definirá o circuito eletrônico final do projeto a ser desenvolvido pelo software EAGLE de circuitos impressos.
+	\subsection{Diagrama e Montagem dos Circuitos}
+	Os circuitos e esquemáticos serão feitos nos simuladores Proteus e LTspice, divididos de acordo com seus subsistemas. Os circuitos serão mostrados sem os resistores para facilitar a visualização.
+	%	\graphicspath{{figuras/}}
+	%	\begin{figure}[h!]
+	%		\centering
+	%		\includegraphics[scale=0.80]{}
+	%		\caption{Nomenclatura de acordo com a cor dos fios.}
+	%		\label{img:}
+	%	\end{figure}
+		
+		\subsubsection{Circuito optoacoplador e driver}
+		%	\graphicspath{{figuras/}}
+		%	\begin{figure}[h!]
+		%		\centering
+		%		\includegraphics[scale=0.80]{}
+		%		\caption{Diagrama de circuito optoacoplador e driver.}
+		%		\label{img:}
+		%	\end{figure}
+		
+		%	\graphicspath{{figuras/}}
+		%	\begin{figure}[h!]
+		%		\centering
+		%		\includegraphics[scale=0.80]{}
+		%		\caption{Ordem de chaveamento para cada fase do motor de acordo com a posição obtida pelos sensores Hall.}
+		%		\label{img:}
+		%	\end{figure}
+		
+		\subsubsection{Circuito de controle e sensores}
+		%	\graphicspath{{figuras/}}
+		%	\begin{figure}[h!]
+		%		\centering
+		%		\includegraphics[scale=0.80]{}
+		%		\caption{Diagrama do circuito de obtenção de dados.}
+		%		\label{img:}
+		%	\end{figure}
+		
+		
 
   \section{Alimentação}
   A bicicleta elétrica utilizará dois sistemas de alimentação, que serão:
