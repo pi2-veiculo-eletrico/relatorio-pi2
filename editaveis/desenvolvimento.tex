@@ -409,26 +409,26 @@ Por último, o método \textit{"cancel"} que encerra a conexão com o dispositiv
 	\subsection{Motor}
 	O motor utilizado no projeto será responsável por converter a energia elétrica em mecânica e enviar, por meio dos sensores hall, as informações da posição atual do motor para o microcontrolador.
 	
-%	\graphicspath{{figuras/}}
-%	\begin{figure}[h!]
-%		\centering
-%		\includegraphics[width=0.5\textwidth]{}
-%		\caption{Motor com sensores hall acoplados internamente.}
-%		\label{img:}
-%	\end{figure}
-	
+	\graphicspath{{figuras/}}
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=0.5\textwidth]{Figura1_Motor.PNG}
+		\caption{Motor com sensores hall acoplados internamente.}
+		\label{img:Motor}
+	\end{figure}
+
 	O motor deve funcionar de modo que o ripple de torque não seja sentido pelo usuário, para isso as comutações das fases devem ser precisas e exatas. Ripple de torque são os picos de torque no motor, fazendo com que a bicicleta produza pequenos trancos ou vibrações.
 	
 	\subsection{Sensore de Efeito Hall}
 	Os dados sobre a posição do motor são obtidos através de três sensores do tipo hall, localizados dentro do motor. Os sensores hall utilizados possuem o código 43AF. Para o correto funcionamento, é necessário o uso de resistores pull-up.
 	
-%	\graphicspath{{figuras/}}
-%	\begin{figure}[h!]
-%		\centering
-%		\includegraphics[width=0.5\textwidth]{}
-%		\caption{Esquemático para o resistor pull-up}
-%		\label{img:}
-%	\end{figure}
+	\graphicspath{{figuras/}}
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=0.5\textwidth]{Figura2_Pull_UP.PNG}
+		\caption{Esquemático para o resistor pull-up}
+		\label{img:Pull_UP}
+	\end{figure}
 
 	\subsection{Acionamento do Motor}
 		\subsubsection{Requisito}
@@ -439,34 +439,34 @@ Por último, o método \textit{"cancel"} que encerra a conexão com o dispositiv
 		\subsubsection{Síntese e Componentes do Subsistema de Acionamento}
 		A demanda por potência é obtida através do acelerador e enviada ao driver do motor na forma modulada por largura de pulso, pulse width modulation (PWM), passando primeiramente por optoacopladores a fim de proteger o microcontrolador que ficará isolado eletricamente.
 		
-		%	\graphicspath{{figuras/}}
-		%	\begin{figure}[h!]
-		%		\centering
-		%		\includegraphics[width=0.5\textwidth]{}
-		%		\caption{MOSFET Canal-N (Datasheet IRF540).}
-		%		\label{img:}
-		%	\end{figure}
+			\graphicspath{{figuras/}}
+			\begin{figure}[h!]
+				\centering
+				\includegraphics[width=0.5\textwidth]{Figura_3_MOSFET.PNG}
+				\caption{MOSFET Canal-N (Datasheet IRF540).}
+				\label{img:MOSFET}
+			\end{figure}
 		
 		O driver é formado por uma ponte trifásica, que são MOSFETs dispostos de maneira que realizem o correto acionamento das fases do motor a partir dos sinais de comando vindo dos optoacopladores.
 		
-		%	\graphicspath{{figuras/}}
-		%	\begin{figure}[h!]
-		%		\centering
-		%		\includegraphics[width=0.5\textwidth]{}
-		%		\caption{Ponte trifásica.}
-		%		\label{img:}
-		%	\end{figure}
+			\graphicspath{{figuras/}}
+			\begin{figure}[h!]
+				\centering
+				\includegraphics[width=0.5\textwidth]{Figura4_Ponte_Trifasica.PNG}
+				\caption{Ponte trifásica.}
+				\label{img:Ponte_Trifasica}
+			\end{figure}
 		
 	\subsection{Etapa de Controle}
 	Será utilizado para prototipagem o microcontrolador arduino. Onde ocorre todo o processamento dos dados vindos dos sensores, passando pelos algoritmos de controle e enviando as informações ao agrupamento de potência, que são os MOSFETs e ao display, para interface com o usuário. A placa de prototipagem Arduino UNO será utilizada apenas nas fases de testes. Depois de definidos os parâmetros corretos, será usado apenas o chip microcontrolador ATMEGA 328p e os componentes para o correto funcionamento.
 		
-		%	\graphicspath{{figuras/}}
-		%	\begin{figure}[h!]
-		%		\centering
-		%		\includegraphics[width=0.5\textwidth]{}
-		%		\caption{Arduino UNO, placa R3}
-		%		\label{img:}
-		%	\end{figure}
+			\graphicspath{{figuras/}}
+			\begin{figure}[h!]
+				\centering
+				\includegraphics[width=0.5\textwidth]{Figura5_Arduino_Uno.PNG}
+				\caption{Arduino UNO, placa R3}
+				\label{img:Arduino_Uno}
+			\end{figure}
 		
 	O componente principal desse subsistema é o microcontrolador ATMEGA328P cujas principais características são:
 		
@@ -498,38 +498,38 @@ Por último, o método \textit{"cancel"} que encerra a conexão com o dispositiv
  			\item Velocity Manager: Traduz os dados crus obtidos dos sensores para velocidade e os estoca.
  			\item TTGPS Manager: Responsável pelo Turn-By-Turn GPS. 
  		\end{itemize}
- 		%	\graphicspath{{figuras/}}
- 		%	\begin{figure}[h!]
- 		%		\centering
- 		%		\includegraphics[width=0.5\textwidth]{}
- 		%		\caption{Diagramas de blocos da integração dos módulos do sistemas}
- 		%		\label{img:}
- 		%	\end{figure}
+ 			\graphicspath{{figuras/}}
+ 			\begin{figure}[h!]
+ 				\centering
+ 				\includegraphics[width=0.5\textwidth]{Figura6_Diagrama_de_modulos_do_sistema.PNG}
+ 				\caption{Diagramas de blocos da integração dos módulos do sistemas}
+ 				\label{img:Diagrama_de_modulos_do_sistema}
+ 			\end{figure}
  		 		
 		\subsubsection{Implementação}
 		O projeto embarcado da UnBike foi pensado com o ideal de reunir todos os sub-blocos componentes em um único microcontrolador, capaz de informar ao usuário dados relevantes como direção do GPS, nível de bateria e velocidade. A seguir são explicados como cada um dos pré-requisitos foram cumpridos no decorrer do projeto.
 		Para cumprir com os requisitos de  comunicação / Localização, foi escolhida a comunicação Bluetooth, ideal por ser de baixa potência e alcance reduzido. Assim, não afetará outros veículos próximos, da mesma forma que representará uma economia de bateria. 
 		Os requisitos de Interface Humano - Computador foram supridos por dois monitores de OLED Modelo GM009605. Por seu tamanho reduzido, não representam grandes distrações para o ciclista, ao passo que possuem um grande contraste e são excelentes para a visualização contra a luz solar <Referenciar a imagem do visor>. Também nesse tópico, foi escolhido o microcontrontrolador Arduino, por sua facilidade de codificação e também por sua versatilidade, apresentando dentre outros elementos , entradas analógicas, saídas PWM e comunicação I2C e serial.. <Referenciar Arduino>. O modelo utilizado será o Arduino UNO.
 		Para melhor entendimento e análise do sistema de Controle e disponibilização de dados o esquemático deste projeto é demonstrado abaixo:
-		%	\graphicspath{{figuras/}}
-		%	\begin{figure}[h!]
-		%		\centering
-		%		\includegraphics[width=0.5\textwidth]{}
-		%		\caption{Esquemático Sistema de controle e disponibilização dos dados}
-		%		\label{img:}
-		%	\end{figure}
+			\graphicspath{{figuras/}}
+			\begin{figure}[h!]
+				\centering
+				\includegraphics[width=0.5\textwidth]{Figura_7_sistema_de_controle.PNG}
+				\caption{Esquemático Sistema de controle e disponibilização dos dados}
+				\label{img:sistema_de_controle_e_disponibiização_de_dados}
+			\end{figure}
 		Observa-se que é possível dividir a função do sistema de controle em duas partes, onde a primeira trata exclusivamente dos sensores e a segunda se refere ao aplicativo.
 	
 		\subsubsection{Sensoriamento}
 		Existem dois dados a serem coletados através de sensores no sistema, que é a velocidade da bicicleta e o nível de carga das baterias.
 		Para o controle de velocidade será empregado um Reed Switch, que é um “sensor” simples composto por duas partes, um ímã e um SWITCh (chave)que é acionado pela aproximação do imã. O switch foi acoplado ao tirante traseiro da bicicleta e o ímã a roda traseira da bicicleta da seguinte forma:
-		%	\graphicspath{{figuras/}}
-		%	\begin{figure}[h!]
-		%		\centering
-		%		\includegraphics[width=0.5\textwidth]{}
-		%		\caption{Montagem do Sensor de Velocidade}
-		%		\label{img:}
-		%	\end{figure}
+			\graphicspath{{figuras/}}
+			\begin{figure}[h!]
+				\centering
+				\includegraphics[width=0.5\textwidth]{Figura_8_montagem_do_sensor_velocidade.PNG}
+				\caption{Montagem do Sensor de Velocidade}
+				\label{img:montagem_do_sensor_velocidade}
+			\end{figure}
 		Desta forma toda vez que o ímã passar pelo Switch, o sistema será capaz de enviar sinais com frequências que variam de acordo com a pedalada do usuário. Uma vez que se tenha o dado da frequência é possível processar a velocidade linear instantânea do veículo, que é geralmente dada por v = 2.pi.f.R, onde R é o raio da roda da bicicleta.
 		
 		Onde: 
@@ -560,13 +560,13 @@ Por último, o método \textit{"cancel"} que encerra a conexão com o dispositiv
 			\indent \indent delay(10);\\
 		\}
 	
-		%	\graphicspath{{figuras/}}
-		%	\begin{figure}[h!]
-		%		\centering
-		%		\includegraphics[width=0.5\textwidth]{}
-		%		\caption{Teste do Sensor de Velocidade}
-		%		\label{img:}
-		%	\end{figure}
+			\graphicspath{{figuras/}}
+			\begin{figure}[h!]
+				\centering
+				\includegraphics[width=0.5\textwidth]{Figura_9_sensor_velocidade.PNG}
+				\caption{Teste do Sensor de Velocidade}
+				\label{img:teste_do_sensor_velocidade}
+			\end{figure}
 		O nível de carga das baterias é um dos pontos mais importantes do produto, por isso o seu controle é fundamental para garantir o funcionamento correto dos motores e do painel. Para aferir esse dado, deve-se entender que a variação de carga em uma bateria interfere em uma variação de tensão e, através de um circuito retificador de tensão, podemos saber em que nível o controle de carga se encontra. Existem diversos modelos que podem ser utilizados nesse projeto, o que vai mudar é a precisão das medidas de acordo com os componentes que serão encontrados e utilizados no circuito.
 		Neste Projeto faremos uso de um conjunto de transistors e diodos para acionar alguns LED's quando uma determinada tensão for alcançada, além de um conversor AD para definir algumas faixas de carga a serem apresentadas ao usuário. O espaço físico que poderá ser utilizado e a necessidade da precisão do sistema irão definir qual topologia será utilizada.
 			
@@ -576,22 +576,22 @@ Por último, o método \textit{"cancel"} que encerra a conexão com o dispositiv
 
 	O indicador de direção será baseado no modelo clássico de um GPS que contém oito sinais ilustrativos:
 
-%	\graphicspath{{figuras/}}
-%	\begin{figure}[h!]
-%		\centering
-%		\includegraphics[scale=0.80]{}
-%		\caption{Integração com o Aplicativo}
-%		\label{img:}
-%	\end{figure}
+	\graphicspath{{figuras/}}
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[scale=0.80]{Figura_10_Integracao_com_o_aplicativo.PNG}
+		\caption{Integração com o Aplicativo}
+		\label{img:Integracao_com_o_aplicativo}
+	\end{figure}
 	Cada desenho desse será nomeado com uma palavra de 3 bits, e desenhado com uma estrutura binária de matriz dentro do código. Uma vez que o GPS determinar alguma dessas 8 direções o aplicativo irá dar um comando ao microprocessador, através da palavra de 3 bits, para que o desenho correto de direção seja acionado e apresentado no display. 
 	Para o melhor entendimento, atribui-se por exemplo a palavra 010 à direção "SIGA EM FRENTE". Quando o GPS indicar essa direção, o aplicativo enviará ao microprocessador os níveis de tensão "0", "1" e "0" para o micro, que irá processar a devida imagem no display.
-	%	\graphicspath{{figuras/}}
-	%	\begin{figure}[h!]
-	%		\centering
-	%		\includegraphics[scale=0.80]{}
-	%		\caption{Display indicando a rota}
-	%		\label{img:}
-	%	\end{figure}
+		\graphicspath{{figuras/}}
+		\begin{figure}[h!]
+			\centering
+			\includegraphics[scale=0.80]{Figura11_display_indicando_a_rota.PNG}
+			\caption{Display indicando a rota}
+			\label{img:display_indicando_a_rota}
+		\end{figure}
 
 
 
@@ -607,40 +607,40 @@ Por último, o método \textit{"cancel"} que encerra a conexão com o dispositiv
 
 	\subsection{Diagrama e Montagem dos Circuitos}
 	Os circuitos e esquemáticos serão feitos nos simuladores Proteus e LTspice, divididos de acordo com seus subsistemas. Os circuitos serão mostrados sem os resistores para facilitar a visualização.
-	%	\graphicspath{{figuras/}}
-	%	\begin{figure}[h!]
-	%		\centering
-	%		\includegraphics[scale=0.80]{}
-	%		\caption{Nomenclatura de acordo com a cor dos fios.}
-	%		\label{img:}
-	%	\end{figure}
+		\graphicspath{{figuras/}}
+		\begin{figure}[h!]
+			\centering
+			\includegraphics[scale=0.80]{Tabela_1_cor_dos_fios.png}
+			\caption{Nomenclatura de acordo com a cor dos fios.}
+			\label{img:Nomenclatura_de_acordo_com_a_cor_dos_fios}
+		\end{figure}
 		
-		\subsubsection{Circuito optoacoplador e driver}
-		%	\graphicspath{{figuras/}}
-		%	\begin{figure}[h!]
-		%		\centering
-		%		\includegraphics[scale=0.80]{}
-		%		\caption{Diagrama de circuito optoacoplador e driver.}
-		%		\label{img:}
-		%	\end{figure}
+		\subsubsection{Circuito Optoacoplador e Driver}
+			\graphicspath{{figuras/}}
+			\begin{figure}[h!]
+				\centering
+				\includegraphics[scale=0.80]{Figura12_circuito_optoacoplador_e_driver.PNG}
+				\caption{Diagrama de circuito optoacoplador e driver.}
+				\label{img:Diagrama_do_circuito_optoacoplador_e_driver}
+			\end{figure}
 		
-		%	\graphicspath{{figuras/}}
-		%	\begin{figure}[h!]
-		%		\centering
-		%		\includegraphics[scale=0.80]{}
-		%		\caption{Ordem de chaveamento para cada fase do motor de acordo com a posição obtida pelos sensores Hall.}
-		%		\label{img:}
-		%	\end{figure}
+			\graphicspath{{figuras/}}
+			\begin{figure}[h!]
+				\centering
+				\includegraphics[scale=0.80]{Tabela2_Ordem_de_chaveamento_Hall.png}
+				\caption{Ordem de chaveamento para cada fase do motor de acordo com a posição obtida pelos sensores Hall.}
+				\label{img:Ordem_de_chaveamento_para_cada_fase_do_motor_de_acordo_com_a_posição_obtida_pelos_sensores_Hall}
+			\end{figure}
 		
-		\subsubsection{Circuito de controle e sensores}
-		%	\graphicspath{{figuras/}}
-		%	\begin{figure}[h!]
-		%		\centering
-		%		\includegraphics[scale=0.80]{}
-		%		\caption{Diagrama do circuito de obtenção de dados.}
-		%		\label{img:}
-		%	\end{figure}
-		
+		\subsubsection{Circuito de Controle e Sensores}
+			\graphicspath{{figuras/}}
+			\begin{figure}[h!]
+				\centering
+				\includegraphics[scale=0.80]{Figura13_circuito_de_obtencao_de_dados.PNG}
+				\caption{Diagrama do circuito de obtenção de dados.}
+				\label{img:Diagrama_do_circuito_de_obtencao_de_dados}
+			\end{figure}
+%		
 		
 
   \section{Alimentação}
