@@ -452,14 +452,13 @@ Por último, o método \textit{"cancel"} que encerra a conexão com o dispositiv
 			\graphicspath{{figuras/}}
 			\begin{figure}[h!]
 				\centering
-				\includegraphics[width=0.5\textwidth]{Figura4_Ponte_Trifasica.PNG}
+				\includegraphics[scale=1.2]{Figura4_Ponte_Trifasica.PNG}
 				\caption{Ponte trifásica.}
 				\label{img:Ponte_Trifasica}
 			\end{figure}
 		
 	\subsection{Etapa de Controle}
 	Será utilizado para prototipagem o microcontrolador arduino. Onde ocorre todo o processamento dos dados vindos dos sensores, passando pelos algoritmos de controle e enviando as informações ao agrupamento de potência, que são os MOSFETs e ao display, para interface com o usuário. A placa de prototipagem Arduino UNO será utilizada apenas nas fases de testes. Depois de definidos os parâmetros corretos, será usado apenas o chip microcontrolador ATMEGA 328p e os componentes para o correto funcionamento.
-	\newpage
 		
 			\graphicspath{{figuras/}}
 			\begin{figure}[h!]
@@ -502,7 +501,7 @@ Por último, o método \textit{"cancel"} que encerra a conexão com o dispositiv
  			\graphicspath{{figuras/}}
  			\begin{figure}[h!]
  				\centering
- 				\includegraphics[width=0.5\textwidth]{Figura6_Diagrama_de_modulos_do_sistema.PNG}
+ 				\includegraphics[scale=1.4]{Figura6_Diagrama_de_modulos_do_sistema.PNG}
  				\caption{Diagramas de blocos da integração dos módulos do sistemas}
  				\label{img:Diagrama_de_modulos_do_sistema}
  			\end{figure}
@@ -510,14 +509,14 @@ Por último, o método \textit{"cancel"} que encerra a conexão com o dispositiv
 		\subsubsection{Implementação}
 		O projeto embarcado da UnBike foi pensado com o ideal de reunir todos os sub-blocos componentes em um único microcontrolador, capaz de informar ao usuário dados relevantes como direção do GPS, nível de bateria e velocidade. A seguir são explicados como cada um dos pré-requisitos foram cumpridos no decorrer do projeto.
 		Para cumprir com os requisitos de  comunicação / Localização, foi escolhida a comunicação Bluetooth, ideal por ser de baixa potência e alcance reduzido. Assim, não afetará outros veículos próximos, da mesma forma que representará uma economia de bateria. 
-		Os requisitos de Interface Humano - Computador foram supridos por dois monitores de OLED Modelo GM009605. Por seu tamanho reduzido, não representam grandes distrações para o ciclista, ao passo que possuem um grande contraste e são excelentes para a visualização contra a luz solar <Referenciar a imagem do visor>. Também nesse tópico, foi escolhido o microcontrontrolador Arduino, por sua facilidade de codificação e também por sua versatilidade, apresentando dentre outros elementos , entradas analógicas, saídas PWM e comunicação I2C e serial.. <Referenciar Arduino>. O modelo utilizado será o Arduino UNO.
+		Os requisitos de Interface Humano - Computador foram supridos por dois monitores de OLED Modelo GM009605. Por seu tamanho reduzido, não representam grandes distrações para o ciclista, ao passo que possuem um grande contraste e são excelentes para a visualização contra a luz solar conforme a figura \ref{img:display_indicando_a_rota}. Também nesse tópico, foi escolhido o microcontrontrolador Arduino, por sua facilidade de codificação e também por sua versatilidade, apresentando dentre outros elementos , entradas analógicas, saídas PWM e comunicação I2C e serial. O modelo utilizado será o Arduino UNO visto na figura \ref{img:Arduino_Uno}.
 		Para melhor entendimento e análise do sistema de Controle e disponibilização de dados o esquemático deste projeto é demonstrado abaixo:
 		\newpage
 		
 			\graphicspath{{figuras/}}
 			\begin{figure}[h!]
 				\centering
-				\includegraphics[width=0.5\textwidth]{Figura_7_sistema_de_controle.PNG}
+				\includegraphics[scale=1.4]{Figura_7_sistema_de_controle.PNG}
 				\caption{Esquemático Sistema de controle e disponibilização dos dados}
 				\label{img:sistema_de_controle_e_disponibiização_de_dados}
 			\end{figure}
@@ -649,7 +648,7 @@ Por último, o método \textit{"cancel"} que encerra a conexão com o dispositiv
 				\label{img:Diagrama_do_circuito_optoacoplador_e_driver}
 			\end{figure}
 		
-		\newpage
+		%\newpage
 		
 		\begin{table}[!htb]
 			\caption{Ordem de chaveamento para cada fase do motor de acordo com a posição obtida pelos sensores Hall.}
