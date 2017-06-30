@@ -180,7 +180,7 @@ O diagrama de classes é a representação da estrutura e relações das classes
 
 \begin{figure}[!htb]
 	\centering
-	\includegraphics[scale=0.50]{arquitetura_bike.jpg}
+	\includegraphics[width=0.9\textwidth]{arquitetura_bike.jpg}
 	\caption{Diagrama de Classes}
 	\label{img:diagramaclasse}
 \end{figure}
@@ -705,9 +705,9 @@ De modo geral, pode-se dizer que um motor elétrico é qualquer aparelho ou equi
 Os motores elétricos podem ser divididos em dois grandes grupos, baseados no tipo de corrente que utilizarão em seu processo de transformação de energia: os de corrente contínua (CC) e os de corrente alternada (CA). Na figura \ref{img:tipos_motores}, os diversos tipos de motores elétricos são apresentados para fins de curiosidade e entendimento geral da quantidade de motores possíveis que existem no mercado.	
 
 \graphicspath{{figuras/}}
-\begin{figure}[h]
+\begin{figure}[H]
 \centering
-\includegraphics[scale=1.2]{tipos_motores.png}
+\includegraphics[width=\textwidth]{tipos_motores.png}
 \caption{Tipos de Motores Elétricos}
 \label{img:tipos_motores}
 \end{figure}
@@ -1275,49 +1275,59 @@ Foram levados em consideração vários fatores, como o material, a estabilidade
 		\label{custo_dos_materiais_da_estrutura}
 	\end{table}
 	
-	\subsection{Compartimento}
+	\subsection{Compartimento e Módulo de Baterias}
+	Para possibilitar uma maior comodidade ao usuário, foi incluída ao projeto a opção de retirar o banco de baterias, facilitando o carregamento externo. Em seguida, definiu-se um compartimento que seria capaz de comportar a placa responsável pelo acionamento do motor e recuperação de energia e uma caixa contendo as baterias.
+	
 	Para a caixa das baterias e placas eletrônicas foi escolhido a madeira MDF (Medium Density Fiberboard), como material. O MDF foi escolhido devido ao seu baixo custo, facilidade de manuseio e por apresentar especificações mecânicas suficientes para o projeto. O MDF possui baixa condutividade térmica, podendo atuar como isolante térmico e apresenta resistência a variação de temperatura, não conduz eletricidade e tem uma boa resistência mecânica e elástica.
 	
-		\graphicspath{{figuras/}}	
-		\begin{figure}[H]
-			\centering
-			\includegraphics[width=0.7\textwidth]{box_frontal.png}
-			\caption{Visão frontal da caixa}
-			\label{img:box_frontal}
-		\end{figure}
+	A partir desses requisitos juntamente com as necessidades dos outros subsistemas, criou-se o modelo em ambiente CAD para verificar se a geometria propostar atendia a demanda. O resultado pode ser visto nas Figuras \ref{img:box_iso2} \ref{img:box_frontal} \ref{img:box_lesquerda}, \ref{img:box_ldireita} e \ref{img:box_traseira}, apresentadas a seguir.
 	
 		\graphicspath{{figuras/}}	
 		\begin{figure}[H]
 			\centering
-			\includegraphics[width=0.7\textwidth]{box_inferior.png}
-			\caption{Visão inferior da caixa }
-			\label{img:box_inferior}
+			\includegraphics[width=0.5\textwidth]{box_iso2.png}
+			\caption{Visão isométrica do conjunto}
+			\label{img:box_iso2}
 		\end{figure}
-		
-			\graphicspath{{figuras/}}	
-		\begin{figure}[H]
-			\centering
-			\includegraphics[width=0.7\textwidth]{box_lesquerda.png}
-			\caption{Visão lateral esquerda da caixa }
-			\label{img:box_lesquerda}
-		\end{figure}
-		
-			\graphicspath{{figuras/}}	
-		\begin{figure}[H]
-			\centering
-			\includegraphics[width=0.7\textwidth]{box_ldireita.png}
-			\caption{Visão lateral direita da caixa}
-			\label{img:box_ldireita}
-		\end{figure}
-		
 		\graphicspath{{figuras/}}	
 		\begin{figure}[H]
 			\centering
-			\includegraphics[width=0.7\textwidth]{box_traseira.png}
-			\caption{Visão traseira da caixa}
+			\includegraphics[width=0.5\textwidth]{box_frontal.png}
+			\caption{Visão frontal do conjunto}
+			\label{img:box_frontal}
+		\end{figure}
+		\begin{comment}	
+		\graphicspath{{figuras/}}	
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.4\textwidth]{box_inferior.png}
+			\caption{Visão inferior do conjunto}
+			\label{img:box_inferior}
+		\end{figure}
+		\end{comment}		
+			\graphicspath{{figuras/}}	
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.5\textwidth]{box_lesquerda.png}
+			\caption{Visão lateral esquerda do conjunto}
+			\label{img:box_lesquerda}
+		\end{figure}
+		\graphicspath{{figuras/}}	
+		\begin{figure}[h!]
+			\centering
+			\includegraphics[width=0.5\textwidth]{box_ldireita.png}
+			\caption{Visão lateral direita do conjunto}
+			\label{img:box_ldireita}
+		\end{figure}
+		\graphicspath{{figuras/}}	
+		\begin{figure}[h!]
+			\centering
+			\includegraphics[width=0.5\textwidth]{box_traseira.png}
+			\caption{Visão traseira do conjunto}
 			\label{img:box_traseira}
 		\end{figure}
-
+	
+		\begin{comment}
 		\graphicspath{{figuras/}}	
 		\begin{figure}[H]
 			\centering
@@ -1325,10 +1335,10 @@ Foram levados em consideração vários fatores, como o material, a estabilidade
 			\caption{Visão da caixa principal com a porta fechada}
 			\label{img:box_fechada}
 		\end{figure}
-
+		\end{comment}
 	\subsubsection{Processo de fabricação do compartimento}
-	Foram compradas placas de 12mm de espessura de MDF cru, 100 parafusos de 3,5x30mm, 30 parafusos de 3x12mm, 2 lixas para madeira Nº 120, 2 dobradiças pequenas, 1 trinco pequeno, 6 abraçadeiras de 1’’,\textbf{ outra madeira} de 6mm.
-		\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+	O processo de fabricação foi dividido em duas etapas, a caixa das baterias e compartimento principal. Para esse fim foram adquiridas placas de 12mm de espessura de MDF cru, 100 parafusos de 3,5x30mm, 30 parafusos de 3x12mm, 2 lixas para madeira Nº 120, 2 dobradiças pequenas, 1 trinco pequeno, 6 abraçadeiras de 1’’, MDF revestido de 6mm e uma lata de tinta spray preta. A tabela \ref{tab:custo_compartimento} indica a lista de materiais e seus respectivos custos.
+	\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
 	\begin{table}[H]
 		\centering
 		\caption{Custo dos Materiais da Estrutura}
@@ -1339,13 +1349,13 @@ Foram levados em consideração vários fatores, como o material, a estabilidade
 			\hline
 			MDF revestido de 6mm & Cedido\\
 			\hline
-			6 abraçadeiras de 1’’ & \\
+			6 abraçadeiras de 1’’ & 4,20\\
 			\hline
-			100 parafusos de 3,5x30mm & \\
+			100 parafusos de 3,5x30mm & 2,60\\
 			\hline
-			30 parafusos de 3x12mm & \\
+			30 parafusos de 3x12mm & 2,10\\
 			\hline
-			2 lixas para madeira Nº 120 & \\
+			2 lixas para madeira Nº 120 & 1,10\\
 			\hline
 			2 dobradiças pequenas & 2,00 \\
 			\hline
@@ -1353,51 +1363,75 @@ Foram levados em consideração vários fatores, como o material, a estabilidade
 			\hline
 			1 lata de tinta spray preta & Cedida \\
 			\hline
-			\textbf{Total} & \textbf{xxxx}\\
+			\textbf{Total} & \textbf{15,00}\\
 			\hline
 			
 		\end{tabular}
 		\label{tab:custo_compartimento}
 	\end{table}
-	O processo de fabricação foi dividido em duas etapas, a caixa das baterias e a caixa principal. As medidas foram feitas a partir do desenho do CAD.
+	A caixa das baterias foi produzida a partir de cinco peças, sendo elas, uma base, duas laterais e , uma parte frontal e outra traseira. As partes laterais e a base são compostas por MDF de 12 mm e as partes frontal e traseira foram feitas com MDF revestido de 6mm. Para o corte das madeiras foram utilizados uma serra de mesa e uma serra tico-tico. Para a fixação das peças foram utilizados uma furadeira/parafusadeira. O processo de montagem consistiu em utilizar a furadeira com uma broca de 2,5mm para perfurar um furo guia nas madeiras e a partir dessa guia executar o parafusamento direto.
 	
-	A caixa das baterias foi produzida a partir de cinco peças, sendo elas, uma base, duas laterais e uma parte frontal e outra traseira. As partes laterais e a base são compostas por MDF de 12 mm e as partes frontal e traseira foram feitas com\textbf{ outra madeira} de 6mm. Para o corte das madeiras foram utilizados uma serra de mesa e uma serra tico-tico. Para a fixação das peças foram utilizados uma furadeira/parafusadeira. O processo de montagem consistiu em utilizar a furadeira com uma broca de 2,5mm para perfurar um furo guia nas madeiras e a partir dessa guia executar o parafusamento direto.
-	 
-	A caixa principal foi produzida a partir de oito peças, sendo elas, uma base, uma parte lateral maior, uma lateral menor, uma porta, uma parte traseira, uma parte frontal e duas partes superiores. As duas partes superiores são compostas com \textbf{outra madeira} de 6mm e as outras partes foram feitas com o MDF de 12mm. O processo de fabricação da caixa principal foi o mesmo da caixa das baterias.
+	O compartimento principal foi produzido a partir de oito peças, sendo elas, uma base, uma parte lateral maior, uma lateral menor, uma porta, uma parte traseira, uma parte frontal e duas partes superiores. As duas partes superiores são compostas com MDF revestido de 6mm e as outras partes foram feitas com o MDF de 12mm. O processo de fabricação dao compartimento foi o mesmo da caixa das baterias.
 	
-	A pintura da parte externa da caixa principal foi feita após sua montagem. Para a pintura, primeiramente foi lixada toda a parte externa a ser pintada, após ser lixada foi feita a pintura direta com uma tinta spray preta. A aplicação da tinta foi feita de forma direta com aplicações pausadas. O mesmo foi feito para toda a bicicleta.
-	Para a fixação da porta na caixa principal foram utilizados os parafusos de 3x12mm para parafusar as duas dobradiças, e o trinco que une a porta e a parte lateral menor.
+	Para a caixa das baterias foram utilizados 16 parafusos 3,5x30mm, sendo 5 na parte frontal, 7 na parte traseira e 4 na base. Na caixa principal foram utilizados 21 parafusos 3,5x30mm, sendo 2 nas laterais, 7 na parte superior, 10 na base e 2 na parte traseira. Para as dobradiças foram utilizados 8 parafusos 3x12mm, para o trinco foram 6 e para as abraçadeiras foram 24 parafusos.
 	
-	Para fixar a caixa principal no quadro da bicicleta foram utilizadas abraçadeiras de uma polegada (1”). Primeiro foi aferida uma medição para o encaixe ser feito de forma a não ter nenhuma possibilidade de contato entre a caixa principal e os pedais/biela. Feita a medição seguiu-se para o parafusamento direto dos parafusos de 3x12mm nas abraçadeiras. O arranjo das abraçadeiras na base da caixa principal foi feito de forma a garantir a impossibilidade da caixa se movimentar para qualquer direção, ficando completamente fixa ao quadro.
+	A pintura da parte externa da caixa principal foi feita após sua montagem. Para a pintura, primeiramente foi lixada toda a parte externa a ser pintada, após ser lixada foi feita a pintura direta com uma tinta spray preta. A aplicação da tinta foi feita de forma direta com aplicações cadenciadas. O mesmo foi feito para toda a bicicleta.
 	
-\textbf{FOTOS DA CAIXA E DA BICICLETA}
-		\begin{comment}
-		\graphicspath{{figuras/}}	
-		\begin{figure}[h!]
+	Para a fixação da porta na caixa principal foram utilizados os parafusos de 3x12mm para parafusar as duas dobradiças, e o trinco que une a porta e a parte lateral menor. 
+	
+	Para fixar a caixa principal no quadro da bicicleta foram utilizadas abraçadeiras de uma polegada (1”). Primeiro foi aferida uma medição para o encaixe ser feito de forma a não ter nenhuma possibilidade de contato entre a caixa principal e os pedais/biela. Feita a medição seguiu-se para o parafusamento direto dos parafusos de 3x12mm nas abraçadeiras. O arranjo das abraçadeiras na base da caixa principal foi feito de forma a garantir a impossibilidade da caixa se movimentar para qualquer direção, ficando completamente fixa ao quadro. 
+	O produto final está exibido nas Figuras \ref{img:box_vazia} \ref{img:box_cheia} e \ref{img:box_fechada2} a seguir.
+
+	\graphicspath{{figuras/}}	
+	\begin{figure}[h!]
 		\centering
-		\includegraphics[width=0.7\textwidth]{}
-		\caption{}
-		\label{img:}
-		\end{figure}
-		
-		\graphicspath{{figuras/}}	
-		\begin{figure}[h!]
+		\includegraphics[width=0.5\textwidth]{box_vazia.jpg}
+		\caption{Bicicleta com o compartimento aberto}
+		\label{img:box_vazia}
+	\end{figure}
+	
+	\graphicspath{{figuras/}}	
+	\begin{figure}[h!]
 		\centering
-		\includegraphics[width=0.7\textwidth]{}
-		\caption{}
-		\label{img:}
-		\end{figure}
-		\end{comment}
+		\includegraphics[width=0.5\textwidth]{box_cheia.jpg}
+		\caption{Bicicleta com a caixa de baterias}
+		\label{img:box_cheia}
+	\end{figure}
+	
+	\graphicspath{{figuras/}}	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.5\textwidth]{box_fechada2.jpg}
+		\caption{Bicicleta com o compartimento fechado}
+		\label{img:box_fechada2}
+	\end{figure}
+
+	\begin{comment}
+	\graphicspath{{figuras/}}	
+		\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.5\textwidth]{box_lateral.jpg}
+		\caption{Visão lateral direita do conjunto}
+		\label{img:box_lateral}
+	\end{figure}
+	\end{comment}
 		
 	\subsection{Estabilidade da Bicicleta}
 	Após a conclusão de todas as etapas de construção e adaptação da bicicleta, calculou-se os dados referentes a estabilidade da mesma, desta vez, com os componentes eletroeletrônicos.
-	O centro de massa da bicicleta concentrou-se em 0,61 m no eixo x e 0,45 no eixo y, já as forças normais nos pneus traseiro e dianteiro(Nr e Nf) foram de, respectivamente: 13,35N e 285,8N, enquanto as forças de fricção(atrito) nos pneus traseiro e dianteiro (Fr e Ff): 4,005N e 85,74N.
-	Já no caso de um usuário com uma massa de 90 kg, os dados são alterados da seguinte forma. O centro de massa no eixo x encontrado é de 0,57 m enquanto em y permanece o mesmo valor, 0,45 m. Para as forças normais nos pneus traseiro e dianteiro encontrou-se,respectivamente, 52,2N e 1127,7N e para o caso das forças de fricção, encontrou-se nos pneus traseiro e dianteiro,respectivamente, 15,66N e 338,31N.
-	Observou-se uma mudança no centro de massa referente a adição das baterias e,posteriormente, a presença de um cliente de massa já especificada e também comentado no escopo. O comportamento dessas forças foram ilustradas anteriormente nas Figuras \ref{img:esq_forca_sem_frenagem}, \ref{img:esq_forca_com_frenagem_suave} e \ref{img:esq_forca_com_frenagem_brusca}.
 	
+	O centro de massa da bicicleta concentrou-se em 0,61 m no eixo x e 0,45 no eixo y, já as forças normais nos pneus traseiro e dianteiro(Nr e Nf) foram de, respectivamente: 13,35N e 285,8N, enquanto as forças de fricção(atrito) nos pneus traseiro e dianteiro (Fr e Ff): 4,005N e 85,74N.
+	
+	Já no caso de um usuário com uma massa de 90 kg, os dados são alterados da seguinte forma. O centro de massa no eixo x encontrado é de 0,57 m enquanto em y permanece o mesmo valor, 0,45 m. Para as forças normais nos pneus traseiro e dianteiro encontrou-se,respectivamente, 52,2N e 1127,7N e para o caso das forças de fricção, encontrou-se nos pneus traseiro e dianteiro,respectivamente, 15,66N e 338,31N.
+	
+	Observou-se uma mudança no centro de massa referente a adição das baterias e, posteriormente, a presença de um ciclista de massa já especificada e também comentado no escopo. O comportamento dessas forças foi ilustrado anteriormente nas 
+	Figuras \ref{img:esq_forca_sem_frenagem}, \ref{img:esq_forca_com_frenagem_suave} e \ref{img:esq_forca_com_frenagem_brusca}.
+	
+	A partir dos dados observados anteriormente e comparando-os com os atuais e finais, foi possível notar as mudanças do centro de massa para a região mais próxima do início da bicicleta, devido a uma maior concentração de massa adicionada (as baterias e o cliente) na região(as baterias e o cliente) frontal, enquanto no eixo horizontal não houve alteração, seu centro de massa permanece constante no meio da bicicleta. Esta variação também foi reparada nas forças de reação, ela também se deve ao aumento da massa nodo sistema. Esta alteração já era esperada, tornando possível planejar o projeto com segurança e o tornando viável.
 
-\clearpage
-
+	\subsection{Homologação}
+	
+	Para definir o plano de teste, estabeleceu-se como uma espécie de medida a rodagem por Km de forma que fosse possível observar o comportamento da estrutura ao longo dos trajetos. Ao longo de 6Km percorridos, notou-se um problema com a roda traseira e com a corrente utilizada, desta forma, foi necessário realizar a troca de ambos os componentes.
+	A exceção dos problemas já apresentados, a estrutura da bicicleta não apresentou nenhum outro problema e o teste ocorreu sem mais nenhuma outra adversidade.
 
 
   \section{Normas}
