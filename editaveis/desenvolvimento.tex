@@ -19,7 +19,7 @@
 Esta seção abordará desde nível mais alto do projeto, contemplando as especificações do aplicativo, ao nível mais baixo, contemplando a comunicação entre o aplicativo e o micro controlador.
 
 	\subsection{Aplicativo}
-O projeto de processamento e interface consistirá num aplicativo cujo objetivo central é traçar rotas entre os pontos escolhidos pelo usuário e passar essas informações ao micro controlador responsável por acender os painéis luminosos. 
+O projeto de processamento e interface consistirá num aplicativo cujo objetivo central é traçar rotas entre os pontos escolhidos pelo usuário e passar essas informações ao micro controlador responsável por acender os painéis luminosos na tela oled. 
 Em segundo plano estará o painel do usuário, onde ele poderá se cadastrar e acompanhar suas rotas, assim como algumas estatísticas sobre seus percursos.
 
 A partir desses objetivos principais, foi criado as features para o projeto. O diagrama a seguir contempla o diagrama de features do sistema:
@@ -617,6 +617,19 @@ Por último, o método \textit{"cancel"} que encerra a conexão com o dispositiv
 	Os circuitos e esquemáticos serão feitos nos simuladores Proteus e LTspice, divididos de acordo com seus subsistemas. Os circuitos serão mostrados sem os resistores para facilitar a visualização.
 	\newpage
 	
+	\begin{table}[!htb]
+		\caption{Nomenclatura de acordo com a cor dos fios.}
+		\centering
+		\label{Nomenclatura_de_acordo_com_a_cor_dos_fios}
+		\begin{tabular}{ccc}
+			\cline{2-3} & Sensores Hall & Fases \\ \hline
+			Azul & X & A \\ \hline
+			Verde & Y & B \\ \hline
+			Amarelo & Z & C \\ \hline
+		\end{tabular}
+	\end{table}
+	
+	\begin{comment}
 		\graphicspath{{figuras/}}
 		\begin{figure}[h!]
 			\centering
@@ -624,17 +637,37 @@ Por último, o método \textit{"cancel"} que encerra a conexão com o dispositiv
 			\caption{Nomenclatura de acordo com a cor dos fios.}
 			\label{img:Nomenclatura_de_acordo_com_a_cor_dos_fios}
 		\end{figure}
-		
+	\end{comment}
+	
 		\subsubsection{Circuito Optoacoplador e Driver}
 		
 			\graphicspath{{figuras/}}
 			\begin{figure}[h!]
 				\centering
-				\includegraphics[scale=0.80]{Figura12_circuito_optoacoplador_e_driver.PNG}
+				\includegraphics[scale=1.4]{Figura12_circuito_optoacoplador_e_driver.PNG}
 				\caption{Diagrama de circuito optoacoplador e driver.}
 				\label{img:Diagrama_do_circuito_optoacoplador_e_driver}
 			\end{figure}
 		
+		\newpage
+		
+		\begin{table}[!htb]
+			\caption{Ordem de chaveamento para cada fase do motor de acordo com a posição obtida pelos sensores Hall.}
+			\centering
+			\label{Ordem_de_chaveamento_para_cada_fase_do_motor_de_acordo_com_a_posição_obtida_pelos_sensores_Hall}
+			\begin{tabular}{ccc}
+				\multirow{2}{*}{\textbf{Sensores Hall (X/Y/Z)}} & \multicolumn{2}{c}{Transistores que devem ser ativados:} \\
+				& PWM & Retorno \\ \hline
+				0/0/1 & C & B \\ \hline
+				0/1/1 & C & A \\ \hline
+				0/1/0 & B & A \\ \hline
+				1/1/0 & B & C \\ \hline
+				1/0/0 & A & C \\ \hline
+				1/0/1 & A & B \\ \hline
+			\end{tabular}
+		\end{table}
+		
+		\begin{comment}
 			\graphicspath{{figuras/}}
 			\begin{figure}[h!]
 				\centering
@@ -642,6 +675,7 @@ Por último, o método \textit{"cancel"} que encerra a conexão com o dispositiv
 				\caption{Ordem de chaveamento para cada fase do motor de acordo com a posição obtida pelos sensores Hall.}
 				\label{img:Ordem_de_chaveamento_para_cada_fase_do_motor_de_acordo_com_a_posição_obtida_pelos_sensores_Hall}
 			\end{figure}
+		\end{comment}
 		
 		\newpage
 		
@@ -650,7 +684,7 @@ Por último, o método \textit{"cancel"} que encerra a conexão com o dispositiv
 			\graphicspath{{figuras/}}
 			\begin{figure}[h!]
 				\centering
-				\includegraphics[scale=0.80]{Figura13_circuito_de_obtencao_de_dados.PNG}
+				\includegraphics[scale=1.4]{Figura13_circuito_de_obtencao_de_dados.PNG}
 				\caption{Diagrama do circuito de obtenção de dados.}
 				\label{img:Diagrama_do_circuito_de_obtencao_de_dados}
 			\end{figure}
@@ -685,7 +719,7 @@ Os motores elétricos possuem funcionamento baseado na troca de polaridade peri�
  
  Considerando quanto ao uso ou não das escovas para o processo explicitado, os motores de corrente contínua podem ser divididos em dois subgrupos: com escovas e sem escovas. Aqueles que possuem as escovas tem seu funcionamento como já citado, já aqueles que não possuem ainda mantem o mesmo modo de obtenção do movimento do motor a partir da posição, entretanto, realizam a comutação eletronicamente, por meio de sensores que indicam o posicionamento instantâneo do motor. 
 
-No caso apresentado neste relatório, o motor, já cedido anteriormente e que será aproveitado nesse projeto, é um motor de corrente contínua sem escovas. No quadro \ref{esp_motor} são apresentados alguns poucos dados apresentados pelo vendedor do motor em relação a características do mesmo. Os demais dados não foram oferecidos pelo site mesmo após tentativa de contato, tornando escassos os dados. Além da tabela, na figura \ref{img:motor} têm-se uma imagem do motor.
+No caso apresentado neste relatório, o motor, já cedido anteriormente e que será aproveitado nesse projeto, é um motor de corrente contínua sem escovas. Na tabela \ref{esp_motor} são apresentados alguns poucos dados apresentados pelo vendedor do motor em relação a características do mesmo. Os demais dados não foram oferecidos pelo site mesmo após tentativa de contato, tornando escassos os dados. Além da tabela, na figura \ref{img:motor} têm-se uma imagem do motor.
 
 \begin{table}[h!]
 \centering
@@ -721,8 +755,14 @@ Sistema de 120 graus            \\ \hline
 	
 Acoplado à roda da bicicleta, o dínamo utiliza a energia cinética de rotação da roda girando um íma que excitará as bobinas circundantes gerando corrente elétrica, que será retificada e irá carregar a bateria por meio de cabos. A bateria irá, então, alimentar os componentes eletrônicos como o microcontrolador e as placas de LED.
 
-A potência mecânica é dada pelo produto do torque () e da velocidade angular () da roda da bicicleta, como visto na Figura \ref{img:potencia_mecanica}. 
+A potência mecânica é dada pelo produto do torque $\tau$ e da velocidade angular $\omega$ da roda da bicicleta, como visto na equação ~\ref{eq:potencia_mecanica}.
 
+\begin{equation}
+\label{eq:potencia_mecanica}
+\mathbf{P_{mec} = \tau * \omega}
+\end{equation}
+
+\begin{comment}
 \graphicspath{{figuras/}}
 \begin{figure}[h!]
 \centering
@@ -730,9 +770,16 @@ A potência mecânica é dada pelo produto do torque () e da velocidade angular 
 \caption{Fórmula de potência mecânica}
 \label{img:potencia_mecanica}
 \end{figure}
+\end{comment}
 
-Sendo que o torque é dado pela equação da figura \ref{img:torque}, onde r é o raio da roda
+Sendo que o torque é dado pela equação ~\ref{eq:torque}, onde r é o raio da roda
 
+\begin{equation}
+\label{eq:torque}
+\mathbf{ \tau = F_{atrito} * r}
+\end{equation}
+
+\begin{comment}
 \graphicspath{{figuras/}}
 \begin{figure}[h!]
 \centering
@@ -740,7 +787,7 @@ Sendo que o torque é dado pela equação da figura \ref{img:torque}, onde r é 
 \caption{Fórmula para cálculo do torque}
 \label{img:torque}
 \end{figure}
-
+\end{comment}
 
 As velocidades serão medidas experimentalmente com o uso de um tacômetro e a tensão e corrente de saída do dínamo com um multímetro.
 
@@ -756,8 +803,20 @@ Apesar de nesse projeto definirmos o conceito de dínamo, a aplicação do mesmo
 	\item \textbf{Íon-Lítio}:  São baterias mais leves, com alta densidade de energia, maior eficiência energética que as demais e elevado número de ciclos de vida. O custo é ainda muito alto e a tolerância a sobrecarga é baixa correndo riscos de danificação \cite{bezerra}. São muito utilizadas em aparelhos eletrônicos como celulares e laptops.
 	\end{itemize}
 	
-	A capacidade de uma bateria é dada pela equação da figura \ref{img:calculo_bateria}
+	A capacidade de uma bateria é dada pela equação ~\ref{eq:formula_capacidade}
 	
+	\begin{equation}
+	\label{eq:formula_capacidade}
+	\mathbf{Capacidade(Ah) = \frac{Potência(W) * Autonomia(h)}{Tensão(V) * Profundidade. de. descarga}}
+	\end{equation}
+	
+	\begin{equation}
+	\label{eq:calculo_bateria}
+	\mathbf{Capacidade(Ah) = \frac{350W * 1h}{36V} = 9,72Ah}
+	\end{equation}
+	
+	
+	\begin{comment}
 	\graphicspath{{figuras/}}
 	\begin{figure}[h!]
 	\centering
@@ -765,10 +824,12 @@ Apesar de nesse projeto definirmos o conceito de dínamo, a aplicação do mesmo
 	\caption{Fórmula para cálculo da bateria}
 	\label{img:formula_capacidade}
 	\end{figure}
+	\end{comment}
 	
 
 	%\citeonline{daanalise} coletou informações sobre rotas cíclicas mais escolhidas por ciclistas quando usando GPS. Em seus resultados, os percursos mais longos feitos duravam, em média, 20 minutos e os participantes da pesquisa faziam, em média, 2,5 viagens por dia. Os percursos totais, por dia, para cada ciclista, duram, em média, 50 minutos. Para dimensionar a bateria, portanto, considera-se o motor trabalhando em máxima potência e o tempo de autonomia de 1h.
 	
+	\begin{comment}
 	\graphicspath{{figuras/}}
 	\begin{figure}[!htb]
 	\centering
@@ -776,6 +837,7 @@ Apesar de nesse projeto definirmos o conceito de dínamo, a aplicação do mesmo
 	\caption{Cálculo da bateria a ser utilizada}
 	\label{img:calculo_bateria}
 	\end{figure}
+	\end{comment}
 	
 	Portanto, para alimentar o motor, serão utilizadas três baterias chumbo-ácido de 12V cada, ligadas em série, com capacidade de 10Ah. A escolha desse tipo de bateria foi escolhida devido ao menor custo e maior disponibilidade por ser uma tecnologia mais madura para aplicações automotivas.
 
@@ -792,7 +854,7 @@ Os componentes demandam uma corrente de 800 a 900mA. Será utilizada uma bateria
 
 Inicialmente, o cálculo da capacidade da bateria forneceu uma estimativa de qual seria a autonomia dimensionada para todo o sistema. Entretanto, posteriormente, a questão de manter uma autonomia maior foi posta de lado em prol dos custos e do fato de que nesse projeto integrador o objetivo principal é o de funcionamento e integração dos sistemas, não necessariamente de toda a usabilidade completa e já comercial para o usuário, permitindo assim que uma autonomia menor pudesse ser adotada para conter parte dos custos, visto que um conjunto de baterias de 12V de tensão e 10ah de capacidade nominal em um ensaio C1 ou C5 teriam um custo quatro vezes maior quando comparada a baterias comerciais mais simples, ainda de 12V de tensão, porém com apenas 7ah de capacidade nominal em teste C20. Os ensaios e as nomenclaturas CX referem-se aos testes feitos com as baterias pelas próprias empresas para verificar o quanto de corrente a bateria consegue descarregar ao longo do tempo, onde C1 é uma hora, C5 seriam cinco horas e C20, vinte horas. Assim, uma bateria de 10Ah C1, consegue descarregar 10A em uma hora. Já a bateria escolhida, de 7Ah C20, consegue apenas 7A em vinte horas.
 
-As baterias escolhidas pelo grupo foram três do modelo 12MVA-7 Nobreak da Moura, uma bateria usada para aplicações como cercas elétricas, portões elétricos e também em algum grau para bicicletas elétricas e outras aplicações mais simples. A imagem x apresenta uma foto da bateria, enquanto a imagem x+1 traz especificações desta retiradas do catálogo da Moura.
+As baterias escolhidas pelo grupo foram três do modelo 12MVA-7 Nobreak da Moura, uma bateria usada para aplicações como cercas elétricas, portões elétricos e também em algum grau para bicicletas elétricas e outras aplicações mais simples. A imagem \ref{img:bateriabike} apresenta uma foto da bateria, enquanto a imagem \ref{img:especificacaobateria} traz especificações desta retiradas do catálogo da Moura.
 
 \newpage
 
@@ -816,7 +878,10 @@ Como as especificações apresentam, as baterias serão capazes de suprir a dema
 Um carregador, como o nome já dá uma ideia, é basicamente um dispositivo capaz de recarregar outro componente específico, nesse caso, as baterias. Como as baterias de chumbo-ácido possuem alguns critérios básicos para que não afetem a qualidade da bateria, tornando sua vida útil menor. Um deles é a necessidade de o carregamento ser feito com as baterias ligadas em paralelo entre elas, além de ser interessante para a preservação dela que a corrente de carregamento não ultrapasse 10\% da capacidade nominal que a bateria possui. No caso específico da nossa bateria, de capacidade 7Ah, essa corrente seria 0,7 A. 
 A partir disso, com uma fórmula bem simples, é possível estimar o tempo de carregamento total da bateria:
 
-\textbf{\centering TR = C/i}
+\begin{equation}
+\label{eq:tempo_carregamento}
+\mathbf{TR = \frac{C}{i}}
+\end{equation}
 
 Onde TR seria o tempo de recarga, C a capacidade nominal e i a corrente. 
 Em um cálculo rápido é possível observar que o tempo de recarga das baterias seria de aproximadamente 10 horas. 
