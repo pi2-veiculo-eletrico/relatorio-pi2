@@ -909,140 +909,140 @@ O circuito retirado proposto pelo site Destro é apresentado na figura x + 3.
   \section{Estrutura}
   Este projeto visa a construção de uma bicicleta elétrica capaz de seguir uma rota pré-determinada via gps. Porém, há a necessidade de se projetar com a devida atenção toda a estrutura da bicicleta de modo que os demais componentes sejam devidamente adaptados de forma ergonômica, em outras palavras, maximizar a segurança e eficiência da interação máquina e ser humano.
 Foram levados em consideração vários fatores, como o material, a estabilidade, conforto e custo-benefício para a escolha e dimensionamento da estrutura.O quadro da bicicleta guardará os motores, baterias e demais componentes eletroeletrônicos de forma segura e organizada. Haverá também, um painel bastante intuitivo que auxiliará o usuário em sua rota como: indicação da bateria restante, distância percorrida e distância restante.
-	
-	\subsection{Materiais}
-	Dentre os materiais que compõem o quadro da bicicleta, foi se escolhido o alumínio, por se tratar de um material leve, barato, com ponto de fusão suficientemente seguro para ser integrado com os componentes eletroeletrônicos além da pouca oxidação sofrida. Outros materiais que foram pesquisados com a finalidade de implementação, foram o aço, porém possui um peso elevado se comparado ao alumínio, e está sujeito a oxidação, apesar do baixo preço. Fibra de carbono, possui um baixo peso, porém um alto custo e uma grande dificuldade na parte de manutenção e conserto.
-	
-	\subsection{Ergonomia}
-	Atualmente no mercado brasileiro as bicicletas mais vendidas são as Mountain Bike, comumente apelidadas de MTB. Isso se deve a sua versatilidade que permite ser utilizada em qualquer terreno. Elas geralmente são encontradas nos tamanho de quadro 17, 18 e 19”. Os dois primeiros tipos são indicados para pessoas entre 1,68 e 1,78 metros de altura enquanto a última atende a faixa de 1,78 e 1,85 metros. 
-Segundo a pesquisa de orçamentos familiares realizada pelo IBGE entre 2008 e 2009, a estatura média da mulher e do homem brasileiro adulto são, respectivamente, 1,71 e 1,60 metros. Associando esse dado com os tamanhos de quadros mais comuns do mercado optou-se por utilizar como base para o projeto um quadro de 17”.  
-As análises ergonômicas serão realizadas com o auxílio do software CATIA V5 utilizando sua base de dados referente ao estudo de percentil do norte americano. Para o problema apresentado serão adotadas as medidas dos homens de percentil entre 13 e 65, e para mulheres entre 79 e 99, ambos norte americanos.
+	\subsection{Projeto Preliminar}
+		\subsubsection{Materiais}
+		Dentre os materiais que compõem o quadro da bicicleta, foi se escolhido o alumínio, por se tratar de um material leve, barato, com ponto de fusão suficientemente seguro para ser integrado com os componentes eletroeletrônicos além da pouca oxidação sofrida. Outros materiais que foram pesquisados com a finalidade de implementação, foram o aço, porém possui um peso elevado se comparado ao alumínio, e está sujeito a oxidação, apesar do baixo preço. Fibra de carbono, possui um baixo peso, porém um alto custo e uma grande dificuldade na parte de manutenção e conserto.
+		
+		\subsubsection{Ergonomia}
+		Atualmente no mercado brasileiro as bicicletas mais vendidas são as Mountain Bike, comumente apelidadas de MTB. Isso se deve a sua versatilidade que permite ser utilizada em qualquer terreno. Elas geralmente são encontradas nos tamanho de quadro 17, 18 e 19”. Os dois primeiros tipos são indicados para pessoas entre 1,68 e 1,78 metros de altura enquanto a última atende a faixa de 1,78 e 1,85 metros. 
+		Segundo a pesquisa de orçamentos familiares realizada pelo IBGE entre 2008 e 2009, a estatura média da mulher e do homem brasileiro adulto são, respectivamente, 1,71 e 1,60 metros. Associando esse dado com os tamanhos de quadros mais comuns do mercado optou-se por utilizar como base para o projeto um quadro de 17”.  
+		As análises ergonômicas serão realizadas com o auxílio do software CATIA V5 utilizando sua base de dados referente ao estudo de percentil do norte americano. Para o problema apresentado serão adotadas as medidas dos homens de percentil entre 13 e 65, e para mulheres entre 79 e 99, ambos norte americanos.
 
-	\subsection{Design}
-
-	O \textit{design} da bicicleta é apresentado na figura \ref{img:dimensoes}, onde é possível ver as dimensões da bicicleta a ser produzida.	
+		\subsubsection{Design}
 	
-	\graphicspath{{figuras/}}
-	\begin{figure}[h!]
-	\centering
-	\includegraphics[scale=0.80]{dimensoes.png}
-	\caption{Dimensões}
-	\label{img:dimensoes}
-	\end{figure}
+		O \textit{design} da bicicleta é apresentado na figura \ref{img:dimensoes}, onde é possível ver as dimensões da bicicleta a ser produzida.	
+		
+			\graphicspath{{figuras/}}
+			\begin{figure}[h!]
+			\centering
+			\includegraphics[scale=0.80]{dimensoes.png}
+			\caption{Dimensões}
+			\label{img:dimensoes}
+			\end{figure}
 
 \newpage
 
-	\subsection{Estabilidade}
+	\subsubsection{Estabilidade}
 	O centro de massa da bicicleta sem os componentes se concentrou em 0,6m no eixo x e 0,5m no eixo y, as forças normais nos pneus traseiros e dianteiros foram de,respectivamente: 24,525N e 73,575N, enquanto as forças de fricção(atrito)  nos pneus traseiros e dianteiros de, respectivamente: 14,96N e 44,88N. As figuras \ref{img:esq_forca_sem_frenagem}, \ref{img:esq_forca_com_frenagem_suave} e \ref{img:esq_forca_com_frenagem_brusca} apresentam três esquemáticos demonstrando a aplicação da força sobre a bicicleta em três momentos distintos.
 
-\graphicspath{{figuras/}}
-\begin{figure}[h!]
-\centering
-\includegraphics[scale=0.80]{esq_forca_sem_frenagem.png}
-\caption{Esquemático de força sem frenagem}
-\label{img:esq_forca_sem_frenagem}
-\end{figure}
+		\graphicspath{{figuras/}}
+		\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.80]{esq_forca_sem_frenagem.png}
+		\caption{Esquemático de força sem frenagem}
+		\label{img:esq_forca_sem_frenagem}
+		\end{figure}
 
-\graphicspath{{figuras/}}
-\begin{figure}[h!]
-\centering
-\includegraphics[scale=0.80]{esq_forca_com_frenagem_suave.png}
-\caption{Esquemático de força com frenagem suave}
-\label{img:esq_forca_com_frenagem_suave}
-\end{figure}
-
-\graphicspath{{figuras/}}
-\begin{figure}[h!]
-\centering
-\includegraphics[scale=0.80]{esq_forca_com_frenagem_brusca.png}
-\caption{Esquemático de forca com frenagem brusca}
-\label{img:esq_forca_com_frenagem_brusca}
-\end{figure}
+		\graphicspath{{figuras/}}
+		\begin{figure}[h!]
+		\centering
+		\includegraphics[scale=0.80]{esq_forca_com_frenagem_suave.png}
+		\caption{Esquemático de força com frenagem suave}
+		\label{img:esq_forca_com_frenagem_suave}
+		\end{figure}
+		
+		\graphicspath{{figuras/}}
+		\begin{figure}[h!]
+		\centering
+		\includegraphics[scale=0.80]{esq_forca_com_frenagem_brusca.png}
+		\caption{Esquemático de forca com frenagem brusca}
+		\label{img:esq_forca_com_frenagem_brusca}
+		\end{figure}
 
 \newpage
 
-	\subsection{Análises}
+	\subsubsection{Análises}
 	Foram feitas algumas análises em um quadro de 17 com ajuda dos softwares CATIA v5 e Ansys R17.0 no intuito de levantar questões sobre requisitos e melhorias que deverão estar presentes na estrutura.
 	
-	\subsection{Estática}
+	\subsubsection{Estática}
 	As figuras \ref{img:deformacao_total}, \ref{img:equivalente_de_von_mises}, \ref{img:modo_de_vibracao}, \ref{img:modo_de_vibracao2}, \ref{img:modo_de_vibracao3}, \ref{img:modo_de_vibracao4}, \ref{img:modo_de_vibracao5} e \ref{img:modo_de_vibracao 6} apresentam alguns graus de deformação à qual a bicicleta pode ser submetida. 	
 	
-\graphicspath{{figuras/}}
-	\begin{figure}[h!]
-	\centering
-	\includegraphics[width=0.7\textwidth]{deformacao_total.png}
-	\caption{Deformacao total}
-	\label{img:deformacao_total}
-	\end{figure}	
-	
-\graphicspath{{figuras/}}
-	\begin{figure}[h!]
-	\centering
-	\includegraphics[width=0.7\textwidth]{equivalente_de_von_mises.png}
-	\caption{Equivalente de von-Mises}
-	\label{img:equivalente_de_von_mises}
-	\end{figure}	
-	
-\graphicspath{{figuras/}}
-	\begin{figure}[h!]
-	\centering
-	\includegraphics[width=0.7\textwidth]{modo_de_vibracao.png}
-	\caption{Modo de vibração 1}
-	\label{img:modo_de_vibracao}
-	\end{figure}	
-	
-\graphicspath{{figuras/}}
-	\begin{figure}[h!]
-	\centering
-	\includegraphics[width=0.7\textwidth]{modo_de_vibracao_2.png}
-	\caption{Modo de vibracao 2}
-	\label{img:modo_de_vibracao2}
-	\end{figure}	
-	
-\graphicspath{{figuras/}}
-	\begin{figure}[h!]
-	\centering
-	\includegraphics[width=0.7\textwidth]{modo_de_vibracao_3.png}
-	\caption{Modo de vibração 3}
-	\label{img:modo_de_vibracao3}
-	\end{figure}	
-	
-\graphicspath{{figuras/}}
-	\begin{figure}[h!]
-	\centering
-	\includegraphics[width=0.7\textwidth]{modo_de_vibracao_4.png}
-	\caption{Modo de vibração 4}
-	\label{img:modo_de_vibracao4}
-	\end{figure}	
-	
-\graphicspath{{figuras/}}
-	\begin{figure}[h!]
-	\centering
-	\includegraphics[width=0.7\textwidth]{modo_de_vibracao_5.png}
-	\caption{Modo de vibração 5}
-	\label{img:modo_de_vibracao5}
-	\end{figure}	
-
-\graphicspath{{figuras/}}
-	\begin{figure}[h!]
-	\centering
-	\includegraphics[width=0.7\textwidth]{modo_de_vibracao_6.png}
-	\caption{Modo de vibração 6}
-	\label{img:modo_de_vibracao 6}
-	\end{figure}	
+		\graphicspath{{figuras/}}
+			\begin{figure}[h!]
+			\centering
+			\includegraphics[width=0.7\textwidth]{deformacao_total.png}
+			\caption{Deformacao total}
+			\label{img:deformacao_total}
+			\end{figure}	
+			
+		\graphicspath{{figuras/}}
+			\begin{figure}[h!]
+			\centering
+			\includegraphics[width=0.7\textwidth]{equivalente_de_von_mises.png}
+			\caption{Equivalente de von-Mises}
+			\label{img:equivalente_de_von_mises}
+			\end{figure}	
+			
+		\graphicspath{{figuras/}}
+			\begin{figure}[h!]
+			\centering
+			\includegraphics[width=0.7\textwidth]{modo_de_vibracao.png}
+			\caption{Modo de vibração 1}
+			\label{img:modo_de_vibracao}
+			\end{figure}	
+			
+		\graphicspath{{figuras/}}
+			\begin{figure}[h!]
+			\centering
+			\includegraphics[width=0.7\textwidth]{modo_de_vibracao_2.png}
+			\caption{Modo de vibracao 2}
+			\label{img:modo_de_vibracao2}
+			\end{figure}	
+			
+		\graphicspath{{figuras/}}
+			\begin{figure}[h!]
+			\centering
+			\includegraphics[width=0.7\textwidth]{modo_de_vibracao_3.png}
+			\caption{Modo de vibração 3}
+			\label{img:modo_de_vibracao3}
+			\end{figure}	
+			
+		\graphicspath{{figuras/}}
+			\begin{figure}[h!]
+			\centering
+			\includegraphics[width=0.7\textwidth]{modo_de_vibracao_4.png}
+			\caption{Modo de vibração 4}
+			\label{img:modo_de_vibracao4}
+			\end{figure}	
+			
+		\graphicspath{{figuras/}}
+			\begin{figure}[h!]
+			\centering
+			\includegraphics[width=0.7\textwidth]{modo_de_vibracao_5.png}
+			\caption{Modo de vibração 5}
+			\label{img:modo_de_vibracao5}
+			\end{figure}	
+		
+		\graphicspath{{figuras/}}
+			\begin{figure}[h!]
+			\centering
+			\includegraphics[width=0.7\textwidth]{modo_de_vibracao_6.png}
+			\caption{Modo de vibração 6}
+			\label{img:modo_de_vibracao 6}
+			\end{figure}	
 
 \clearpage
 
 	
 	
 	
-	\subsection{Desafios Técnicos}
+	\subsubsection{Desafios Técnicos}
 	Desafio: Definir uma geometria que comporte todo o sistema sem afetar a ergonomia do ciclista, e que seja capaz de suportar todas as solicitações mecânicas
-Alternativa de solução: Alterar a geometria e/ou alterar o material da estrutura.
+	Alternativa de solução: Alterar a geometria e/ou alterar o material da estrutura.
 
-Desafio: impossibilidade de fabricação do quadro  por escassez de recursos, tempo ou incapacidade técnica.
+	Desafio: impossibilidade de fabricação do quadro  por escassez de recursos, tempo ou incapacidade técnica.
 
-Alternativa de solução: adquirir um quadro comum no comércio e realizar as adaptações necessárias.
+	Alternativa de solução: adquirir um quadro comum no comércio e realizar as adaptações necessárias.
 
 	\subsection{Atualizações}
 	A princípio o objetivo era a construção completa da estrutura do quadro da bicicleta, porém a fabricação de um quadro se mostrou inviável, tanto pelo custo quanto pela falta de mão de obra necessária para a criação do protótipo. Desta forma procurou-se viabilizar o projeto a partir de modificações estruturais em uma bicicleta comum. 
@@ -1188,7 +1188,7 @@ Alternativa de solução: adquirir um quadro comum no comércio e realizar as ad
 	\end{figure}
 	Os resultados mostram que a estrutura proposta atende a todos os requisitos do estudados no âmbito estático.
 	
-	\subsection{Adaptação do QuadrConstrução}
+	\subsection{Adaptação do Quadro}
 	
 	Com a validação numérica do modelo, prosseguiu-se para a etapa de confecção do mesmo onde primeiramente foram feitos cortes no quadro original para retirar o tubo inferior como pode ser visto nas Figuras \ref{img:quadro_cerrado_lateral}, \ref{img:quadro_cerrado_1} e \ref{img:quadro_cerrado_2}.
 	
@@ -1252,9 +1252,9 @@ Alternativa de solução: adquirir um quadro comum no comércio e realizar as ad
 	
 	
 	\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
-	\begin{table}[!htb]
+	\begin{table}[H]
 		\centering
-		\caption{Custo dos Materiais da Estrutura}
+		\caption{Custos da Adaptação}
 		\begin{tabular}{|M{6cm} | M{3,5cm} |}
 			\hline
 			\textbf{MATERIAL} & \textbf{Preço(R\$)} \\ \hline
@@ -1268,12 +1268,14 @@ Alternativa de solução: adquirir um quadro comum no comércio e realizar as ad
 			\hline
 			Desmontagem da corrente & 15,00\\
 			\hline
+			\textbf{Total} & \textbf{1071,00}\\
+			\hline
 			
 		\end{tabular}
 		\label{custo_dos_materiais_da_estrutura}
 	\end{table}
 	
-	\subsection{Suporte Baterias}
+	\subsection{Compartimento}
 	Para a caixa das baterias e placas eletrônicas foi escolhido a madeira MDF (Medium Density Fiberboard), como material. O MDF foi escolhido devido ao seu baixo custo, facilidade de manuseio e por apresentar especificações mecânicas suficientes para o projeto. O MDF possui baixa condutividade térmica, podendo atuar como isolante térmico e apresenta resistência a variação de temperatura, não conduz eletricidade e tem uma boa resistência mecânica e elástica.
 	
 		\graphicspath{{figuras/}}	
@@ -1324,16 +1326,51 @@ Alternativa de solução: adquirir um quadro comum no comércio e realizar as ad
 			\label{img:box_fechada}
 		\end{figure}
 
-	\subsection{Processo de fabricação da caixa}
+	\subsubsection{Processo de fabricação do compartimento}
 	Foram compradas placas de 12mm de espessura de MDF cru, 100 parafusos de 3,5x30mm, 30 parafusos de 3x12mm, 2 lixas para madeira Nº 120, 2 dobradiças pequenas, 1 trinco pequeno, 6 abraçadeiras de 1’’,\textbf{ outra madeira} de 6mm.
-	O processo de fabricação foi dividido em duas etapas, a caixa das baterias e a caixa principal. As medidas foram feitas a partir do desenho do CAD. 
-	A caixa das baterias foi produzida a partir de cinco peças, sendo elas, uma base, duas laterais e uma parte frontal e outra traseira. As partes laterais e a base são compostas por MDF de 12 mm e as partes frontal e traseira foram feitas com\textbf{ outra madeira} de 6mm. Para o corte das madeiras foram utilizados uma serra de mesa e uma serra tico-tico. Para a fixação das peças foram utilizados uma furadeira/parafusadeira. O processo de montagem consistiu em utilizar a furadeira com uma broca de 2,5mm para perfurar um furo guia nas madeiras e a partir dessa guia executar o parafusamento direto. 
-	A caixa principal foi produzida a partir de oito peças, sendo elas, uma base, uma parte lateral maior, uma lateral menor, uma porta, uma parte traseira, uma parte frontal e duas partes superiores. As duas partes superiores são compostas com \textbf{outra madeira} de 6mm e as outras partes foram feitas com o MDF de 12mm. O processo de fabricação da caixa principal foi o mesmo da caixa das baterias. 
+		\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+	\begin{table}[H]
+		\centering
+		\caption{Custo dos Materiais da Estrutura}
+		\begin{tabular}{|M{6cm} | M{3,5cm} |}
+			\hline
+			\textbf{MATERIAL} & \textbf{Preço(R\$)} \\ \hline
+			MDF cru 12mm de espessura & Cedido \\
+			\hline
+			MDF revestido de 6mm & Cedido\\
+			\hline
+			6 abraçadeiras de 1’’ & \\
+			\hline
+			100 parafusos de 3,5x30mm & \\
+			\hline
+			30 parafusos de 3x12mm & \\
+			\hline
+			2 lixas para madeira Nº 120 & \\
+			\hline
+			2 dobradiças pequenas & 2,00 \\
+			\hline
+			2 trinco pequeno & 3,00\\
+			\hline
+			1 lata de tinta spray preta & Cedida \\
+			\hline
+			\textbf{Total} & \textbf{xxxx}\\
+			\hline
+			
+		\end{tabular}
+		\label{tab:custo_compartimento}
+	\end{table}
+	O processo de fabricação foi dividido em duas etapas, a caixa das baterias e a caixa principal. As medidas foram feitas a partir do desenho do CAD.
+	
+	A caixa das baterias foi produzida a partir de cinco peças, sendo elas, uma base, duas laterais e uma parte frontal e outra traseira. As partes laterais e a base são compostas por MDF de 12 mm e as partes frontal e traseira foram feitas com\textbf{ outra madeira} de 6mm. Para o corte das madeiras foram utilizados uma serra de mesa e uma serra tico-tico. Para a fixação das peças foram utilizados uma furadeira/parafusadeira. O processo de montagem consistiu em utilizar a furadeira com uma broca de 2,5mm para perfurar um furo guia nas madeiras e a partir dessa guia executar o parafusamento direto.
+	 
+	A caixa principal foi produzida a partir de oito peças, sendo elas, uma base, uma parte lateral maior, uma lateral menor, uma porta, uma parte traseira, uma parte frontal e duas partes superiores. As duas partes superiores são compostas com \textbf{outra madeira} de 6mm e as outras partes foram feitas com o MDF de 12mm. O processo de fabricação da caixa principal foi o mesmo da caixa das baterias.
+	
 	A pintura da parte externa da caixa principal foi feita após sua montagem. Para a pintura, primeiramente foi lixada toda a parte externa a ser pintada, após ser lixada foi feita a pintura direta com uma tinta spray preta. A aplicação da tinta foi feita de forma direta com aplicações pausadas. O mesmo foi feito para toda a bicicleta.
 	Para a fixação da porta na caixa principal foram utilizados os parafusos de 3x12mm para parafusar as duas dobradiças, e o trinco que une a porta e a parte lateral menor.
+	
 	Para fixar a caixa principal no quadro da bicicleta foram utilizadas abraçadeiras de uma polegada (1”). Primeiro foi aferida uma medição para o encaixe ser feito de forma a não ter nenhuma possibilidade de contato entre a caixa principal e os pedais/biela. Feita a medição seguiu-se para o parafusamento direto dos parafusos de 3x12mm nas abraçadeiras. O arranjo das abraçadeiras na base da caixa principal foi feito de forma a garantir a impossibilidade da caixa se movimentar para qualquer direção, ficando completamente fixa ao quadro.
 	
-	FOTOS DA CAIXA E DA BICICLETA
+\textbf{FOTOS DA CAIXA E DA BICICLETA}
 		\begin{comment}
 		\graphicspath{{figuras/}}	
 		\begin{figure}[h!]
@@ -1352,11 +1389,11 @@ Alternativa de solução: adquirir um quadro comum no comércio e realizar as ad
 		\end{figure}
 		\end{comment}
 		
-	\subsection{Estabilidade da Bike}
+	\subsection{Estabilidade da Bicicleta}
 	Após a conclusão de todas as etapas de construção e adaptação da bicicleta, calculou-se os dados referentes a estabilidade da mesma, desta vez, com os componentes eletroeletrônicos.
 	O centro de massa da bicicleta concentrou-se em 0,61 m no eixo x e 0,45 no eixo y, já as forças normais nos pneus traseiro e dianteiro(Nr e Nf) foram de, respectivamente: 13,35N e 285,8N, enquanto as forças de fricção(atrito) nos pneus traseiro e dianteiro (Fr e Ff): 4,005N e 85,74N.
 	Já no caso de um usuário com uma massa de 90 kg, os dados são alterados da seguinte forma. O centro de massa no eixo x encontrado é de 0,57 m enquanto em y permanece o mesmo valor, 0,45 m. Para as forças normais nos pneus traseiro e dianteiro encontrou-se,respectivamente, 52,2N e 1127,7N e para o caso das forças de fricção, encontrou-se nos pneus traseiro e dianteiro,respectivamente, 15,66N e 338,31N.
-	Observou-se uma mudança no centro de massa referente a adição das baterias e,posteriormente, a presença de um cliente de massa já especificada e também comentado no escopo. O comportamento dessas forças foram ilustradas anteriormente nas Figuras\ref{img:esq_forca_sem_frenagem}, \ref{img:esq_forca_com_frenagem_suave} e \ref{img:esq_forca_com_frenagem_brusca}.
+	Observou-se uma mudança no centro de massa referente a adição das baterias e,posteriormente, a presença de um cliente de massa já especificada e também comentado no escopo. O comportamento dessas forças foram ilustradas anteriormente nas Figuras \ref{img:esq_forca_sem_frenagem}, \ref{img:esq_forca_com_frenagem_suave} e \ref{img:esq_forca_com_frenagem_brusca}.
 	
 
 \clearpage
