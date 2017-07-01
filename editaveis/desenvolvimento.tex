@@ -836,169 +836,136 @@ Sistema de 120 graus            \\ \hline
 \end{figure}
 	
 	\subsection{Dínamo}
-	Gerador elétrico é uma máquina capaz de converter energia mecânica em energia elétrica, baseado no princípio físico de indução magnética \cite{maximo}. O dínamo é um tipo de gerador elétrico e foi primeiramente utilizado em bicicletas em 1896, patenteado por Alfred Rodriguez. Um dínamo típico utilizado em bicicletas pode ser visto na Figura \ref{img:dinamo_bicicleta}.
-	
-	\graphicspath{{figuras/}}
-	\begin{figure}[h!]
-	\centering
-	\includegraphics[scale=0.60]{dinamo_bicicleta}
-	\caption{Dínamo de Bicicleta}
-	\label{img:dinamo_bicicleta}
-	\end{figure}
-	
-Acoplado à roda da bicicleta, o dínamo utiliza a energia cinética de rotação da roda girando um íma que excitará as bobinas circundantes gerando corrente elétrica, que será retificada e irá carregar a bateria por meio de cabos. A bateria irá, então, alimentar os componentes eletrônicos como o microcontrolador e as placas de LED.
+	Apesar de nesse projeto definirmos o conceito de dínamo, a aplicação do mesmo nao existirá, haja visto a exigência dos professores da disciplina que o projeto conseguisse fazer com que o motor elétrico em si conseguisse atuar como gerador e basicamente fizesse a função que o dínamo teria, de maneira mais eficiente e exigindo um grau maior de conhecimento para a realização. Assim, esse tópico está no relatório apenas para fins de demonstração do aperfeiçoamento do projeto e registro das ideias iniciais. 
 
-A potência mecânica é dada pelo produto do torque $\tau$ e da velocidade angular $\omega$ da roda da bicicleta, como visto na equação ~\ref{eq:potencia_mecanica}.
-
-\begin{equation}
-\label{eq:potencia_mecanica}
-\mathbf{P_{mec} = \tau * \omega}
-\end{equation}
-
-\begin{comment}
-\graphicspath{{figuras/}}
-\begin{figure}[h!]
-\centering
-\includegraphics[scale=1.0]{potencia_mecanica}
-\caption{Fórmula de potência mecânica}
-\label{img:potencia_mecanica}
-\end{figure}
-\end{comment}
-
-Sendo que o torque é dado pela equação ~\ref{eq:torque}, onde r é o raio da roda
-
-\begin{equation}
-\label{eq:torque}
-\mathbf{ \tau = F_{atrito} * r}
-\end{equation}
-
-\begin{comment}
-\graphicspath{{figuras/}}
-\begin{figure}[h!]
-\centering
-\includegraphics[scale=1.0]{torque}
-\caption{Fórmula para cálculo do torque}
-\label{img:torque}
-\end{figure}
-\end{comment}
-
-As velocidades serão medidas experimentalmente com o uso de um tacômetro e a tensão e corrente de saída do dínamo com um multímetro.
-
-Apesar de nesse projeto definirmos o conceito de dínamo, a aplicação do mesmo nao existirá, haja vista a exigência dos professores da disciplina que o projeto conseguisse fazer com que o motor elétrico em si conseguisse atuar como gerador e basicamente fizesse a função que o dínamo teria, de maneira mais eficiente e exigindo um grau maior de conhecimento para a realização. Assim, esse tópico está no relatório apenas para fins de demonstração do aperfeiçoamento do projeto e registro das ideias iniciais. 
   
 \subsection{Bateria}
-	Baterias são dispositivos capazes de converter energia química em energia elétrica através de reações de oxirredução. Ao ligar dois componentes químicos de polos opostos, anodo e catodo, uma diferença de potencial é gerada e elétrons migram do polo negativo, anodo, para o polo positivo, catodo, gerando, assim, uma corrente elétrica. Algumas também são capazes de fazer o processo inverso, convertendo energia elétrica em energia química. Dessa forma, as baterias são usadas como uma fonte de energia elétrica e como armazenamento dessa energia \cite{varela}.
+	Inicialmente, o cálculo da capacidade da bateria forneceu uma estimativa de qual seria a autonomia dimensionada para todo o sistema. Entretanto, posteriormente, a questão de manter uma autonomia maior foi posta de lado em prol dos custos e do fato de que nesse projeto integrador o objetivo principal é o de funcionamento e integração dos sistemas, não necessariamente de toda a usabilidade completa e já comercial para o usuário, permitindo assim que uma autonomia menor pudesse ser adotada para conter parte dos custos, visto que um conjunto de baterias de 12V de tensão e 10ah de capacidade nominal em um ensaio C1 ou C5 teriam um custo quatro vezes maior quando comparada a baterias comerciais mais simples, ainda de 12V de tensão, porém com apenas 7Ah de capacidade nominal em teste C20. Os ensaios e as nomenclaturas CX referem-se aos testes feitos com as baterias pelas próprias empresas para verificar o quanto de corrente a bateria consegue descarregar ao longo do tempo, onde C1 é uma hora, C5 seriam cinco horas e C20, vinte horas. Assim, uma bateria de 10Ah C1, consegue descarregar 10A em uma hora. Já a bateria escolhida, de 7Ah C20, consegue apenas 7A em vinte horas.
 	
-	Os tipos de bateria mais utilizadas são: chumbo-ácido, níquel-metal hidreto e íon-lítio.
+	As baterias escolhidas pelo grupo foram três do modelo 12MVA-7 Nobreak da Moura, uma bateria usada para aplicações como cercas elétricas, portões elétricos e também em algum grau para bicicletas elétricas e outras aplicações mais simples. A imagem \ref{img:bateria_moura} apresenta uma foto da bateria, enquanto a imagem \ref{img:esp_bateria} traz especificações desta retiradas do catálogo da Moura. 
 	
-	\begin{itemize}
-		\item \textbf{Chumbo-Ácido}: São as baterias com maior maturação no mercado por serem utilizadas há mais tempo, apresentam baixo custo e confiabilidade, sendo muito utilizadas para partidas de motores de automóveis, iluminação, ignição e tração. Sua densidade de energia e energia específica, porém, são a de menor valor \cite{bezerra}.
-	\item \textbf{Íon-Lítio}:  São baterias mais leves, com alta densidade de energia, maior eficiência energética que as demais e elevado número de ciclos de vida. O custo é ainda muito alto e a tolerância a sobrecarga é baixa correndo riscos de danificação \cite{bezerra}. São muito utilizadas em aparelhos eletrônicos como celulares e laptops.
-	\end{itemize}
-	
-	A capacidade de uma bateria é dada pela equação ~\ref{eq:formula_capacidade}
-	
-	\begin{equation}
-	\label{eq:formula_capacidade}
-	\mathbf{Capacidade(Ah) = \frac{Potência(W) * Autonomia(h)}{Tensão(V) * Profundidade. de. descarga}}
-	\end{equation}
-	
-	\begin{equation}
-	\label{eq:calculo_bateria}
-	\mathbf{Capacidade(Ah) = \frac{350W * 1h}{36V} = 9,72Ah}
-	\end{equation}
-	
-	
-	\begin{comment}
 	\graphicspath{{figuras/}}
 	\begin{figure}[h!]
 	\centering
-	\includegraphics[scale=1.0]{capacidade_bateria}
-	\caption{Fórmula para cálculo da bateria}
-	\label{img:formula_capacidade}
+	\includegraphics[scale=0.50]{bateria_bike}
+	\caption{Foto da Bateria Moura 12MVA-7 Nobreak}
+	\label{img:bateria_moura}
 	\end{figure}
-	\end{comment}
 	
-
-	%\citeonline{daanalise} coletou informações sobre rotas cíclicas mais escolhidas por ciclistas quando usando GPS. Em seus resultados, os percursos mais longos feitos duravam, em média, 20 minutos e os participantes da pesquisa faziam, em média, 2,5 viagens por dia. Os percursos totais, por dia, para cada ciclista, duram, em média, 50 minutos. Para dimensionar a bateria, portanto, considera-se o motor trabalhando em máxima potência e o tempo de autonomia de 1h.
-	
-	\begin{comment}
 	\graphicspath{{figuras/}}
-	\begin{figure}[!htb]
+	\begin{figure}[h!]
 	\centering
-	\includegraphics[scale=1.0]{calculo_capacidade}
-	\caption{Cálculo da bateria a ser utilizada}
-	\label{img:calculo_bateria}
+	\includegraphics[scale=0.50]{especificacao_bateria}
+	\caption{Especificações Bateria 12MVA-7}
+	\label{img:esp_bateria}
 	\end{figure}
-	\end{comment}
-	
-	Portanto, para alimentar o motor, serão utilizadas três baterias chumbo-ácido de 12V cada, ligadas em série, com capacidade de 10Ah. A escolha desse tipo de bateria foi escolhida devido ao menor custo e maior disponibilidade por ser uma tecnologia mais madura para aplicações automotivas.
 
-	A demanda de corrente típica de cada componente eletrônico segue listado abaixo:
-	
-	\begin{itemize}
-		\item \textbf{Microcontrolador}: 40mA por pino. Um arduíno possui 14 pinos, supondo que sejam usadas todas as entradas, o arduíno demandará 700mA.
-		\item \textbf{Microprocessador}: 50A.
-		\item \textbf{LED}: 20mA cada.
 
-	\end{itemize}
-
-Os componentes demandam uma corrente de 800 a 900mA. Será utilizada uma bateria de 12V e 1,3Ah que o grupo já possui.
-
-Inicialmente, o cálculo da capacidade da bateria forneceu uma estimativa de qual seria a autonomia dimensionada para todo o sistema. Entretanto, posteriormente, a questão de manter uma autonomia maior foi posta de lado em prol dos custos e do fato de que nesse projeto integrador o objetivo principal é o de funcionamento e integração dos sistemas, não necessariamente de toda a usabilidade completa e já comercial para o usuário, permitindo assim que uma autonomia menor pudesse ser adotada para conter parte dos custos, visto que um conjunto de baterias de 12V de tensão e 10ah de capacidade nominal em um ensaio C1 ou C5 teriam um custo quatro vezes maior quando comparada a baterias comerciais mais simples, ainda de 12V de tensão, porém com apenas 7ah de capacidade nominal em teste C20. Os ensaios e as nomenclaturas CX referem-se aos testes feitos com as baterias pelas próprias empresas para verificar o quanto de corrente a bateria consegue descarregar ao longo do tempo, onde C1 é uma hora, C5 seriam cinco horas e C20, vinte horas. Assim, uma bateria de 10Ah C1, consegue descarregar 10A em uma hora. Já a bateria escolhida, de 7Ah C20, consegue apenas 7A em vinte horas.
-
-As baterias escolhidas pelo grupo foram três do modelo 12MVA-7 Nobreak da Moura, uma bateria usada para aplicações como cercas elétricas, portões elétricos e também em algum grau para bicicletas elétricas e outras aplicações mais simples. A imagem \ref{img:bateriabike} apresenta uma foto da bateria, enquanto a imagem \ref{img:especificacaobateria} traz especificações desta retiradas do catálogo da Moura.
-
-\newpage
-
-	\begin{figure}[!htb]
-		\centering
-		\includegraphics[scale=0.3, angle=90]{bateria_bike.jpeg}
-		\caption{Foto da Bateria Moura 12MVA-7 Nobreak}
-		\label{img:bateriabike}
-	\end{figure}
-	
-	\begin{figure}[!htb]
-		\centering
-		\includegraphics[scale=0.5]{especificacao_bateria.jpeg}
-		\caption{Especificações Bateria 12MVA-7}
-		\label{img:especificacaobateria}
-	\end{figure}
-	
 Como as especificações apresentam, as baterias serão capazes de suprir a demanda de corrente do sistema e dos componentes eletrônicos, visto que agora não haverá mais outra bateria para suprir somente os componentes menores, exigindo que apenas o banco de três de baterias alimente todo o conjunto, motor e equipamentos eletrônicos. Como dito anteriormente, a autonomia não foi considerada um requisito, mas é seguro afirmar que ela será inferior a uma hora, o tempo proposto inicialmente.
 
 \subsubsection{Circuito de Carregamento da Bateria}
-Um carregador, como o nome já dá uma ideia, é basicamente um dispositivo capaz de recarregar outro componente específico, nesse caso, as baterias. Como as baterias de chumbo-ácido possuem alguns critérios básicos para que não afetem a qualidade da bateria, tornando sua vida útil menor. Um deles é a necessidade de o carregamento ser feito com as baterias ligadas em paralelo entre elas, além de ser interessante para a preservação dela que a corrente de carregamento não ultrapasse 10\% da capacidade nominal que a bateria possui. No caso específico da nossa bateria, de capacidade 7Ah, essa corrente seria 0,7 A. 
+Um carregador, como o nome já dá uma ideia, é basicamente um dispositivo capaz de recarregar outro componente específico, nesse caso, as baterias. Como as baterias de chumbo-ácido possuem alguns critérios básicos para que não afetem a qualidade da bateria, tornando sua vida útil menor. Um deles é a necessidade de o carregamento ser feito com as baterias ligadas em paralelo entre elas, além de ser interessante para a preservação dela que a corrente de carregamento não ultrapasse 10\% da capacidade nominal que a bateria possui. No caso específico da nossa bateria, de capacidade 7Ah, essa corrente seria 0,7 A.
+   
+    Apesar desses dois critérios, nesse projeto, deixamos o carregamento das baterias em paralelo em segundo plano, devido ao fato de que desejamos que elas fossem possíveis de serem carregadas como um conjunto, estando em uma estrutura só ao mesmo tempo, sem a necessidade de serem retiradas da bicicleta uma a uma, ou mesmo de se alterar drasticamente a maneira como está conectada uma com a outra e juntas ao sistema. A melhor forma para se manter a configuração original delas quando estando na bicicleta e fora dela é carregando-as em série, permitindo que o usuário carregue elas de maneira mais confortável e sem ter capacidade de comprometer as baterias, mantendo a vida útil de cada uma delas no nível desejado.
+	
+	O outro critério, o carregamento das baterias a 10\% da capacidade nominal, foi levado em conta, mantendo assim uma qualidade no carregamento. Dessa forma, a corrente mínima de recarga foi selecionada como sendo esses 10\% (0,7 A, como já citado) e a corrente máxima de recarga é a própria corrente máxima selecionada pelo fabricante, no caso desse projeto, 2,1 A, apresentado em (x+1).	
 A partir disso, com uma fórmula bem simples, é possível estimar o tempo de carregamento total da bateria:
 
 \begin{equation}
-\label{eq:tempo_carregamento}
-\mathbf{TR = \frac{C}{i}}
+Tr = C/i
 \end{equation}
 
-Onde TR seria o tempo de recarga, C a capacidade nominal e i a corrente. 
-Em um cálculo rápido é possível observar que o tempo de recarga das baterias seria de aproximadamente 10 horas. 
-Procurando em diversos repositórios de circuitos, foi possível encontrar um circuito específico que aparenta atender as necessidades que o projeto exige e que serviria de base para conseguirmos fazer um próprio, adaptado ao fato de ser necessário carregar três baterias em conjunto e não apenas um como no exemplificado. O circuito também se apresenta como uma alternativa interessante, pois utiliza o que, segundo Destro, seria a maneira ideal de recarregar uma bateria de chumbo-ácido de 12 V. 
-Essa forma ideal de carregamento consiste em três “fases” de carregamento: uma fase de recarga, onde se eleva a tensão da bateria até 13,8 V, seguida de uma fase de equalização, onde as células das baterias atingem a tensão limite e por fim uma fase de flutuação, onde a tensão é reduzida para a faixa de flutuação da bateria, geralmente 13,2 a 13,8 V, em baixa corrente. Na figura x+2 é apresentado as três etapas de carregamento tidas como ideais.
+Onde TR seria o tempo de recarga, C a capacidade nominal e i a corrente.
 
-\newpage
+Em um cálculo rápido é possível observar que o tempo de recarga das baterias seria de aproximadamente 9 a 10 horas.
 
-	\begin{figure}[!htb]
-		\centering
-		\includegraphics[scale=0.4]{estagio_carregamento.jpeg}
-		\caption{Estágios de Carregamento Bateria Chumbo-Ácido}
-		\label{img:estagiocarregamento}
-	\end{figure}
+Um primeiro circuito foi proposto para o Ponto de Controle 2, entretanto, devido a escolha pelo carregamento em série, um novo circuito foi idealizado, ainda entretanto, levando-se em consideração a forma ideal de carregamento de uma bateria de chumbo-ácido. Como o circuito foi criado especificamente para as necessidades desse projeto, não houve necessidade de se adaptar algo já pronto em algum repositório, seja ele físico ou virtual.
 
-O circuito retirado proposto pelo site Destro é apresentado na figura x + 3.
+Essa forma ideal de carregamento, citada anteriormente, consiste em três “fases” de carregamento: uma fase de recarga, onde se eleva a tensão da bateria até 13,8 V, seguida de uma fase de equalização, onde as células das baterias atingem a tensão limite e por fim uma fase de flutuação, onde a tensão é reduzida para a faixa de flutuação da bateria, geralmente 13,2 a 13,8 V, em baixa corrente. Na figura \ref{estagio_carregamento} é apresentado as três etapas de carregamento tidas como ideais.
 
-	\begin{figure}[!htb]
-		\centering
-		\includegraphics[width=\textwidth]{circuito_carregamento.jpeg}
-		\caption{Circuito de Carregamento de Referência}
-		\label{img:circuitocarregamento}
-	\end{figure}
-  
+\graphicspath{{figuras/}}
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.50]{estagio_carregamento}
+\caption{Estágios de Carregamento Bateria Chumbo-Ácido}
+\label{estagio_carregamento}
+\end{figure}
+
+A partir da análise dos estágios ideais de carregamento das baterias, e considerando que elas devem ser carregadas em série, é possível aferir qual seria a tensão máxima de carregamento de todo o conjunto, basicamente, três vezes o valor de carregamento de uma só. Assim, consideramos para esse projeto que 42 V seriam suficientes e respeitariam as fases descritas, visto que a variação da tensão durante estas fica entre 13,2 e 14,6 V.
+
+O circuito é formado por um Transformador de 48 V (24 V + 24 V) e 1,5 A, que irá limitar a tensão residencial (definida como 220 V) para esses 48 V, posteriormente passando por uma Ponte Retificadora que irá transformar a corrente alternada em uma corrente contínua pulsante, posteriormente seguindo para o capacitor que termina de “linearizar” essa corrente pulsante, ao diminuir o ripple (o “tamanho” do pulso). Apenas esse processo já seria suficiente para tornar a corrente própria para carregar as baterias, entretanto, a tensão ainda estaria alta, um pouco acima dos 48 V devido a ponte retificadora aumentar ligeiramente esta. Para resolver esse problema, foram usados os reguladores de tensão LM317T associados com resistores, permitindo assim que a saída do circuito fornecesse os 42 V requeridos pelas baterias. O resistor 6 foi utilizado apenas para fins de simular uma carga, não fazendo parte do sistema propriamente dito.
+
+Todo o esquemático do circuito utilizado é apresentado na figura \ref{referencia}. Para sua criação e posterior simulação, foi utilizado o software Qucs, um software livre e gratuito, que apesar de mais limitado e visualmente mais pobre, quando comparado a concorrentes mais tradicionais do mercado, como o Proteus, tem um desempenho eficiente dentro da proposta e consegue atender o nosso projeto de forma satisfatória.
+
+\graphicspath{{figuras/}}
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.40]{referencia}
+\caption{Circuito de Carregamento de Referência}
+\label{referencia}
+\end{figure}
+ 
+A simulação realizada consistiu basicamente na medição da corrente e tensão teórica fornecida pelo sistema através do software, para aferir se o circuito idealizado conseguiria atender nossas necessidades. Essa simulação é apresentada na figura \ref{simulacao}. De maneira geral ela é semelhante à imagem do próprio circuito, com a adição de um voltímetro e um amperímetro.
+
+\graphicspath{{figuras/}}
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.40]{simulacao}
+\caption{Simulação do Circuito}
+\label{simulacao}
+\end{figure}
+
+Os resultados apresentados deixam claro que o circuito conseguiria suprir as necessidades propostas, visto que consegue fornecer os 42 V desejados, além de também mostrar que a relacao de transformacao escolhida é de fato apropriada para o nosso circuito, permitindo assim que o transformador comprovado fosse ideal para o projeto. 
+
+Com o término dos testes, a produção se deu logo de imediato, sendo então utilizados os seguintes equipamentos:
+
+\begin{itemize}
+\item Transformador Redutor 24 V + 24 V / 1.5 A;
+\item 2 resistores de 270 Ohm;
+\item 1 resistor de 4.7kOhm;
+\item 1 resistor de 560 Ohm;
+\item Trimpot de 5k; 
+\item 2 reguladores de tensão LM317T;
+\item Ponte Retificadora;
+\item Capacitor de 3300 uF.
+\end{itemize}
+
+\graphicspath{{figuras/}}
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.30]{placa_confeccionada}
+\caption{Placa confeccionada para Circuito Carregador das Baterias}
+\label{placa}
+\end{figure}
+
+\subsection{Frenagem Regenarativa}
+A frenagem regenerativa consiste em recuperar a energia gerada durante a pedalada. A energia cinética da bicicleta aplica energia mecânica no eixo do motor, forçando este a entrar no modo de geração. Essa recuperação da energia implica na devolução o banco de baterias. 
+
+O circuito destinado ao acionamento do motor demanda uma corrente da bateria que é aplicada no motor através do sistema de chaveamento dos MOSFETs, que por sua vez, necessitam trabalhar com um tempo de chaveamento adequado. Contudo quando se aplica um torque mecânico no motor esse mesmo circuito é capaz de realizar o trabalho inverso de modo que a energia gerada pelo motor possa ser injetada nas baterias, ou seja o mesmo circuito, porém agora com a corrente no sentido oposto.
+
+Para que ocorra efetivamente a recarga das baterias a tensão gerada pelo motor precisa ser superior a tensão das baterias, 36V. Essa tensão gerada sobe conforme o aumento da velocidade de rotação do motor, logo conclui-se que a partir de certa velocidade estará sendo aplicada uma tensão superior a 36V e as baterias estarão sendo recarregadas.
+
+Foram feitos testes na bicicleta utilizando um medidor de velocidade e um multímetro e foi aferido que quando a bicicleta atinge uma velocidade entre a faixa de 40 e 45Km/h a tensão aplicada nas baterias já ultrapassa 36V e as baterias são recarregadas. Velocidades acima dessa faixa também recarregam o banco de baterias. Essa velocidade é o nosso “limiar de velocidade”, ou seja, o momento onde nosso motor deixa o estado de motor em si, para atuar como gerador.
+
+\subsection{Plano de Integração}
+A Alimentação se integra basicamente junto ao sistema de Eletroeletrônica ao alimentar o motor e também os componentes do sistema. Toda essa ligação é realizada pela placa de acionamento, pois através dela ocorrerá não só o acionamento do motor em si, como também a regeneração das próprias baterias através do processo de frenagem regenerativa. A tensão para alimentar o circuito eletrônico relacionado ao módulo bluetooth também será fornecido pela placa de acionamento. Dessa forma, através do diagrama abaixo é possível visualizar a integração entre o sistema de energia e os demais. 
+
+\graphicspath{{figuras/}}
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.50]{integracao_alimentacao}
+\caption{Plano de Integração}
+\label{plano_integracao}
+\end{figure}
+
+\subsection{Avaliação Crítica}
+	Como Ponto de Controle final, é necessária fazer uma Avaliação Crítica de todos os avanços, problemas e questões que o subgrupo de Alimentação possuiu ou enfrentou ao longo de todo o projeto. 
+	
+	Em um aspecto inicial, o grupo teve um início tranquilo, conseguindo facilmente dimensionar as baterias e adequar elas às necessidades iniciais desejadas pelo subgrupo de Estrutura, ao necessitar de uma menor massa, e também a questão de que não haveria necessidade de uma autonomia muito alta. A partir daí houveram alguns problemas em relação a encontrar uma solução concreta para o desafio de regenerar energia através do motor. Além disso, o grupo acabou sendo desfalcado ao longo do projeto, visto que um dos componentes acabou trancando o semestre na universidade, retirando-se da disciplina. 
+	
+	Apesar desses dois desafios, o grupo conseguiu se redistribuir em termos de tarefas e encontrar um norte para solucionar o problema da regeneração, além de definir especificamente como seria feito o carregamento tradicional, junto a energia elétrica residencial. Dessa forma, é válido e importante dizer que o subgrupo alcançou seu objetivo e conseguiu realizar as tarefas propostas dentro dos novos requisitos que foram sendo alterados e ajustados ao longo do avanço do projeto e das possibilidades do mesmo. 
+
+
   \section{Estrutura}
   Este projeto visa a construção de uma bicicleta elétrica capaz de seguir uma rota pré-determinada via gps. Porém, há a necessidade de se projetar com a devida atenção toda a estrutura da bicicleta de modo que os demais componentes sejam devidamente adaptados de forma ergonômica, em outras palavras, maximizar a segurança e eficiência da interação máquina e ser humano.
 Foram levados em consideração vários fatores, como o material, a estabilidade, conforto e custo-benefício para a escolha e dimensionamento da estrutura.O quadro da bicicleta guardará os motores, baterias e demais componentes eletroeletrônicos de forma segura e organizada. Haverá também, um painel bastante intuitivo que auxiliará o usuário em sua rota como: indicação da bateria restante, distância percorrida e distância restante.
