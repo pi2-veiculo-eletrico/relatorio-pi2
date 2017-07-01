@@ -387,7 +387,7 @@ O método \textit{"write"} é que faz a escrita dos dados que serão enviados pa
 \label{img:trecho4}
 \end{figure}
 
-Por último, o método \textit{"cancel"} que encerra a conexão com o dispositivo pareado, como mostrado na figura \ref{img:trecho5}.
+Por último, o método \textit{"cancel"} que encerra a conexão com o dispositivo pareado, como mostrado na figura \ref{img:trecho5}
 
 \graphicspath{{figuras/}}
   \begin{figure}[!htb]
@@ -397,124 +397,7 @@ Por último, o método \textit{"cancel"} que encerra a conexão com o dispositiv
   \label{img:trecho5}
   \end{figure}  
   
-<<<<<<< HEAD
-	\subsection{Integração}
-	A integração foi realizada com a equipe da frente de eletroeletrônica. Para a integração com a equipe, foi feita a conexão do software desenvolvido com o hardware utilizado. Para tal, foi utilizado o módulo bluetooth-serial-port que possibilita comunicarmos através da aplicação com uma determinada porta serial bluetooth do dispositivo.
-	
-	O primeiro passo tomado foi a conexão do dispositivo (computador ou celular) à conexão bluetooth gerada pelo módulo HC-06 utilizado em conjunto com a placa arduíno para abrir a porta Serial bluetooth. Com a conexão estabelecida, foi preciso visualizar a porta em que a conexão foi aberta e estabelecida. Conseguimos verificar a abertura de duas portas:
-	
-	\textbf{Serial Ports:}
-	\begin{itemize}
-		\item \textbf{/dev/cu.Bluetooth-Icoming-Port}
-		\item \textbf{/dev/cu.HC-06-DevB}
-	\end{itemize}
-	
-	Uma porta de entrada e uma porta de saída, como a comunicação acontecerá exclusivamente no envio de informações ao processador que irá reagir de acordo com os dados enviados, foi escolhida a porta /dev/cu.HC-06-DevB, que por padrão corresponde a porta COM4 do dispositivo.
-	
-	Com a conexão feita e a porta preparada para o envio de dados, a aplicação envia os dados periodicamente de acordo com as informações de rotas definidas pelo usuário e de acordo com os dados recebidos da API de mapas do Google.
-	
-	Para que ambas as partes possam se comunicar foi estabelecido um protocolo de comunicação, que pode ser visto a seguir:
-	
-	\begin{figure}[h!]
-		\centering
-		\includegraphics[scale=0.60]{protocolo1.png}
-		\caption{Protocolo de comunicação}
-		\label{img:Protocolo}
-	\end{figure}
-	
-	\begin{figure}[h!]
-		\centering
-		\includegraphics[scale=0.60]{chegada.png}
-		\caption{Pausa/Chegada}
-		\label{img:Chegada}
-	\end{figure}
-	
-	\begin{figure}[h!]
-		\centering
-		\includegraphics[scale=0.60]{fed.png}
-		\caption{Frente/esquerda/direita}
-		\label{img:fed}
-	\end{figure}
-	
-	\begin{figure}[h!]
-		\centering
-		\includegraphics[scale=0.60]{rotatorias.png}
-		\caption{Rotatórias}
-		\label{img:Rotatoria}
-	\end{figure}
-		
-	\begin{figure}[h!]
-		\centering
-		\includegraphics[scale=0.60]{retorno.png}
-		\caption{Retorno}
-		\label{img:Retorno}
-	\end{figure}
-	
-	O segundo conjunto de valores, refere-se a distância indicada, e o próximo conjunto faz a diferenciação entre Kilometros e Metros.
-	Por fim, o último conjunto de valores, encerra o envio do pacote de dados e é definido como o caracter terminado ‘/n’.
-	
-	Alguns exemplos podem ser vistos a seguir:
-	
-	Os seguintes códigos irão gerar como resultado as imagens na tela a seguir:
-
-	
-	\begin{figure}[h!]
-		\centering
-		\includegraphics[scale=0.60]{chegada_led.png}
-		\caption{Chegada na tela}
-		\label{img:Chegada_led}
-	\end{figure}
-
-	
-	\begin{figure}[h!]
-		\centering
-		\includegraphics[scale=0.60]{rotatoria_led.png}
-		\caption{Rotatória a 10 metros}
-		\label{img:Rotatoria_led}
-	\end{figure}
-		
-	
-	\begin{figure}[h!]
-		\centering
-		\includegraphics[scale=0.60]{retorno_led.png}
-		\caption{Retorno a 100 metros}
-		\label{img:Retorno_led}
-	\end{figure}
-	
-	\subsection{Testes}
-	
-	Para os testes da aplicação desenvolvida, foram desenvolvidos testes de integração, com o objetivo de testar a integração entre diferentes módulos do sistema, por exemplo testar o módulo de comunicação com suas respectivas dependências.
-	
-	Para o desenvolvimento dos testes, foi utilizado o framework PhantomJS. Que é um emulador de navegador que é executado no terminal da aplicação.
-	
-	Com o Phantom.JS instalado, conseguimos renderizar uma página no servidor, criando um objeto de página WEB:
-	
-	\begin{figure}[h!]
-		\centering
-		\includegraphics[scale=0.60]{renderiza_pagina.png}
-		\caption{Renderização da página}
-		\label{img:Renderiza_pagina}
-	\end{figure}
-	
-	Utilizamos o módulo loadspeed.js para mensurar o tempo demandado para a execução de cada script e determinar a rapidez da aplicação.
-	
-	\newpage
-	
-	\begin{figure}[!htp]
-		\centering
-		\includegraphics[scale=0.60]{mensuracao_de_tempo.png}
-		\caption{Mensuração de tempo}
-		\label{img:Mensuracao_tempo}
-	\end{figure}
-	
-	Por fim, os testes foram implementados utilizando asserções esperadas. Buscou-se testar todas as integrações possíveis para assegurar que a interação do software com o usuário e com o processador fosse feita da melhor e mais eficiente forma possível.
-	
-	\subsection{Análise Crítica e Verificação}
-	Com base nos resultados obtidos foi possível atender aos requisitos definidos para o projeto que foram traçar a rota a partir do ponto inicial e o destino, parser dos dados das rotas, comunicação com o microcontrolador, cadastro e acesso de usuário,coleta e parser das estatísticas, visualização do perfil do usuário, login nas redes sociais e compartilhamento de corridas.
-	
-	Nos pontos de controles passados foram testados as a maior arte dos requisitos implementados. Sendo que no último ponto de controle foi realizado o teste para a comunicação com o microcontrolador, realizando o envio dos dados de rotas via bluetooth para o microcontrolador.
-  
-\section{Eletroeletrônica}
+gis  \section{Eletroeletrônica}
 	
 	\subsection{Requisitos}
 	Em linhas gerais, o projeto busca facilitar a vida de ciclistas. Eles vão poder ter mais informações sobre os seus trajetos e dessa forma trafegar de forma mais segura. Além disso, a possibilidade de se integrar um sistema como esse numa bicicleta automaticamente torna o próprio ato algo mais próximo do dia a dia, incentivando mais e mais pessoas a trocarem seus meios principais de transporte e assim desafogando as grandes cidades. 
@@ -710,10 +593,8 @@ Por último, o método \textit{"cancel"} que encerra a conexão com o dispositiv
  			\item Velocity Manager: Traduz os dados crus obtidos dos sensores para velocidade e os estoca.
  			\item TTGPS Manager: Responsável pelo Turn-By-Turn GPS. 
  		\end{itemize}
- 	
- 		\newpage
  			\graphicspath{{figuras/}}
- 			\begin{figure}[H]
+ 			\begin{figure}[h!]
  				\centering
  				\includegraphics[width=0.9\textwidth]{Figura6_Diagrama_de_modulos_do_sistema.PNG}
  				\caption{Diagramas de blocos da integração dos módulos do sistemas}
@@ -826,8 +707,9 @@ Por último, o método \textit{"cancel"} que encerra a conexão com o dispositiv
 
 	\subsection{Diagrama e Montagem dos Circuitos}
 	Os circuitos e esquemáticos serão feitos nos simuladores Proteus e LTspice, divididos de acordo com seus subsistemas. Os circuitos serão mostrados sem os resistores para facilitar a visualização.
-		
-	\begin{table}[H]
+	\newpage
+	
+	\begin{table}[!htb]
 		\caption{Nomenclatura de acordo com a cor dos fios.}
 		\centering
 		\label{Nomenclatura_de_acordo_com_a_cor_dos_fios}
@@ -886,16 +768,19 @@ Por último, o método \textit{"cancel"} que encerra a conexão com o dispositiv
 				\label{img:Ordem_de_chaveamento_para_cada_fase_do_motor_de_acordo_com_a_posição_obtida_pelos_sensores_Hall}
 			\end{figure}
 		\end{comment}
-			
+		
+		\newpage
+		
 		\subsubsection{Circuito de Controle e Sensores}
 		
 			\graphicspath{{figuras/}}
-			\begin{figure}[H]
+			\begin{figure}[h!]
 				\centering
 				\includegraphics[scale=1.4]{Figura13_circuito_de_obtencao_de_dados.PNG}
 				\caption{Diagrama do circuito de obtenção de dados.}
 				\label{img:Diagrama_do_circuito_de_obtencao_de_dados}
-			\end{figure}	
+			\end{figure}
+%		
 		
 
   \section{Alimentação}
@@ -908,9 +793,9 @@ Por último, o método \textit{"cancel"} que encerra a conexão com o dispositiv
 	O sistema de navegação será alimentado por um sistema separado do motor elétrico como forma de garantia de suprimento de energia para esse sistema. Caso a bateria descarregue no meio do percurso, o dínamo será capaz de carregá-la enquanto o ciclista pedala a bicicleta, garantindo que o mesmo continuará com o sistema de iluminação que lhe indicará a rota desejada.
 	
 	\subsection{Motor Elétrico}
-	De modo geral, pode-se dizer que um motor elétrico é qualquer aparelho ou equipamento que permita transformar energia elétrica em mecânica. Em termos práticos, é amplamente utilizado para diversos fins devido a características que lhe conferem vantagens em relação a outros motores, sendo interessante destacar: o custo baixo da energia que utiliza o fácil transporte devido à massa relativamente baixa que possui, além da versatilidade de adaptar-se a diversos tipos de cargas com características distintas.
+De modo geral, pode-se dizer que um motor elétrico é qualquer aparelho ou equipamento que permita transformar energia elétrica em mecânica. Em termos práticos, é amplamente utilizado para diversos fins devido a características que lhe conferem vantagens em relação a outros motores, sendo interessante destacar: o custo baixo da energia que utiliza o fácil transporte devido à massa relativamente baixa que possui, além da versatilidade de adaptar-se a diversos tipos de cargas com características distintas.
 
-	Os motores elétricos podem ser divididos em dois grandes grupos, baseados no tipo de corrente que utilizarão em seu processo de transformação de energia: os de corrente contínua (CC) e os de corrente alternada (CA). Na figura \ref{img:tipos_motores}, os diversos tipos de motores elétricos são apresentados para fins de curiosidade e entendimento geral da quantidade de motores possíveis que existem no mercado.	
+Os motores elétricos podem ser divididos em dois grandes grupos, baseados no tipo de corrente que utilizarão em seu processo de transformação de energia: os de corrente contínua (CC) e os de corrente alternada (CA). Na figura \ref{img:tipos_motores}, os diversos tipos de motores elétricos são apresentados para fins de curiosidade e entendimento geral da quantidade de motores possíveis que existem no mercado.	
 
 \graphicspath{{figuras/}}
 \begin{figure}[H]
@@ -920,6 +805,7 @@ Por último, o método \textit{"cancel"} que encerra a conexão com o dispositiv
 \label{img:tipos_motores}
 \end{figure}
 
+\newpage
 Apesar da grande variedade de motores, eles possuem características específicas que se adequam melhor a cenários distintos de uso, mesmo que em certos casos possam ser intercambiáveis nos processos, de acordo com as necessidades que a utilização exigirá. Baseando-se nisso, os motores de corrente contínua, os de indução, excitação por imas permanentes e relutância, são os mais utilizados para o uso em bicicletas elétricas.
 
 Os motores elétricos possuem funcionamento baseado na troca de polaridade periódica entre os elementos magnéticos internos, permitindo assim que um rotor possa girar entre dois ímãs e gerar o movimento. Entretanto, a corrente contínua usada em motores CC é interessante para polos permanentes, fazendo com que seja necessária uma inversão do sentido da corrente a cada vez que os polos do rotor se encontrem com os dos ímãs. Para produzir esse efeito, geralmente usam-se comutadores, que são basicamente placas que envolvem o rotor, associada a outro elemento, chamado de escova, assim quando a corrente “entra” no sistema, ela tem seu caminho passando pela escova, parede do comutador, rotor, parede do outro comutador e a outra escova, onde ela inverte a polaridade, voltando para a fonte. 
@@ -954,6 +840,63 @@ Sistema de 120 graus            \\ \hline
 
   
 \subsection{Bateria}
+Baterias são dispositivos capazes de converter energia química em energia elétrica através de reações de oxirredução. Ao ligar dois componentes químicos de polos opostos, anodo e catodo, uma diferença de potencial é gerada e elétrons migram do polo negativo, anodo, para o polo positivo, catodo, gerando, assim, uma corrente elétrica. Algumas também são capazes de fazer o processo inverso, convertendo energia elétrica em energia química. Dessa forma, as baterias são usadas como uma fonte de energia elétrica e como armazenamento dessa energia \cite{varela}.
+	
+	Os tipos de bateria mais utilizadas são: chumbo-ácido, níquel-metal hidreto e íon-lítio.
+	
+	\begin{itemize}
+		\item \textbf{Chumbo-Ácido}: São as baterias com maior maturação no mercado por serem utilizadas há mais tempo, apresentam baixo custo e confiabilidade, sendo muito utilizadas para partidas de motores de automóveis, iluminação, ignição e tração. Sua densidade de energia e energia específica, porém, são a de menor valor \cite{bezerra}.
+	\item \textbf{Íon-Lítio}:  São baterias mais leves, com alta densidade de energia, maior eficiência energética que as demais e elevado número de ciclos de vida. O custo é ainda muito alto e a tolerância a sobrecarga é baixa correndo riscos de danificação \cite{bezerra}. São muito utilizadas em aparelhos eletrônicos como celulares e laptops.
+	\end{itemize}
+	
+	A capacidade de uma bateria é dada pela equação ~\ref{eq:formula_capacidade}
+	
+	\begin{equation}
+	\label{eq:formula_capacidade}
+	\mathbf{Capacidade(Ah) = \frac{Potência(W) * Autonomia(h)}{Tensão(V) * Profundidade. de. descarga}}
+	\end{equation}
+	
+	\begin{equation}
+	\label{eq:calculo_bateria}
+	\mathbf{Capacidade(Ah) = \frac{350W * 1h}{36V} = 9,72Ah}
+	\end{equation}
+	
+	
+	\begin{comment}
+	\graphicspath{{figuras/}}
+	\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=1.0]{capacidade_bateria}
+	\caption{Fórmula para cálculo da bateria}
+	\label{img:formula_capacidade}
+	\end{figure}
+	\end{comment}
+	
+
+	%\citeonline{daanalise} coletou informações sobre rotas cíclicas mais escolhidas por ciclistas quando usando GPS. Em seus resultados, os percursos mais longos feitos duravam, em média, 20 minutos e os participantes da pesquisa faziam, em média, 2,5 viagens por dia. Os percursos totais, por dia, para cada ciclista, duram, em média, 50 minutos. Para dimensionar a bateria, portanto, considera-se o motor trabalhando em máxima potência e o tempo de autonomia de 1h.
+	
+	\begin{comment}
+	\graphicspath{{figuras/}}
+	\begin{figure}[!htb]
+	\centering
+	\includegraphics[scale=1.0]{calculo_capacidade}
+	\caption{Cálculo da bateria a ser utilizada}
+	\label{img:calculo_bateria}
+	\end{figure}
+	\end{comment}
+	
+	Portanto, para alimentar o motor, serão utilizadas três baterias chumbo-ácido de 12V cada, ligadas em série, com capacidade de 10Ah. A escolha desse tipo de bateria foi escolhida devido ao menor custo e maior disponibilidade por ser uma tecnologia mais madura para aplicações automotivas.
+
+	A demanda de corrente típica de cada componente eletrônico segue listado abaixo:
+	
+	\begin{itemize}
+		\item \textbf{Microcontrolador}: 40mA por pino. Um arduíno possui 14 pinos, supondo que sejam usadas todas as entradas, o arduíno demandará 700mA.
+		\item \textbf{Microprocessador}: 50A.
+		\item \textbf{LED}: 20mA cada.
+
+	\end{itemize}
+
+Os componentes demandam uma corrente de 800 a 900mA. Será utilizada uma bateria de 12V e 1,3Ah que o grupo já possui.
 	Inicialmente, o cálculo da capacidade da bateria forneceu uma estimativa de qual seria a autonomia dimensionada para todo o sistema. Entretanto, posteriormente, a questão de manter uma autonomia maior foi posta de lado em prol dos custos e do fato de que nesse projeto integrador o objetivo principal é o de funcionamento e integração dos sistemas, não necessariamente de toda a usabilidade completa e já comercial para o usuário, permitindo assim que uma autonomia menor pudesse ser adotada para conter parte dos custos, visto que um conjunto de baterias de 12V de tensão e 10ah de capacidade nominal em um ensaio C1 ou C5 teriam um custo quatro vezes maior quando comparada a baterias comerciais mais simples, ainda de 12V de tensão, porém com apenas 7Ah de capacidade nominal em teste C20. Os ensaios e as nomenclaturas CX referem-se aos testes feitos com as baterias pelas próprias empresas para verificar o quanto de corrente a bateria consegue descarregar ao longo do tempo, onde C1 é uma hora, C5 seriam cinco horas e C20, vinte horas. Assim, uma bateria de 10Ah C1, consegue descarregar 10A em uma hora. Já a bateria escolhida, de 7Ah C20, consegue apenas 7A em vinte horas.
 	
 	As baterias escolhidas pelo grupo foram três do modelo 12MVA-7 Nobreak da Moura, uma bateria usada para aplicações como cercas elétricas, portões elétricos e também em algum grau para bicicletas elétricas e outras aplicações mais simples. A imagem \ref{img:bateria_moura} apresenta uma foto da bateria, enquanto a imagem \ref{img:esp_bateria} traz especificações desta retiradas do catálogo da Moura. 
