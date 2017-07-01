@@ -397,6 +397,122 @@ Por último, o método \textit{"cancel"} que encerra a conexão com o dispositiv
   \label{img:trecho5}
   \end{figure}  
   
+	\subsection{Integração}
+	A integração foi realizada com a equipe da frente de eletroeletrônica. Para a integração com a equipe, foi feita a conexão do software desenvolvido com o hardware utilizado. Para tal, foi utilizado o módulo bluetooth-serial-port que possibilita comunicarmos através da aplicação com uma determinada porta serial bluetooth do dispositivo.
+	
+	O primeiro passo tomado foi a conexão do dispositivo (computador ou celular) à conexão bluetooth gerada pelo módulo HC-06 utilizado em conjunto com a placa arduíno para abrir a porta Serial bluetooth. Com a conexão estabelecida, foi preciso visualizar a porta em que a conexão foi aberta e estabelecida. Conseguimos verificar a abertura de duas portas:
+	
+	\textbf{Serial Ports:}
+	\begin{itemize}
+		\item \textbf{/dev/cu.Bluetooth-Icoming-Port}
+		\item \textbf{/dev/cu.HC-06-DevB}
+	\end{itemize}
+	
+	Uma porta de entrada e uma porta de saída, como a comunicação acontecerá exclusivamente no envio de informações ao processador que irá reagir de acordo com os dados enviados, foi escolhida a porta /dev/cu.HC-06-DevB, que por padrão corresponde a porta COM4 do dispositivo.
+	
+	Com a conexão feita e a porta preparada para o envio de dados, a aplicação envia os dados periodicamente de acordo com as informações de rotas definidas pelo usuário e de acordo com os dados recebidos da API de mapas do Google.
+	
+	Para que ambas as partes possam se comunicar foi estabelecido um protocolo de comunicação, que pode ser visto a seguir:
+	
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[scale=0.60]{protocolo1.png}
+		\caption{Protocolo de comunicação}
+		\label{img:Protocolo}
+	\end{figure}
+	
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[scale=0.60]{chegada.png}
+		\caption{Pausa/Chegada}
+		\label{img:Chegada}
+	\end{figure}
+	
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[scale=0.60]{fed.png}
+		\caption{Frente/esquerda/direita}
+		\label{img:fed}
+	\end{figure}
+	
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[scale=0.60]{rotatorias.png}
+		\caption{Rotatórias}
+		\label{img:Rotatoria}
+	\end{figure}
+		
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[scale=0.60]{retorno.png}
+		\caption{Retorno}
+		\label{img:Retorno}
+	\end{figure}
+	
+	O segundo conjunto de valores, refere-se a distância indicada, e o próximo conjunto faz a diferenciação entre Kilometros e Metros.
+	Por fim, o último conjunto de valores, encerra o envio do pacote de dados e é definido como o caracter terminado ‘/n’.
+	
+	Alguns exemplos podem ser vistos a seguir:
+	
+	Os seguintes códigos irão gerar como resultado as imagens na tela a seguir:
+
+	
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[scale=0.60]{chegada_led.png}
+		\caption{Chegada na tela}
+		\label{img:Chegada_led}
+	\end{figure}
+
+	
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[scale=0.60]{rotatoria_led.png}
+		\caption{Rotatória a 10 metros}
+		\label{img:Rotatoria_led}
+	\end{figure}
+		
+	
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[scale=0.60]{retorno_led.png}
+		\caption{Retorno a 100 metros}
+		\label{img:Retorno_led}
+	\end{figure}
+	
+	\subsection{Testes}
+	
+	Para os testes da aplicação desenvolvida, foram desenvolvidos testes de integração, com o objetivo de testar a integração entre diferentes módulos do sistema, por exemplo testar o módulo de comunicação com suas respectivas dependências.
+	
+	Para o desenvolvimento dos testes, foi utilizado o framework PhantomJS. Que é um emulador de navegador que é executado no terminal da aplicação.
+	
+	Com o Phantom.JS instalado, conseguimos renderizar uma página no servidor, criando um objeto de página WEB:
+	
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[scale=0.60]{renderiza_pagina.png}
+		\caption{Renderização da página}
+		\label{img:Renderiza_pagina}
+	\end{figure}
+	
+	Utilizamos o módulo loadspeed.js para mensurar o tempo demandado para a execução de cada script e determinar a rapidez da aplicação.
+	
+	\newpage
+	
+	\begin{figure}[!htp]
+		\centering
+		\includegraphics[scale=0.60]{mensuracao_de_tempo.png}
+		\caption{Mensuração de tempo}
+		\label{img:Mensuracao_tempo}
+	\end{figure}
+	
+	Por fim, os testes foram implementados utilizando asserções esperadas. Buscou-se testar todas as integrações possíveis para assegurar que a interação do software com o usuário e com o processador fosse feita da melhor e mais eficiente forma possível.
+	
+	\subsection{Análise Crítica e Verificação}
+	Com base nos resultados obtidos foi possível atender aos requisitos definidos para o projeto que foram traçar a rota a partir do ponto inicial e o destino, parser dos dados das rotas, comunicação com o microcontrolador, cadastro e acesso de usuário,coleta e parser das estatísticas, visualização do perfil do usuário, login nas redes sociais e compartilhamento de corridas.
+	
+	Nos pontos de controles passados foram testados as a maior arte dos requisitos implementados. Sendo que no último ponto de controle foi realizado o teste para a comunicação com o microcontrolador, realizando o envio dos dados de rotas via bluetooth para o microcontrolador.
+  
   \section{Eletroeletrônica}
 	
 	\subsection{Requisitos}
