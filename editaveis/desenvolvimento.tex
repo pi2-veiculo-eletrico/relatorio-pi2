@@ -387,7 +387,7 @@ O método \textit{"write"} é que faz a escrita dos dados que serão enviados pa
 \label{img:trecho4}
 \end{figure}
 
-Por último, o método \textit{"cancel"} que encerra a conexão com o dispositivo pareado, como mostrado na figura \ref{img:trecho5}
+Por último, o método \textit{"cancel"} que encerra a conexão com o dispositivo pareado, como mostrado na figura \ref{img:trecho5}.
 
 \graphicspath{{figuras/}}
   \begin{figure}[!htb]
@@ -397,7 +397,124 @@ Por último, o método \textit{"cancel"} que encerra a conexão com o dispositiv
   \label{img:trecho5}
   \end{figure}  
   
-gis  \section{Eletroeletrônica}
+<<<<<<< HEAD
+	\subsection{Integração}
+	A integração foi realizada com a equipe da frente de eletroeletrônica. Para a integração com a equipe, foi feita a conexão do software desenvolvido com o hardware utilizado. Para tal, foi utilizado o módulo bluetooth-serial-port que possibilita comunicarmos através da aplicação com uma determinada porta serial bluetooth do dispositivo.
+	
+	O primeiro passo tomado foi a conexão do dispositivo (computador ou celular) à conexão bluetooth gerada pelo módulo HC-06 utilizado em conjunto com a placa arduíno para abrir a porta Serial bluetooth. Com a conexão estabelecida, foi preciso visualizar a porta em que a conexão foi aberta e estabelecida. Conseguimos verificar a abertura de duas portas:
+	
+	\textbf{Serial Ports:}
+	\begin{itemize}
+		\item \textbf{/dev/cu.Bluetooth-Icoming-Port}
+		\item \textbf{/dev/cu.HC-06-DevB}
+	\end{itemize}
+	
+	Uma porta de entrada e uma porta de saída, como a comunicação acontecerá exclusivamente no envio de informações ao processador que irá reagir de acordo com os dados enviados, foi escolhida a porta /dev/cu.HC-06-DevB, que por padrão corresponde a porta COM4 do dispositivo.
+	
+	Com a conexão feita e a porta preparada para o envio de dados, a aplicação envia os dados periodicamente de acordo com as informações de rotas definidas pelo usuário e de acordo com os dados recebidos da API de mapas do Google.
+	
+	Para que ambas as partes possam se comunicar foi estabelecido um protocolo de comunicação, que pode ser visto a seguir:
+	
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[scale=0.60]{protocolo1.png}
+		\caption{Protocolo de comunicação}
+		\label{img:Protocolo}
+	\end{figure}
+	
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[scale=0.60]{chegada.png}
+		\caption{Pausa/Chegada}
+		\label{img:Chegada}
+	\end{figure}
+	
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[scale=0.60]{fed.png}
+		\caption{Frente/esquerda/direita}
+		\label{img:fed}
+	\end{figure}
+	
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[scale=0.60]{rotatorias.png}
+		\caption{Rotatórias}
+		\label{img:Rotatoria}
+	\end{figure}
+		
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[scale=0.60]{retorno.png}
+		\caption{Retorno}
+		\label{img:Retorno}
+	\end{figure}
+	
+	O segundo conjunto de valores, refere-se a distância indicada, e o próximo conjunto faz a diferenciação entre Kilometros e Metros.
+	Por fim, o último conjunto de valores, encerra o envio do pacote de dados e é definido como o caracter terminado ‘/n’.
+	
+	Alguns exemplos podem ser vistos a seguir:
+	
+	Os seguintes códigos irão gerar como resultado as imagens na tela a seguir:
+
+	
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[scale=0.60]{chegada_led.png}
+		\caption{Chegada na tela}
+		\label{img:Chegada_led}
+	\end{figure}
+
+	
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[scale=0.60]{rotatoria_led.png}
+		\caption{Rotatória a 10 metros}
+		\label{img:Rotatoria_led}
+	\end{figure}
+		
+	
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[scale=0.60]{retorno_led.png}
+		\caption{Retorno a 100 metros}
+		\label{img:Retorno_led}
+	\end{figure}
+	
+	\subsection{Testes}
+	
+	Para os testes da aplicação desenvolvida, foram desenvolvidos testes de integração, com o objetivo de testar a integração entre diferentes módulos do sistema, por exemplo testar o módulo de comunicação com suas respectivas dependências.
+	
+	Para o desenvolvimento dos testes, foi utilizado o framework PhantomJS. Que é um emulador de navegador que é executado no terminal da aplicação.
+	
+	Com o Phantom.JS instalado, conseguimos renderizar uma página no servidor, criando um objeto de página WEB:
+	
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[scale=0.60]{renderiza_pagina.png}
+		\caption{Renderização da página}
+		\label{img:Renderiza_pagina}
+	\end{figure}
+	
+	Utilizamos o módulo loadspeed.js para mensurar o tempo demandado para a execução de cada script e determinar a rapidez da aplicação.
+	
+	\newpage
+	
+	\begin{figure}[!htp]
+		\centering
+		\includegraphics[scale=0.60]{mensuracao_de_tempo.png}
+		\caption{Mensuração de tempo}
+		\label{img:Mensuracao_tempo}
+	\end{figure}
+	
+	Por fim, os testes foram implementados utilizando asserções esperadas. Buscou-se testar todas as integrações possíveis para assegurar que a interação do software com o usuário e com o processador fosse feita da melhor e mais eficiente forma possível.
+	
+	\subsection{Análise Crítica e Verificação}
+	Com base nos resultados obtidos foi possível atender aos requisitos definidos para o projeto que foram traçar a rota a partir do ponto inicial e o destino, parser dos dados das rotas, comunicação com o microcontrolador, cadastro e acesso de usuário,coleta e parser das estatísticas, visualização do perfil do usuário, login nas redes sociais e compartilhamento de corridas.
+	
+	Nos pontos de controles passados foram testados as a maior arte dos requisitos implementados. Sendo que no último ponto de controle foi realizado o teste para a comunicação com o microcontrolador, realizando o envio dos dados de rotas via bluetooth para o microcontrolador.
+  
+\section{Eletroeletrônica}
 	
 	\subsection{Requisitos}
 	Em linhas gerais, o projeto busca facilitar a vida de ciclistas. Eles vão poder ter mais informações sobre os seus trajetos e dessa forma trafegar de forma mais segura. Além disso, a possibilidade de se integrar um sistema como esse numa bicicleta automaticamente torna o próprio ato algo mais próximo do dia a dia, incentivando mais e mais pessoas a trocarem seus meios principais de transporte e assim desafogando as grandes cidades. 
@@ -593,8 +710,10 @@ gis  \section{Eletroeletrônica}
  			\item Velocity Manager: Traduz os dados crus obtidos dos sensores para velocidade e os estoca.
  			\item TTGPS Manager: Responsável pelo Turn-By-Turn GPS. 
  		\end{itemize}
+ 	
+ 		\newpage
  			\graphicspath{{figuras/}}
- 			\begin{figure}[h!]
+ 			\begin{figure}[H]
  				\centering
  				\includegraphics[width=0.9\textwidth]{Figura6_Diagrama_de_modulos_do_sistema.PNG}
  				\caption{Diagramas de blocos da integração dos módulos do sistemas}
@@ -707,9 +826,8 @@ gis  \section{Eletroeletrônica}
 
 	\subsection{Diagrama e Montagem dos Circuitos}
 	Os circuitos e esquemáticos serão feitos nos simuladores Proteus e LTspice, divididos de acordo com seus subsistemas. Os circuitos serão mostrados sem os resistores para facilitar a visualização.
-	\newpage
-	
-	\begin{table}[!htb]
+		
+	\begin{table}[H]
 		\caption{Nomenclatura de acordo com a cor dos fios.}
 		\centering
 		\label{Nomenclatura_de_acordo_com_a_cor_dos_fios}
@@ -768,19 +886,16 @@ gis  \section{Eletroeletrônica}
 				\label{img:Ordem_de_chaveamento_para_cada_fase_do_motor_de_acordo_com_a_posição_obtida_pelos_sensores_Hall}
 			\end{figure}
 		\end{comment}
-		
-		\newpage
-		
+			
 		\subsubsection{Circuito de Controle e Sensores}
 		
 			\graphicspath{{figuras/}}
-			\begin{figure}[h!]
+			\begin{figure}[H]
 				\centering
 				\includegraphics[scale=1.4]{Figura13_circuito_de_obtencao_de_dados.PNG}
 				\caption{Diagrama do circuito de obtenção de dados.}
 				\label{img:Diagrama_do_circuito_de_obtencao_de_dados}
-			\end{figure}
-%		
+			\end{figure}	
 		
 
   \section{Alimentação}
@@ -793,9 +908,9 @@ gis  \section{Eletroeletrônica}
 	O sistema de navegação será alimentado por um sistema separado do motor elétrico como forma de garantia de suprimento de energia para esse sistema. Caso a bateria descarregue no meio do percurso, o dínamo será capaz de carregá-la enquanto o ciclista pedala a bicicleta, garantindo que o mesmo continuará com o sistema de iluminação que lhe indicará a rota desejada.
 	
 	\subsection{Motor Elétrico}
-De modo geral, pode-se dizer que um motor elétrico é qualquer aparelho ou equipamento que permita transformar energia elétrica em mecânica. Em termos práticos, é amplamente utilizado para diversos fins devido a características que lhe conferem vantagens em relação a outros motores, sendo interessante destacar: o custo baixo da energia que utiliza o fácil transporte devido à massa relativamente baixa que possui, além da versatilidade de adaptar-se a diversos tipos de cargas com características distintas.
+	De modo geral, pode-se dizer que um motor elétrico é qualquer aparelho ou equipamento que permita transformar energia elétrica em mecânica. Em termos práticos, é amplamente utilizado para diversos fins devido a características que lhe conferem vantagens em relação a outros motores, sendo interessante destacar: o custo baixo da energia que utiliza o fácil transporte devido à massa relativamente baixa que possui, além da versatilidade de adaptar-se a diversos tipos de cargas com características distintas.
 
-Os motores elétricos podem ser divididos em dois grandes grupos, baseados no tipo de corrente que utilizarão em seu processo de transformação de energia: os de corrente contínua (CC) e os de corrente alternada (CA). Na figura \ref{img:tipos_motores}, os diversos tipos de motores elétricos são apresentados para fins de curiosidade e entendimento geral da quantidade de motores possíveis que existem no mercado.	
+	Os motores elétricos podem ser divididos em dois grandes grupos, baseados no tipo de corrente que utilizarão em seu processo de transformação de energia: os de corrente contínua (CC) e os de corrente alternada (CA). Na figura \ref{img:tipos_motores}, os diversos tipos de motores elétricos são apresentados para fins de curiosidade e entendimento geral da quantidade de motores possíveis que existem no mercado.	
 
 \graphicspath{{figuras/}}
 \begin{figure}[H]
@@ -805,7 +920,6 @@ Os motores elétricos podem ser divididos em dois grandes grupos, baseados no ti
 \label{img:tipos_motores}
 \end{figure}
 
-\newpage
 Apesar da grande variedade de motores, eles possuem características específicas que se adequam melhor a cenários distintos de uso, mesmo que em certos casos possam ser intercambiáveis nos processos, de acordo com as necessidades que a utilização exigirá. Baseando-se nisso, os motores de corrente contínua, os de indução, excitação por imas permanentes e relutância, são os mais utilizados para o uso em bicicletas elétricas.
 
 Os motores elétricos possuem funcionamento baseado na troca de polaridade periódica entre os elementos magnéticos internos, permitindo assim que um rotor possa girar entre dois ímãs e gerar o movimento. Entretanto, a corrente contínua usada em motores CC é interessante para polos permanentes, fazendo com que seja necessária uma inversão do sentido da corrente a cada vez que os polos do rotor se encontrem com os dos ímãs. Para produzir esse efeito, geralmente usam-se comutadores, que são basicamente placas que envolvem o rotor, associada a outro elemento, chamado de escova, assim quando a corrente “entra” no sistema, ela tem seu caminho passando pela escova, parede do comutador, rotor, parede do outro comutador e a outra escova, onde ela inverte a polaridade, voltando para a fonte. 
