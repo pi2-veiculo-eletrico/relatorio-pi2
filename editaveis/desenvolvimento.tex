@@ -397,15 +397,110 @@ Por último, o método \textit{"cancel"} que encerra a conexão com o dispositiv
   \label{img:trecho5}
   \end{figure}  
   
-  \section{Eletroeletrônica}
+gis  \section{Eletroeletrônica}
 	
 	\subsection{Requisitos}
 	Em linhas gerais, o projeto busca facilitar a vida de ciclistas. Eles vão poder ter mais informações sobre os seus trajetos e dessa forma trafegar de forma mais segura. Além disso, a possibilidade de se integrar um sistema como esse numa bicicleta automaticamente torna o próprio ato algo mais próximo do dia a dia, incentivando mais e mais pessoas a trocarem seus meios principais de transporte e assim desafogando as grandes cidades. 
 	Neste escopo, foram selecionados alguns requisitos básicos para o dispositivo. Esses não foram os únicos, porém foram os mais relevantes no desenho geral do sistema embarcado do projeto.
 	
+	\begin{comment} %Bruno pediu para retirar
 	\subsection{Comunicação e sensoriamento}
 	O projeto foi pensado para não ser algo muito invasivo no corpo da bicicleta. Ao mesmo tempo,  optou-se por utilizar comunicação com o celular do usuário de maneira sem fio, aproveitando-se de seu alto nível de integração, disponibilidade de bateria e localização tanto por GPS quanto por sinal de torres de celular disponíveis.
-	
+	\end{comment}
+ 
+		
+
+	\subsection{Sistema Embarcado}
+	\subsubsection{Software}
+	O sistema embarcado concebido é dividido em duas partes:
+
+	\begin{itemize}
+		\item \textbf{Sensor de velocidade}: Para ler o sensor de velocidade, foi criado uma função que conta quantas vezes o sensor ficou ativo num intervalo de 1 segundo. Essa leitura é feita por meio de interrupções , configuradas no programa principal. As imagens a seguir ilustram isso.
+	\end{itemize}
+
+	\graphicspath{{figuras/}}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.5\textwidth]{embarcado1.png}
+		\caption{Inicialização do sensor com a porta Analógica e o aro da roda.}
+		\label{img:embarcado1}
+	\end{figure}
+	\graphicspath{{figuras/}}
+
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.7\textwidth]{embarcado2.png}
+		\caption{Inicialização do timer e da interrupção.}
+		\label{img:embarcado2}
+	\end{figure}
+
+	\graphicspath{{figuras/}}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.4\textwidth]{embarcado3.png}
+		\caption{Função que é chamada a cada interrupção e contabiliza giros do sensor.}
+		\label{img:embarcado3}
+	\end{figure}
+
+	\begin{itemize}
+		\item \textbf{GPS}:  O visualizador de GPS foi feito utilizando-se a biblioteca u8glib. Ela é capaz de gerar gráficos para diversos monitores. A classe DisplayManager foi criada para facilitar a escrita no display, encapsulando as suas tarefas mais utilizadas e diferenciando o display que mostra velocidade do display que mostra dados do GPS.Outra classe criada foi a ProtocolManager, capaz de tratar os dados da serial, e simplificar a utilização do protocolo	
+	\end{itemize}
+
+	\graphicspath{{figuras/}}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.7\textwidth]{embarcado4.png}
+		\caption{Inicialização do display e da classe DisplayManager, que irá auxiliar nas funções mais básicas}
+		\label{img:embarcado4}
+	\end{figure}
+
+	A rotina principal a ser executada foi dessa forma muito simplificada, ficando da seguinte forma.
+	\graphicspath{{figuras/}}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.5\textwidth]{embarcado5.png}
+		\caption{Rotina Principal}
+		\label{img:embarcado5}
+	\end{figure}
+
+	\subsubsection{Hardware}
+	A implementação do software consiste em um microcontrolador que recebe as informações do sensor (pelo pino A0) e do GPS (via módulo Bluetooth, pinos RX e TX) e converte para dois displays O-led, conforme ilustrado no diagrama a seguir:
+
+	\graphicspath{{figuras/}}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.7\textwidth]{embarcado6.jpg}
+		\caption{Diagrama do hardware.}
+		\label{img:embarcado6}
+	\end{figure}
+
+	Após a concepção do circuito, chegamos ao seguinte resultado:
+
+	\graphicspath{{figuras/}}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.3\textwidth, angle=90]{embarcado7.jpg}
+		\caption{Displays em funcionamento.}
+		\label{img:embarcado7}
+	\end{figure}
+
+	Lembrando que as imagens do display de velocidade variam apenas na parte numérica, de acordo com os dados provindos do sensor. Já as imagens do display de GPS vão variar de acordo com a mensagem serial que o aplicativo vai enviar pro bluetooh, como pode ser exemplificado na imagem a seguir:
+
+	\graphicspath{{figuras/}}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.3\textwidth]{embarcado8.jpg}
+		\caption{Implementação do protocolo 0/0/0/0/1}
+		\label{img:embarcado8}
+	\end{figure}
+
+	\graphicspath{{figuras/}}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.3\textwidth]{embarcado9.jpg}
+		\caption{Implementação do protocolo 4/0/1/0/1}
+		\label{img:embarcado9}
+	\end{figure}
 	\subsection{Motor}
 	O motor utilizado no projeto será responsável por converter a energia elétrica em mecânica e enviar, por meio dos sensores hall, as informações da posição atual do motor para o microcontrolador.
 	
