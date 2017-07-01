@@ -501,7 +501,7 @@ Por último, o método \textit{"cancel"} que encerra a conexão com o dispositiv
  			\graphicspath{{figuras/}}
  			\begin{figure}[h!]
  				\centering
- 				\includegraphics[scale=1.4]{Figura6_Diagrama_de_modulos_do_sistema.PNG}
+ 				\includegraphics[width=0.9\textwidth]{Figura6_Diagrama_de_modulos_do_sistema.PNG}
  				\caption{Diagramas de blocos da integração dos módulos do sistemas}
  				\label{img:Diagrama_de_modulos_do_sistema}
  			\end{figure}
@@ -511,12 +511,11 @@ Por último, o método \textit{"cancel"} que encerra a conexão com o dispositiv
 		Para cumprir com os requisitos de  comunicação / Localização, foi escolhida a comunicação Bluetooth, ideal por ser de baixa potência e alcance reduzido. Assim, não afetará outros veículos próximos, da mesma forma que representará uma economia de bateria. 
 		Os requisitos de Interface Humano - Computador foram supridos por dois monitores de OLED Modelo GM009605. Por seu tamanho reduzido, não representam grandes distrações para o ciclista, ao passo que possuem um grande contraste e são excelentes para a visualização contra a luz solar conforme a figura \ref{img:display_indicando_a_rota}. Também nesse tópico, foi escolhido o microcontrontrolador Arduino, por sua facilidade de codificação e também por sua versatilidade, apresentando dentre outros elementos , entradas analógicas, saídas PWM e comunicação I2C e serial. O modelo utilizado será o Arduino UNO visto na figura \ref{img:Arduino_Uno}.
 		Para melhor entendimento e análise do sistema de Controle e disponibilização de dados o esquemático deste projeto é demonstrado abaixo:
-		\newpage
 		
 			\graphicspath{{figuras/}}
 			\begin{figure}[h!]
 				\centering
-				\includegraphics[scale=1.4]{Figura_7_sistema_de_controle.PNG}
+				\includegraphics[width=0.7\textwidth]{Figura_7_sistema_de_controle.PNG}
 				\caption{Esquemático Sistema de controle e disponibilização dos dados}
 				\label{img:sistema_de_controle_e_disponibiização_de_dados}
 			\end{figure}
@@ -564,7 +563,7 @@ Por último, o método \textit{"cancel"} que encerra a conexão com o dispositiv
 		\indent \}
 	
 			\graphicspath{{figuras/}}
-			\begin{figure}[h!]
+			\begin{figure}[H]
 				\centering
 				\includegraphics[width=0.5\textwidth]{Figura_9_sensor_velocidade.PNG}
 				\caption{Teste do Sensor de Velocidade}
@@ -590,7 +589,6 @@ Por último, o método \textit{"cancel"} que encerra a conexão com o dispositiv
 	
 	Cada desenho desse será nomeado com uma palavra de 3 bits, e desenhado com uma estrutura binária de matriz dentro do código. Uma vez que o GPS determinar alguma dessas 8 direções o aplicativo irá dar um comando ao microprocessador, através da palavra de 3 bits, para que o desenho correto de direção seja acionado e apresentado no display. 
 	Para o melhor entendimento, atribui-se por exemplo a palavra 010 à direção "SIGA EM FRENTE". Quando o GPS indicar essa direção, o aplicativo enviará ao microprocessador os níveis de tensão "0", "1" e "0" para o micro, que irá processar a devida imagem no display.
-	\newpage
 	
 		\graphicspath{{figuras/}}
 		\begin{figure}[h!]
@@ -901,7 +899,7 @@ O circuito retirado proposto pelo site Destro é apresentado na figura x + 3.
 
 	\begin{figure}[!htb]
 		\centering
-		\includegraphics[scale=0.5]{circuito_carregamento.jpeg}
+		\includegraphics[width=\textwidth]{circuito_carregamento.jpeg}
 		\caption{Circuito de Carregamento de Referência}
 		\label{img:circuitocarregamento}
 	\end{figure}
@@ -1380,8 +1378,14 @@ Foram levados em consideração vários fatores, como o material, a estabilidade
 	Para a fixação da porta na caixa principal foram utilizados os parafusos de 3x12mm para parafusar as duas dobradiças, e o trinco que une a porta e a parte lateral menor. 
 	
 	Para fixar a caixa principal no quadro da bicicleta foram utilizadas abraçadeiras de uma polegada (1”). Primeiro foi aferida uma medição para o encaixe ser feito de forma a não ter nenhuma possibilidade de contato entre a caixa principal e os pedais/biela. Feita a medição seguiu-se para o parafusamento direto dos parafusos de 3x12mm nas abraçadeiras. O arranjo das abraçadeiras na base da caixa principal foi feito de forma a garantir a impossibilidade da caixa se movimentar para qualquer direção, ficando completamente fixa ao quadro. 
-	O produto final está exibido nas Figuras \ref{img:box_vazia} \ref{img:box_cheia} e \ref{img:box_fechada2} a seguir.
-
+	O produto final está exibido nas Figuras \ref{img:box_baterias}, \ref{img:box_vazia}, \ref{img:box_baterias} \ref{img:box_cheia} e \ref{img:box_fechada2} a seguir.
+	\graphicspath{{figuras/}}	
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=0.5\textwidth]{baterias.jpg}
+			\caption{Caixa de baterias}
+		\label{img:box_baterias}
+	\end{figure}
 	\graphicspath{{figuras/}}	
 	\begin{figure}[h!]
 		\centering
@@ -1398,6 +1402,7 @@ Foram levados em consideração vários fatores, como o material, a estabilidade
 		\label{img:box_cheia}
 	\end{figure}
 	
+
 	\graphicspath{{figuras/}}	
 	\begin{figure}[H]
 		\centering
@@ -1432,16 +1437,27 @@ Foram levados em consideração vários fatores, como o material, a estabilidade
 	
 	Para definir o plano de teste, estabeleceu-se como uma espécie de medida a rodagem por Km de forma que fosse possível observar o comportamento da estrutura ao longo dos trajetos. Ao longo de 6Km percorridos, notou-se um problema com a roda traseira e com a corrente utilizada, desta forma, foi necessário realizar a troca de ambos os componentes.
 	A exceção dos problemas já apresentados, a estrutura da bicicleta não apresentou nenhum outro problema e o teste ocorreu sem mais nenhuma outra adversidade.
+	\subsection{Análise crítica de projeto e desenvolvimento}
+		
+		\subsubsection{O que foi feito}
+		Foi feita a adaptação do quadro de uma bicicleta comum. Para isso foi cortada a parte de baixo do quadro, produzida uma peça que serviria de base, onde iria um compartimento para as baterias e as placas eletrônicas. Para a produção dessa base, foi necessária a compra de tubos de alumínio e para a fabricação foi necessário dobrar os tubos, cortar e soldar no quadro da bicicleta. Para o compartimento das baterias foram feitas caixas tanto para as baterias quanto para todo o sistema placas eletrônicas/baterias, de forma a garantir a segurança dos equipamentos e do ciclista. 
+		
+		\subsubsection{Problemas encontrados durante o projeto}
+		Não foi possível a produção completa de um quadro de bicicleta, o que fez com que buscássemos a alternativa de adaptar um quadro comum de mercado.  
+		Foi necessário o desenvolvimento de vários desenhos do compartimento onde estão as baterias e placas eletrônicas, porque existe um limite de dimensões no quadro.
+		
+		O projeto inicialmente foi desenhado para as placas de madeira terem 9mm, porém só foi possível obter placas de 12mm adquiridas de partes que já estavam cortadas na madeireira. Não foi possível obter placas de 9mm pois as madeireiras só vendem placas de 2750x1850mm, equivalente a 5,0875 metros quadrados, e no projeto utilizou-se cerca de 0,5 metros quadrados, e as placas inteiras estavam fora do orçamento.
 
 
   \section{Normas}
   Para garantir a integridade e segurança do projeto e dos futuros usuários do produto, deve-se atentar a determinadas normas técnicas, que garantem a funcionalidade do projeto. Essas normas ajudam a definir diversas características de um produto, visando uma padronização que auxilia na solução de futuros problemas, assegurando a qualidade e eficiência desejada. No Brasil, a Agência Brasileira de Normas Técnicas (ABNT) é o órgão responsável pela elaboração das Normas Técnicas Brasileiras (NBR), que servem como instrumento na avaliação de conformidades e certificação de diversas áreas e produtos, garantindo a devida credibilidade. Para o caso da Smart Bike, alguns itens importantes podem ser destacados diante da NBR NM 213, que é uma norma específica voltada para Princípios de Projeto e Segurança de Equipamentos Eletromecânicos.
   
 
-\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+
 \begin{table}[!htb]
 	\centering
 	\caption{Tabela de Normas}
+	\resizebox{\textwidth}{!}{
 	\begin{tabular}{|M{2,5cm} | M{4,5cm} | M{9cm}|}
 		\hline
 		\textbf{ITEM AVALIADO} & \textbf{MEDIDA NORMATIVA} & \textbf{O QUE SERÁ FEITO?} \\ \hline
@@ -1466,6 +1482,7 @@ Foram levados em consideração vários fatores, como o material, a estabilidade
 		Manutenção & Considerar fatores que facilitem a manutenabilidade do sistema. & A estrutura será montada de maneira que torne fácil o acesso as partes e sistemas internos. \\
 		\hline
 	\end{tabular}
+}
 	\label{tabela_normas}
 \end{table}
 
