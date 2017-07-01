@@ -897,7 +897,99 @@ Por último, o método \textit{"cancel"} que encerra a conexão com o dispositiv
 				\label{img:Diagrama_do_circuito_de_obtencao_de_dados}
 			\end{figure}	
 		
-
+	\subsection{Teste de Acionamento com os MOSFETs}
+	Para que os MOSFETs funcionem no modo chaveado, o tempo de carga e descarga do capacitor de Porta do transistor deve ser mínimo, garantindo que ele trabalhe a maior parte do tempo em modo chaveado, dissipando menos energia, ou seja, mais eficiente.
+	
+	Esse circuito é conhecido por Push-Pull, e funciona utilizando 2 transistores, um NPN e um PNP, como na figura:
+	
+	\begin{figure}[!htp]
+		\centering
+		\includegraphics[scale=0.60]{circuito_push_pull.png}
+		\caption{Circuito Push-Pull}
+		\label{img:Circuito Push-Pull}
+	\end{figure}
+	
+	Com esse circuito, o tempo de resposta diminui bastante. Mas pela adição de tantos componentes, foi feito uma análise de viabilidade, onde foram medidos os tempos de resposta sem o circuito push-pull, para concluir se seria necessário ou não.
+	
+	Na bancada do laboratório, foram utilizados:
+	
+	\begin{itemize}
+		\item Osciloscópio
+		\item Gerador de funções
+		\item Resistores
+		\item Optoacoplador
+		\item MOSFETs tipo P e N
+		\item Bateria 12V
+	\end{itemize}
+	
+	Foi montado o circuito de teste para o transistor tipo N conforme a figura \ref{img:Circuito_teste_de_resposta_do_transistor_IRF3205}, usando um PWM de 50%:
+	
+	\begin{figure}[!htp]
+		\centering
+		\includegraphics[scale=0.60]{circuito_teste_resposta.png}
+		\caption{Circuito teste de resposta do transistor IRF3205}
+		\label{img:Circuito_teste_de_resposta_do_transistor_IRF3205}
+	\end{figure}
+	
+	\begin{figure}[!htp]
+		\centering
+		\includegraphics[scale=0.60]{transistor_sendo_ativado.png}
+		\caption{Transistor IRF3205 sendo ativado}
+		\label{img:Transistor IRF3205 sendo ativado}
+	\end{figure}
+	
+	\begin{figure}[!htp]
+		\centering
+		\includegraphics[scale=0.60]{transistor_sendo_ativado_2.png}
+		\caption{Transistor IRF3205 sendo desativado}
+		\label{img:Transistor IRF3205 sendo desativado}
+	\end{figure}
+	
+	Analisando o gráfico do osciloscópio, na Figura 32, percebe-se um tempo total de ativação de aproximadamente 4,5$\mu$s. Agora, a partir da figura 33, com o transistor sendo desativado, pode-se concluir que o tempo de desligamento é de aproximadamente 22$\mu$s.
+	
+	Para os transistores tipo N, esse tempo de comutação é totalmente aceitável, já que ele não irá realizar o acionamento por PWM.
+	
+	Foi montado o circuito de teste para o transistor tipo P conforme a figura \ref{img:Circuito teste de resposta do transistor IRF4905}:
+	\newpage
+	
+	\begin{figure}[!htp]
+		\centering
+		\includegraphics[scale=0.60]{circuito_teste_resposta_transistor.png}
+		\caption{Circuito teste de resposta do transistor IRF4905}
+		\label{img:Circuito teste de resposta do transistor IRF4905}
+	\end{figure}
+	
+	\begin{figure}[!htp]
+		\centering
+		\includegraphics[scale=0.60]{transistor_sendo_ativado_3.png}
+		\caption{Transistor IRF4905 sendo ativado}
+		\label{img:Transistor IRF4905 sendo ativado}
+	\end{figure}
+	
+	\newpage
+	
+	\begin{figure}[!htp]
+		\centering
+		\includegraphics[scale=0.60]{transistor_sendo_ativado_4.png}
+		\caption{Transistor IRF4905 sendo desativado}
+		\label{img:Transistor IRF4905 sendo desativado}
+	\end{figure}
+	
+	Foi observado que o chaveamento do transistor demora 4,5$\mu$s para ativar e 25$\mu$s para desativar, aproximadamente. O que é aceitável, comparado ao período de 256$\mu$s obtido da frequência de 3906,25 Hz do PWM que será utilizado. O período mínimo ($T_{min}$) quando a rotação é máxima, foi calculado com base no RPM e no número de comutações por volta (CPV), em que “CPV” são as comutações realizadas pelos transistores para que o motor funcione:
+	
+	\begin{equation}
+	T_{min} = \frac{60}{RPM * CPV}
+	\end{equation}
+	
+	Considerando a velocidade máxima de 35km/h, a rotação do motor, em uma bicicleta aro 29, seria de 257 RPM, então:
+	
+	\begin{equation}
+	T_{min} = 1,62ms
+	\end{equation}
+	
+	Com esses resultados, foi concluído que não será preciso o uso do circuito push-pull mencionado anteriormente.
+	
+	
   \section{Alimentação}
   A bicicleta elétrica utilizará dois sistemas de alimentação, que serão:
   \begin{itemize}
