@@ -387,7 +387,7 @@ O método \textit{"write"} é que faz a escrita dos dados que serão enviados pa
 \label{img:trecho4}
 \end{figure}
 
-Por último, o método \textit{"cancel"} que encerra a conexão com o dispositivo pareado, como mostrado na figura \ref{img:trecho5}
+Por último, o método \textit{"cancel"} que encerra a conexão com o dispositivo pareado, como mostrado na figura \ref{img:trecho5}.
 
 \graphicspath{{figuras/}}
   \begin{figure}[!htb]
@@ -397,6 +397,7 @@ Por último, o método \textit{"cancel"} que encerra a conexão com o dispositiv
   \label{img:trecho5}
   \end{figure}  
   
+<<<<<<< HEAD
 	\subsection{Integração}
 	A integração foi realizada com a equipe da frente de eletroeletrônica. Para a integração com a equipe, foi feita a conexão do software desenvolvido com o hardware utilizado. Para tal, foi utilizado o módulo bluetooth-serial-port que possibilita comunicarmos através da aplicação com uma determinada porta serial bluetooth do dispositivo.
 	
@@ -513,15 +514,110 @@ Por último, o método \textit{"cancel"} que encerra a conexão com o dispositiv
 	
 	Nos pontos de controles passados foram testados as a maior arte dos requisitos implementados. Sendo que no último ponto de controle foi realizado o teste para a comunicação com o microcontrolador, realizando o envio dos dados de rotas via bluetooth para o microcontrolador.
   
-  \section{Eletroeletrônica}
+\section{Eletroeletrônica}
 	
 	\subsection{Requisitos}
 	Em linhas gerais, o projeto busca facilitar a vida de ciclistas. Eles vão poder ter mais informações sobre os seus trajetos e dessa forma trafegar de forma mais segura. Além disso, a possibilidade de se integrar um sistema como esse numa bicicleta automaticamente torna o próprio ato algo mais próximo do dia a dia, incentivando mais e mais pessoas a trocarem seus meios principais de transporte e assim desafogando as grandes cidades. 
 	Neste escopo, foram selecionados alguns requisitos básicos para o dispositivo. Esses não foram os únicos, porém foram os mais relevantes no desenho geral do sistema embarcado do projeto.
 	
+	\begin{comment} %Bruno pediu para retirar
 	\subsection{Comunicação e sensoriamento}
 	O projeto foi pensado para não ser algo muito invasivo no corpo da bicicleta. Ao mesmo tempo,  optou-se por utilizar comunicação com o celular do usuário de maneira sem fio, aproveitando-se de seu alto nível de integração, disponibilidade de bateria e localização tanto por GPS quanto por sinal de torres de celular disponíveis.
-	
+	\end{comment}
+ 
+		
+
+	\subsection{Sistema Embarcado}
+	\subsubsection{Software}
+	O sistema embarcado concebido é dividido em duas partes:
+
+	\begin{itemize}
+		\item \textbf{Sensor de velocidade}: Para ler o sensor de velocidade, foi criado uma função que conta quantas vezes o sensor ficou ativo num intervalo de 1 segundo. Essa leitura é feita por meio de interrupções , configuradas no programa principal. As imagens a seguir ilustram isso.
+	\end{itemize}
+
+	\graphicspath{{figuras/}}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.5\textwidth]{embarcado1.png}
+		\caption{Inicialização do sensor com a porta Analógica e o aro da roda.}
+		\label{img:embarcado1}
+	\end{figure}
+	\graphicspath{{figuras/}}
+
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.7\textwidth]{embarcado2.png}
+		\caption{Inicialização do timer e da interrupção.}
+		\label{img:embarcado2}
+	\end{figure}
+
+	\graphicspath{{figuras/}}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.4\textwidth]{embarcado3.png}
+		\caption{Função que é chamada a cada interrupção e contabiliza giros do sensor.}
+		\label{img:embarcado3}
+	\end{figure}
+
+	\begin{itemize}
+		\item \textbf{GPS}:  O visualizador de GPS foi feito utilizando-se a biblioteca u8glib. Ela é capaz de gerar gráficos para diversos monitores. A classe DisplayManager foi criada para facilitar a escrita no display, encapsulando as suas tarefas mais utilizadas e diferenciando o display que mostra velocidade do display que mostra dados do GPS.Outra classe criada foi a ProtocolManager, capaz de tratar os dados da serial, e simplificar a utilização do protocolo	
+	\end{itemize}
+
+	\graphicspath{{figuras/}}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.7\textwidth]{embarcado4.png}
+		\caption{Inicialização do display e da classe DisplayManager, que irá auxiliar nas funções mais básicas}
+		\label{img:embarcado4}
+	\end{figure}
+
+	A rotina principal a ser executada foi dessa forma muito simplificada, ficando da seguinte forma.
+	\graphicspath{{figuras/}}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.5\textwidth]{embarcado5.png}
+		\caption{Rotina Principal}
+		\label{img:embarcado5}
+	\end{figure}
+
+	\subsubsection{Hardware}
+	A implementação do software consiste em um microcontrolador que recebe as informações do sensor (pelo pino A0) e do GPS (via módulo Bluetooth, pinos RX e TX) e converte para dois displays O-led, conforme ilustrado no diagrama a seguir:
+
+	\graphicspath{{figuras/}}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.7\textwidth]{embarcado6.jpg}
+		\caption{Diagrama do hardware.}
+		\label{img:embarcado6}
+	\end{figure}
+
+	Após a concepção do circuito, chegamos ao seguinte resultado:
+
+	\graphicspath{{figuras/}}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.3\textwidth, angle=90]{embarcado7.jpg}
+		\caption{Displays em funcionamento.}
+		\label{img:embarcado7}
+	\end{figure}
+
+	Lembrando que as imagens do display de velocidade variam apenas na parte numérica, de acordo com os dados provindos do sensor. Já as imagens do display de GPS vão variar de acordo com a mensagem serial que o aplicativo vai enviar pro bluetooh, como pode ser exemplificado na imagem a seguir:
+
+	\graphicspath{{figuras/}}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.3\textwidth]{embarcado8.jpg}
+		\caption{Implementação do protocolo 0/0/0/0/1}
+		\label{img:embarcado8}
+	\end{figure}
+
+	\graphicspath{{figuras/}}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.3\textwidth]{embarcado9.jpg}
+		\caption{Implementação do protocolo 4/0/1/0/1}
+		\label{img:embarcado9}
+	\end{figure}
 	\subsection{Motor}
 	O motor utilizado no projeto será responsável por converter a energia elétrica em mecânica e enviar, por meio dos sensores hall, as informações da posição atual do motor para o microcontrolador.
 	
@@ -614,10 +710,12 @@ Por último, o método \textit{"cancel"} que encerra a conexão com o dispositiv
  			\item Velocity Manager: Traduz os dados crus obtidos dos sensores para velocidade e os estoca.
  			\item TTGPS Manager: Responsável pelo Turn-By-Turn GPS. 
  		\end{itemize}
+ 	
+ 		\newpage
  			\graphicspath{{figuras/}}
- 			\begin{figure}[h!]
+ 			\begin{figure}[H]
  				\centering
- 				\includegraphics[scale=1.4]{Figura6_Diagrama_de_modulos_do_sistema.PNG}
+ 				\includegraphics[width=0.9\textwidth]{Figura6_Diagrama_de_modulos_do_sistema.PNG}
  				\caption{Diagramas de blocos da integração dos módulos do sistemas}
  				\label{img:Diagrama_de_modulos_do_sistema}
  			\end{figure}
@@ -627,12 +725,11 @@ Por último, o método \textit{"cancel"} que encerra a conexão com o dispositiv
 		Para cumprir com os requisitos de  comunicação / Localização, foi escolhida a comunicação Bluetooth, ideal por ser de baixa potência e alcance reduzido. Assim, não afetará outros veículos próximos, da mesma forma que representará uma economia de bateria. 
 		Os requisitos de Interface Humano - Computador foram supridos por dois monitores de OLED Modelo GM009605. Por seu tamanho reduzido, não representam grandes distrações para o ciclista, ao passo que possuem um grande contraste e são excelentes para a visualização contra a luz solar conforme a figura \ref{img:display_indicando_a_rota}. Também nesse tópico, foi escolhido o microcontrontrolador Arduino, por sua facilidade de codificação e também por sua versatilidade, apresentando dentre outros elementos , entradas analógicas, saídas PWM e comunicação I2C e serial. O modelo utilizado será o Arduino UNO visto na figura \ref{img:Arduino_Uno}.
 		Para melhor entendimento e análise do sistema de Controle e disponibilização de dados o esquemático deste projeto é demonstrado abaixo:
-		\newpage
 		
 			\graphicspath{{figuras/}}
 			\begin{figure}[h!]
 				\centering
-				\includegraphics[scale=1.4]{Figura_7_sistema_de_controle.PNG}
+				\includegraphics[width=0.7\textwidth]{Figura_7_sistema_de_controle.PNG}
 				\caption{Esquemático Sistema de controle e disponibilização dos dados}
 				\label{img:sistema_de_controle_e_disponibiização_de_dados}
 			\end{figure}
@@ -680,7 +777,7 @@ Por último, o método \textit{"cancel"} que encerra a conexão com o dispositiv
 		\indent \}
 	
 			\graphicspath{{figuras/}}
-			\begin{figure}[h!]
+			\begin{figure}[H]
 				\centering
 				\includegraphics[width=0.5\textwidth]{Figura_9_sensor_velocidade.PNG}
 				\caption{Teste do Sensor de Velocidade}
@@ -706,7 +803,6 @@ Por último, o método \textit{"cancel"} que encerra a conexão com o dispositiv
 	
 	Cada desenho desse será nomeado com uma palavra de 3 bits, e desenhado com uma estrutura binária de matriz dentro do código. Uma vez que o GPS determinar alguma dessas 8 direções o aplicativo irá dar um comando ao microprocessador, através da palavra de 3 bits, para que o desenho correto de direção seja acionado e apresentado no display. 
 	Para o melhor entendimento, atribui-se por exemplo a palavra 010 à direção "SIGA EM FRENTE". Quando o GPS indicar essa direção, o aplicativo enviará ao microprocessador os níveis de tensão "0", "1" e "0" para o micro, que irá processar a devida imagem no display.
-	\newpage
 	
 		\graphicspath{{figuras/}}
 		\begin{figure}[h!]
@@ -730,9 +826,8 @@ Por último, o método \textit{"cancel"} que encerra a conexão com o dispositiv
 
 	\subsection{Diagrama e Montagem dos Circuitos}
 	Os circuitos e esquemáticos serão feitos nos simuladores Proteus e LTspice, divididos de acordo com seus subsistemas. Os circuitos serão mostrados sem os resistores para facilitar a visualização.
-	\newpage
-	
-	\begin{table}[!htb]
+		
+	\begin{table}[H]
 		\caption{Nomenclatura de acordo com a cor dos fios.}
 		\centering
 		\label{Nomenclatura_de_acordo_com_a_cor_dos_fios}
@@ -791,19 +886,16 @@ Por último, o método \textit{"cancel"} que encerra a conexão com o dispositiv
 				\label{img:Ordem_de_chaveamento_para_cada_fase_do_motor_de_acordo_com_a_posição_obtida_pelos_sensores_Hall}
 			\end{figure}
 		\end{comment}
-		
-		\newpage
-		
+			
 		\subsubsection{Circuito de Controle e Sensores}
 		
 			\graphicspath{{figuras/}}
-			\begin{figure}[h!]
+			\begin{figure}[H]
 				\centering
 				\includegraphics[scale=1.4]{Figura13_circuito_de_obtencao_de_dados.PNG}
 				\caption{Diagrama do circuito de obtenção de dados.}
 				\label{img:Diagrama_do_circuito_de_obtencao_de_dados}
-			\end{figure}
-%		
+			\end{figure}	
 		
 
   \section{Alimentação}
@@ -816,9 +908,9 @@ Por último, o método \textit{"cancel"} que encerra a conexão com o dispositiv
 	O sistema de navegação será alimentado por um sistema separado do motor elétrico como forma de garantia de suprimento de energia para esse sistema. Caso a bateria descarregue no meio do percurso, o dínamo será capaz de carregá-la enquanto o ciclista pedala a bicicleta, garantindo que o mesmo continuará com o sistema de iluminação que lhe indicará a rota desejada.
 	
 	\subsection{Motor Elétrico}
-De modo geral, pode-se dizer que um motor elétrico é qualquer aparelho ou equipamento que permita transformar energia elétrica em mecânica. Em termos práticos, é amplamente utilizado para diversos fins devido a características que lhe conferem vantagens em relação a outros motores, sendo interessante destacar: o custo baixo da energia que utiliza o fácil transporte devido à massa relativamente baixa que possui, além da versatilidade de adaptar-se a diversos tipos de cargas com características distintas.
+	De modo geral, pode-se dizer que um motor elétrico é qualquer aparelho ou equipamento que permita transformar energia elétrica em mecânica. Em termos práticos, é amplamente utilizado para diversos fins devido a características que lhe conferem vantagens em relação a outros motores, sendo interessante destacar: o custo baixo da energia que utiliza o fácil transporte devido à massa relativamente baixa que possui, além da versatilidade de adaptar-se a diversos tipos de cargas com características distintas.
 
-Os motores elétricos podem ser divididos em dois grandes grupos, baseados no tipo de corrente que utilizarão em seu processo de transformação de energia: os de corrente contínua (CC) e os de corrente alternada (CA). Na figura \ref{img:tipos_motores}, os diversos tipos de motores elétricos são apresentados para fins de curiosidade e entendimento geral da quantidade de motores possíveis que existem no mercado.	
+	Os motores elétricos podem ser divididos em dois grandes grupos, baseados no tipo de corrente que utilizarão em seu processo de transformação de energia: os de corrente contínua (CC) e os de corrente alternada (CA). Na figura \ref{img:tipos_motores}, os diversos tipos de motores elétricos são apresentados para fins de curiosidade e entendimento geral da quantidade de motores possíveis que existem no mercado.	
 
 \graphicspath{{figuras/}}
 \begin{figure}[H]
@@ -828,7 +920,6 @@ Os motores elétricos podem ser divididos em dois grandes grupos, baseados no ti
 \label{img:tipos_motores}
 \end{figure}
 
-\newpage
 Apesar da grande variedade de motores, eles possuem características específicas que se adequam melhor a cenários distintos de uso, mesmo que em certos casos possam ser intercambiáveis nos processos, de acordo com as necessidades que a utilização exigirá. Baseando-se nisso, os motores de corrente contínua, os de indução, excitação por imas permanentes e relutância, são os mais utilizados para o uso em bicicletas elétricas.
 
 Os motores elétricos possuem funcionamento baseado na troca de polaridade periódica entre os elementos magnéticos internos, permitindo assim que um rotor possa girar entre dois ímãs e gerar o movimento. Entretanto, a corrente contínua usada em motores CC é interessante para polos permanentes, fazendo com que seja necessária uma inversão do sentido da corrente a cada vez que os polos do rotor se encontrem com os dos ímãs. Para produzir esse efeito, geralmente usam-se comutadores, que são basicamente placas que envolvem o rotor, associada a outro elemento, chamado de escova, assim quando a corrente “entra” no sistema, ela tem seu caminho passando pela escova, parede do comutador, rotor, parede do outro comutador e a outra escova, onde ela inverte a polaridade, voltando para a fonte. 
@@ -1017,7 +1108,7 @@ O circuito retirado proposto pelo site Destro é apresentado na figura x + 3.
 
 	\begin{figure}[!htb]
 		\centering
-		\includegraphics[scale=0.5]{circuito_carregamento.jpeg}
+		\includegraphics[width=\textwidth]{circuito_carregamento.jpeg}
 		\caption{Circuito de Carregamento de Referência}
 		\label{img:circuitocarregamento}
 	\end{figure}
@@ -1496,8 +1587,14 @@ Foram levados em consideração vários fatores, como o material, a estabilidade
 	Para a fixação da porta na caixa principal foram utilizados os parafusos de 3x12mm para parafusar as duas dobradiças, e o trinco que une a porta e a parte lateral menor. 
 	
 	Para fixar a caixa principal no quadro da bicicleta foram utilizadas abraçadeiras de uma polegada (1”). Primeiro foi aferida uma medição para o encaixe ser feito de forma a não ter nenhuma possibilidade de contato entre a caixa principal e os pedais/biela. Feita a medição seguiu-se para o parafusamento direto dos parafusos de 3x12mm nas abraçadeiras. O arranjo das abraçadeiras na base da caixa principal foi feito de forma a garantir a impossibilidade da caixa se movimentar para qualquer direção, ficando completamente fixa ao quadro. 
-	O produto final está exibido nas Figuras \ref{img:box_vazia} \ref{img:box_cheia} e \ref{img:box_fechada2} a seguir.
-
+	O produto final está exibido nas Figuras \ref{img:box_baterias}, \ref{img:box_vazia}, \ref{img:box_baterias} \ref{img:box_cheia} e \ref{img:box_fechada2} a seguir.
+	\graphicspath{{figuras/}}	
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=0.5\textwidth]{baterias.jpg}
+			\caption{Caixa de baterias}
+		\label{img:box_baterias}
+	\end{figure}
 	\graphicspath{{figuras/}}	
 	\begin{figure}[h!]
 		\centering
@@ -1514,6 +1611,7 @@ Foram levados em consideração vários fatores, como o material, a estabilidade
 		\label{img:box_cheia}
 	\end{figure}
 	
+
 	\graphicspath{{figuras/}}	
 	\begin{figure}[H]
 		\centering
@@ -1548,16 +1646,27 @@ Foram levados em consideração vários fatores, como o material, a estabilidade
 	
 	Para definir o plano de teste, estabeleceu-se como uma espécie de medida a rodagem por Km de forma que fosse possível observar o comportamento da estrutura ao longo dos trajetos. Ao longo de 6Km percorridos, notou-se um problema com a roda traseira e com a corrente utilizada, desta forma, foi necessário realizar a troca de ambos os componentes.
 	A exceção dos problemas já apresentados, a estrutura da bicicleta não apresentou nenhum outro problema e o teste ocorreu sem mais nenhuma outra adversidade.
+	\subsection{Análise crítica de projeto e desenvolvimento}
+		
+		\subsubsection{O que foi feito}
+		Foi feita a adaptação do quadro de uma bicicleta comum. Para isso foi cortada a parte de baixo do quadro, produzida uma peça que serviria de base, onde iria um compartimento para as baterias e as placas eletrônicas. Para a produção dessa base, foi necessária a compra de tubos de alumínio e para a fabricação foi necessário dobrar os tubos, cortar e soldar no quadro da bicicleta. Para o compartimento das baterias foram feitas caixas tanto para as baterias quanto para todo o sistema placas eletrônicas/baterias, de forma a garantir a segurança dos equipamentos e do ciclista. 
+		
+		\subsubsection{Problemas encontrados durante o projeto}
+		Não foi possível a produção completa de um quadro de bicicleta, o que fez com que buscássemos a alternativa de adaptar um quadro comum de mercado.  
+		Foi necessário o desenvolvimento de vários desenhos do compartimento onde estão as baterias e placas eletrônicas, porque existe um limite de dimensões no quadro.
+		
+		O projeto inicialmente foi desenhado para as placas de madeira terem 9mm, porém só foi possível obter placas de 12mm adquiridas de partes que já estavam cortadas na madeireira. Não foi possível obter placas de 9mm pois as madeireiras só vendem placas de 2750x1850mm, equivalente a 5,0875 metros quadrados, e no projeto utilizou-se cerca de 0,5 metros quadrados, e as placas inteiras estavam fora do orçamento.
 
 
   \section{Normas}
   Para garantir a integridade e segurança do projeto e dos futuros usuários do produto, deve-se atentar a determinadas normas técnicas, que garantem a funcionalidade do projeto. Essas normas ajudam a definir diversas características de um produto, visando uma padronização que auxilia na solução de futuros problemas, assegurando a qualidade e eficiência desejada. No Brasil, a Agência Brasileira de Normas Técnicas (ABNT) é o órgão responsável pela elaboração das Normas Técnicas Brasileiras (NBR), que servem como instrumento na avaliação de conformidades e certificação de diversas áreas e produtos, garantindo a devida credibilidade. Para o caso da Smart Bike, alguns itens importantes podem ser destacados diante da NBR NM 213, que é uma norma específica voltada para Princípios de Projeto e Segurança de Equipamentos Eletromecânicos.
   
 
-\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+
 \begin{table}[!htb]
 	\centering
 	\caption{Tabela de Normas}
+	\resizebox{\textwidth}{!}{
 	\begin{tabular}{|M{2,5cm} | M{4,5cm} | M{9cm}|}
 		\hline
 		\textbf{ITEM AVALIADO} & \textbf{MEDIDA NORMATIVA} & \textbf{O QUE SERÁ FEITO?} \\ \hline
@@ -1582,6 +1691,7 @@ Foram levados em consideração vários fatores, como o material, a estabilidade
 		Manutenção & Considerar fatores que facilitem a manutenabilidade do sistema. & A estrutura será montada de maneira que torne fácil o acesso as partes e sistemas internos. \\
 		\hline
 	\end{tabular}
+}
 	\label{tabela_normas}
 \end{table}
 
