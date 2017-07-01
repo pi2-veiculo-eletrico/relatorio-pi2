@@ -987,6 +987,7 @@ Com o término dos testes, a produção se deu logo de imediato, sendo então ut
 \item Capacitor de 3300 uF.
 \end{itemize}
 
+<<<<<<< Updated upstream
 \graphicspath{{figuras/}}
 \begin{figure}[h]
 \centering
@@ -997,6 +998,23 @@ Com o término dos testes, a produção se deu logo de imediato, sendo então ut
 
 \subsection{Frenagem Regenarativa}
 A frenagem regenerativa consiste em recuperar a energia gerada durante a pedalada. A energia cinética da bicicleta aplica energia mecânica no eixo do motor, forçando este a entrar no modo de geração. Essa recuperação da energia implica na devolução o banco de baterias. 
+=======
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.3, angle=90]{bateria_bike.jpeg}
+		\caption{Foto da Bateria Moura 12MVA-7 Nobreak}
+		\label{img:bateriabike}
+	\end{figure}
+	
+	\begin{figure}[!htb]
+		\centering
+		\includegraphics[scale=0.5]{especificacao_bateria.jpeg}
+		\caption{Especificações Bateria 12MVA-7}
+		\label{img:especificacaobateria}
+	\end{figure}
+	
+Como as especificações apresentam, as baterias serão capazes de suprir a demanda de corrente do sistema e dos componentes eletrônicos, visto que agora não haverá mais outra bateria para suprir somente os componentes menores, exigindo que apenas o banco de três de baterias alimente todo o conjunto, motor e equipamentos eletrônicos. Como dito anteriormente, a autonomia não foi considerada um requisito, mas é seguro afirmar que ela será inferior a uma hora, o tempo proposto inicialmente.
+>>>>>>> Stashed changes
 
 O circuito destinado ao acionamento do motor demanda uma corrente da bateria que é aplicada no motor através do sistema de chaveamento dos MOSFETs, que por sua vez, necessitam trabalhar com um tempo de chaveamento adequado. Contudo quando se aplica um torque mecânico no motor esse mesmo circuito é capaz de realizar o trabalho inverso de modo que a energia gerada pelo motor possa ser injetada nas baterias, ou seja o mesmo circuito, porém agora com a corrente no sentido oposto.
 
@@ -1004,6 +1022,7 @@ Para que ocorra efetivamente a recarga das baterias a tensão gerada pelo motor 
 
 Foram feitos testes na bicicleta utilizando um medidor de velocidade e um multímetro e foi aferido que quando a bicicleta atinge uma velocidade entre a faixa de 40 e 45Km/h a tensão aplicada nas baterias já ultrapassa 36V e as baterias são recarregadas. Velocidades acima dessa faixa também recarregam o banco de baterias. Essa velocidade é o nosso “limiar de velocidade”, ou seja, o momento onde nosso motor deixa o estado de motor em si, para atuar como gerador.
 
+<<<<<<< Updated upstream
 \subsection{Plano de Integração}
 A Alimentação se integra basicamente junto ao sistema de Eletroeletrônica ao alimentar o motor e também os componentes do sistema. Toda essa ligação é realizada pela placa de acionamento, pois através dela ocorrerá não só o acionamento do motor em si, como também a regeneração das próprias baterias através do processo de frenagem regenerativa. A tensão para alimentar o circuito eletrônico relacionado ao módulo bluetooth também será fornecido pela placa de acionamento. Dessa forma, através do diagrama abaixo é possível visualizar a integração entre o sistema de energia e os demais. 
 
@@ -1021,6 +1040,14 @@ A Alimentação se integra basicamente junto ao sistema de Eletroeletrônica ao 
 	Em um aspecto inicial, o grupo teve um início tranquilo, conseguindo facilmente dimensionar as baterias e adequar elas às necessidades iniciais desejadas pelo subgrupo de Estrutura, ao necessitar de uma menor massa, e também a questão de que não haveria necessidade de uma autonomia muito alta. A partir daí houveram alguns problemas em relação a encontrar uma solução concreta para o desafio de regenerar energia através do motor. Além disso, o grupo acabou sendo desfalcado ao longo do projeto, visto que um dos componentes acabou trancando o semestre na universidade, retirando-se da disciplina. 
 	
 	Apesar desses dois desafios, o grupo conseguiu se redistribuir em termos de tarefas e encontrar um norte para solucionar o problema da regeneração, além de definir especificamente como seria feito o carregamento tradicional, junto a energia elétrica residencial. Dessa forma, é válido e importante dizer que o subgrupo alcançou seu objetivo e conseguiu realizar as tarefas propostas dentro dos novos requisitos que foram sendo alterados e ajustados ao longo do avanço do projeto e das possibilidades do mesmo. 
+=======
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.4]{estagio_carregamento.jpeg}
+		\caption{Estágios de Carregamento Bateria Chumbo-Ácido}
+		\label{img:estagiocarregamento}
+	\end{figure}
+>>>>>>> Stashed changes
 
 
   \section{Estrutura}
@@ -1047,8 +1074,6 @@ Foram levados em consideração vários fatores, como o material, a estabilidade
 			\label{img:dimensoes}
 			\end{figure}
 
-\newpage
-
 	\subsubsection{Estabilidade}
 	O centro de massa da bicicleta sem os componentes se concentrou em 0,6m no eixo x e 0,5m no eixo y, as forças normais nos pneus traseiros e dianteiros foram de,respectivamente: 24,525N e 73,575N, enquanto as forças de fricção(atrito)  nos pneus traseiros e dianteiros de, respectivamente: 14,96N e 44,88N. As figuras \ref{img:esq_forca_sem_frenagem}, \ref{img:esq_forca_com_frenagem_suave} e \ref{img:esq_forca_com_frenagem_brusca} apresentam três esquemáticos demonstrando a aplicação da força sobre a bicicleta em três momentos distintos.
 
@@ -1069,14 +1094,13 @@ Foram levados em consideração vários fatores, como o material, a estabilidade
 		\end{figure}
 		
 		\graphicspath{{figuras/}}
-		\begin{figure}[h!]
+		\begin{figure}[H]
 		\centering
 		\includegraphics[scale=0.80]{esq_forca_com_frenagem_brusca.png}
 		\caption{Esquemático de forca com frenagem brusca}
 		\label{img:esq_forca_com_frenagem_brusca}
 		\end{figure}
 
-\newpage
 
 	\subsubsection{Análises}
 	Foram feitas algumas análises em um quadro de 17 com ajuda dos softwares CATIA v5 e Ansys R17.0 no intuito de levantar questões sobre requisitos e melhorias que deverão estar presentes na estrutura.
@@ -1222,7 +1246,7 @@ Foram levados em consideração vários fatores, como o material, a estabilidade
 		\label{img:inter_render}
 	\end{figure}
 	
-	\newpage
+
 	%\graphicspath{{figuras/}}
 	%\begin{figure}[h!]
 	%	\centering
@@ -1240,7 +1264,7 @@ Foram levados em consideração vários fatores, como o material, a estabilidade
 	%\end{figure}
 	
 	\graphicspath{{figuras/}}
-	\begin{figure}[!htb]
+	\begin{figure}[H]
 		\centering
 		\includegraphics[width=0.6\textwidth]{inter_cotas.jpg}
 		\caption{Detalhe do fundo do quadro original}
@@ -1260,9 +1284,8 @@ Foram levados em consideração vários fatores, como o material, a estabilidade
 		\label{img:inter_F120}
 	\end{figure}
 	
-	\newpage
 	%\graphicspath{{figuras/}}
-	\begin{figure}[!htb]
+	\begin{figure}[H]
 		\centering
 		\includegraphics[width=0.5\textwidth]{inter_F900.png}
 		\caption{Força peso do ciclista}
